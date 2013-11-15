@@ -1,0 +1,775 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9122307E1722DF2D001E061E /* LinkedList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9122307C1722DF2D001E061E /* LinkedList.cpp */; };
+		913958EA1706256F003334F7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 913958E91706256F003334F7 /* main.cpp */; };
+		913958EC1706256F003334F7 /* PharmacyC__.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 913958EB1706256F003334F7 /* PharmacyC__.1 */; };
+		91D98C521737B68100A160B2 /* Repository.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 913958F817062BA9003334F7 /* Repository.cpp */; };
+		91D98C531737B68100A160B2 /* RepositoryAbstract.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91BA68B117184D1200D75BF7 /* RepositoryAbstract.cpp */; };
+		91D98C541737B68100A160B2 /* RepositoryInMemory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 91BA68B317184F8000D75BF7 /* RepositoryInMemory.cpp */; };
+		91D98C551737B68D00A160B2 /* TestRepository.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9150BE371708587A009F7077 /* TestRepository.cpp */; };
+		91D98C5E1737B6AB00A160B2 /* Medication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 913958FE17062D4C003334F7 /* Medication.cpp */; };
+		91D98C5F1737B6AB00A160B2 /* Substance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 910EA2B11715CEF000679FF4 /* Substance.cpp */; };
+		91D98C601737B6AB00A160B2 /* Sale.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 910EA2B41715D1AA00679FF4 /* Sale.cpp */; };
+		91D98C611737B6AB00A160B2 /* TestMedication.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9150BE3A17086432009F7077 /* TestMedication.cpp */; };
+		91D98C6A1737B6CA00A160B2 /* PharmacyException.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 912230791722DB37001E061E /* PharmacyException.cpp */; };
+		91D98C6B1737B6CA00A160B2 /* AllTests.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9150BE3D170866EF009F7077 /* AllTests.cpp */; };
+		91D98C741737B6E300A160B2 /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 913958F517062B79003334F7 /* Controller.cpp */; };
+		91D98C751737B6E300A160B2 /* Validator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9150BE4017086789009F7077 /* Validator.cpp */; };
+		91D98C811737B70400A160B2 /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 913958F217062599003334F7 /* Console.cpp */; };
+		91D98C8C1737B71E00A160B2 /* libPharmacyConsole.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D98C7D1737B6FE00A160B2 /* libPharmacyConsole.a */; };
+		91D98C8D1737B71E00A160B2 /* libPharmacyController.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D98C701737B6D400A160B2 /* libPharmacyController.a */; };
+		91D98C8E1737B71E00A160B2 /* libPharmacyDomain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D98C5A1737B69900A160B2 /* libPharmacyDomain.a */; };
+		91D98C8F1737B71E00A160B2 /* libPharmacyRepository.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D98C4E1737B67700A160B2 /* libPharmacyRepository.a */; };
+		91D98C901737B71E00A160B2 /* libPharmacyUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D98C661737B6BA00A160B2 /* libPharmacyUtilities.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		91D98C821737B71800A160B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 913958DE1706256F003334F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91D98C4D1737B67700A160B2;
+			remoteInfo = PharmacyRepository;
+		};
+		91D98C841737B71800A160B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 913958DE1706256F003334F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91D98C591737B69900A160B2;
+			remoteInfo = PharmacyDomain;
+		};
+		91D98C861737B71800A160B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 913958DE1706256F003334F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91D98C651737B6BA00A160B2;
+			remoteInfo = PharmacyUtilities;
+		};
+		91D98C881737B71800A160B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 913958DE1706256F003334F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91D98C6F1737B6D400A160B2;
+			remoteInfo = PharmacyController;
+		};
+		91D98C8A1737B71800A160B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 913958DE1706256F003334F7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91D98C7C1737B6FE00A160B2;
+			remoteInfo = PharmacyConsole;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		913958E41706256F003334F7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				913958EC1706256F003334F7 /* PharmacyC__.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		910EA2B11715CEF000679FF4 /* Substance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Substance.cpp; sourceTree = "<group>"; };
+		910EA2B21715CEF000679FF4 /* Substance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Substance.h; sourceTree = "<group>"; };
+		910EA2B41715D1AA00679FF4 /* Sale.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sale.cpp; sourceTree = "<group>"; };
+		910EA2B51715D1AA00679FF4 /* Sale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sale.h; sourceTree = "<group>"; };
+		912230791722DB37001E061E /* PharmacyException.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PharmacyException.cpp; sourceTree = "<group>"; };
+		9122307A1722DB37001E061E /* PharmacyException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PharmacyException.h; sourceTree = "<group>"; };
+		9122307C1722DF2D001E061E /* LinkedList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LinkedList.cpp; sourceTree = "<group>"; };
+		9122307D1722DF2D001E061E /* LinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		913958E61706256F003334F7 /* PharmacyC++ */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "PharmacyC++"; sourceTree = BUILT_PRODUCTS_DIR; };
+		913958E91706256F003334F7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		913958EB1706256F003334F7 /* PharmacyC__.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PharmacyC__.1; sourceTree = "<group>"; };
+		913958F217062599003334F7 /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
+		913958F317062599003334F7 /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
+		913958F517062B79003334F7 /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
+		913958F617062B79003334F7 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		913958F817062BA9003334F7 /* Repository.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Repository.cpp; sourceTree = "<group>"; };
+		913958F917062BA9003334F7 /* Repository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Repository.h; sourceTree = "<group>"; };
+		913958FE17062D4C003334F7 /* Medication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Medication.cpp; sourceTree = "<group>"; };
+		913958FF17062D4C003334F7 /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
+		9150BE371708587A009F7077 /* TestRepository.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestRepository.cpp; sourceTree = "<group>"; };
+		9150BE381708587A009F7077 /* TestRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestRepository.h; sourceTree = "<group>"; };
+		9150BE3A17086432009F7077 /* TestMedication.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestMedication.cpp; sourceTree = "<group>"; };
+		9150BE3B17086432009F7077 /* TestMedication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestMedication.h; sourceTree = "<group>"; };
+		9150BE3D170866EF009F7077 /* AllTests.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AllTests.cpp; sourceTree = "<group>"; };
+		9150BE3E170866EF009F7077 /* AllTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTests.h; sourceTree = "<group>"; };
+		9150BE4017086789009F7077 /* Validator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Validator.cpp; sourceTree = "<group>"; };
+		9150BE4117086789009F7077 /* Validator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validator.h; sourceTree = "<group>"; };
+		91BA68AF17184B1F00D75BF7 /* RepositoryAbstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryAbstract.h; sourceTree = "<group>"; };
+		91BA68B117184D1200D75BF7 /* RepositoryAbstract.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepositoryAbstract.cpp; sourceTree = "<group>"; };
+		91BA68B317184F8000D75BF7 /* RepositoryInMemory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RepositoryInMemory.cpp; sourceTree = "<group>"; };
+		91BA68B417184F8000D75BF7 /* RepositoryInMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepositoryInMemory.h; sourceTree = "<group>"; };
+		91D98C4E1737B67700A160B2 /* libPharmacyRepository.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPharmacyRepository.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D98C5A1737B69900A160B2 /* libPharmacyDomain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPharmacyDomain.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D98C661737B6BA00A160B2 /* libPharmacyUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPharmacyUtilities.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D98C701737B6D400A160B2 /* libPharmacyController.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPharmacyController.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D98C7D1737B6FE00A160B2 /* libPharmacyConsole.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPharmacyConsole.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		91FF1C1B17073FB400D73109 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		913958E31706256F003334F7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D98C8C1737B71E00A160B2 /* libPharmacyConsole.a in Frameworks */,
+				91D98C8D1737B71E00A160B2 /* libPharmacyController.a in Frameworks */,
+				91D98C8E1737B71E00A160B2 /* libPharmacyDomain.a in Frameworks */,
+				91D98C8F1737B71E00A160B2 /* libPharmacyRepository.a in Frameworks */,
+				91D98C901737B71E00A160B2 /* libPharmacyUtilities.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C4B1737B67700A160B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C571737B69900A160B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C631737B6BA00A160B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C6D1737B6D400A160B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C7A1737B6FE00A160B2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		912230821722E234001E061E /* Linked List */ = {
+			isa = PBXGroup;
+			children = (
+				9122307C1722DF2D001E061E /* LinkedList.cpp */,
+				9122307D1722DF2D001E061E /* LinkedList.h */,
+			);
+			name = "Linked List";
+			sourceTree = "<group>";
+		};
+		913958DD1706256F003334F7 = {
+			isa = PBXGroup;
+			children = (
+				913958E81706256F003334F7 /* PharmacyC++ */,
+				913958E71706256F003334F7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		913958E71706256F003334F7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				913958E61706256F003334F7 /* PharmacyC++ */,
+				91D98C4E1737B67700A160B2 /* libPharmacyRepository.a */,
+				91D98C5A1737B69900A160B2 /* libPharmacyDomain.a */,
+				91D98C661737B6BA00A160B2 /* libPharmacyUtilities.a */,
+				91D98C701737B6D400A160B2 /* libPharmacyController.a */,
+				91D98C7D1737B6FE00A160B2 /* libPharmacyConsole.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		913958E81706256F003334F7 /* PharmacyC++ */ = {
+			isa = PBXGroup;
+			children = (
+				913958E91706256F003334F7 /* main.cpp */,
+				913958FB17062D2D003334F7 /* UI */,
+				913958FC17062D32003334F7 /* Controller */,
+				913958FD17062D38003334F7 /* Repository */,
+				9139590117062D50003334F7 /* Domain */,
+				91FF1C1C17073FBB00D73109 /* Utils */,
+				913958EB1706256F003334F7 /* PharmacyC__.1 */,
+			);
+			path = "PharmacyC++";
+			sourceTree = "<group>";
+		};
+		913958FB17062D2D003334F7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				913958F217062599003334F7 /* Console.cpp */,
+				913958F317062599003334F7 /* Console.h */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		913958FC17062D32003334F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				913958F517062B79003334F7 /* Controller.cpp */,
+				913958F617062B79003334F7 /* Controller.h */,
+				9150BE4017086789009F7077 /* Validator.cpp */,
+				9150BE4117086789009F7077 /* Validator.h */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		913958FD17062D38003334F7 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				913958F817062BA9003334F7 /* Repository.cpp */,
+				913958F917062BA9003334F7 /* Repository.h */,
+				91BA68AF17184B1F00D75BF7 /* RepositoryAbstract.h */,
+				91BA68B117184D1200D75BF7 /* RepositoryAbstract.cpp */,
+				91BA68B317184F8000D75BF7 /* RepositoryInMemory.cpp */,
+				91BA68B417184F8000D75BF7 /* RepositoryInMemory.h */,
+				912230821722E234001E061E /* Linked List */,
+				9150BE371708587A009F7077 /* TestRepository.cpp */,
+				9150BE381708587A009F7077 /* TestRepository.h */,
+			);
+			name = Repository;
+			sourceTree = "<group>";
+		};
+		9139590117062D50003334F7 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				913958FE17062D4C003334F7 /* Medication.cpp */,
+				913958FF17062D4C003334F7 /* Medication.h */,
+				910EA2B11715CEF000679FF4 /* Substance.cpp */,
+				910EA2B21715CEF000679FF4 /* Substance.h */,
+				910EA2B41715D1AA00679FF4 /* Sale.cpp */,
+				910EA2B51715D1AA00679FF4 /* Sale.h */,
+				9150BE3A17086432009F7077 /* TestMedication.cpp */,
+				9150BE3B17086432009F7077 /* TestMedication.h */,
+			);
+			name = Domain;
+			sourceTree = "<group>";
+		};
+		91FF1C1C17073FBB00D73109 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				912230791722DB37001E061E /* PharmacyException.cpp */,
+				9122307A1722DB37001E061E /* PharmacyException.h */,
+				9150BE3D170866EF009F7077 /* AllTests.cpp */,
+				9150BE3E170866EF009F7077 /* AllTests.h */,
+				91FF1C1B17073FB400D73109 /* Constants.h */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		91D98C4C1737B67700A160B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C581737B69900A160B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C641737B6BA00A160B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C6E1737B6D400A160B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C7B1737B6FE00A160B2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		913958E51706256F003334F7 /* PharmacyC++ */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 913958EF1706256F003334F7 /* Build configuration list for PBXNativeTarget "PharmacyC++" */;
+			buildPhases = (
+				913958E21706256F003334F7 /* Sources */,
+				913958E31706256F003334F7 /* Frameworks */,
+				913958E41706256F003334F7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91D98C891737B71800A160B2 /* PBXTargetDependency */,
+				91D98C8B1737B71800A160B2 /* PBXTargetDependency */,
+				91D98C851737B71800A160B2 /* PBXTargetDependency */,
+				91D98C831737B71800A160B2 /* PBXTargetDependency */,
+				91D98C871737B71800A160B2 /* PBXTargetDependency */,
+			);
+			name = "PharmacyC++";
+			productName = "PharmacyC++";
+			productReference = 913958E61706256F003334F7 /* PharmacyC++ */;
+			productType = "com.apple.product-type.tool";
+		};
+		91D98C4D1737B67700A160B2 /* PharmacyRepository */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D98C4F1737B67700A160B2 /* Build configuration list for PBXNativeTarget "PharmacyRepository" */;
+			buildPhases = (
+				91D98C4A1737B67700A160B2 /* Sources */,
+				91D98C4B1737B67700A160B2 /* Frameworks */,
+				91D98C4C1737B67700A160B2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PharmacyRepository;
+			productName = PharmacyRepository;
+			productReference = 91D98C4E1737B67700A160B2 /* libPharmacyRepository.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		91D98C591737B69900A160B2 /* PharmacyDomain */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D98C5B1737B69900A160B2 /* Build configuration list for PBXNativeTarget "PharmacyDomain" */;
+			buildPhases = (
+				91D98C561737B69900A160B2 /* Sources */,
+				91D98C571737B69900A160B2 /* Frameworks */,
+				91D98C581737B69900A160B2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PharmacyDomain;
+			productName = PharmacyDomain;
+			productReference = 91D98C5A1737B69900A160B2 /* libPharmacyDomain.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		91D98C651737B6BA00A160B2 /* PharmacyUtilities */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D98C671737B6BA00A160B2 /* Build configuration list for PBXNativeTarget "PharmacyUtilities" */;
+			buildPhases = (
+				91D98C621737B6BA00A160B2 /* Sources */,
+				91D98C631737B6BA00A160B2 /* Frameworks */,
+				91D98C641737B6BA00A160B2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PharmacyUtilities;
+			productName = PharmacyUtilities;
+			productReference = 91D98C661737B6BA00A160B2 /* libPharmacyUtilities.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		91D98C6F1737B6D400A160B2 /* PharmacyController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D98C711737B6D400A160B2 /* Build configuration list for PBXNativeTarget "PharmacyController" */;
+			buildPhases = (
+				91D98C6C1737B6D400A160B2 /* Sources */,
+				91D98C6D1737B6D400A160B2 /* Frameworks */,
+				91D98C6E1737B6D400A160B2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PharmacyController;
+			productName = PharmacyController;
+			productReference = 91D98C701737B6D400A160B2 /* libPharmacyController.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		91D98C7C1737B6FE00A160B2 /* PharmacyConsole */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D98C7E1737B6FE00A160B2 /* Build configuration list for PBXNativeTarget "PharmacyConsole" */;
+			buildPhases = (
+				91D98C791737B6FE00A160B2 /* Sources */,
+				91D98C7A1737B6FE00A160B2 /* Frameworks */,
+				91D98C7B1737B6FE00A160B2 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PharmacyConsole;
+			productName = PharmacyConsole;
+			productReference = 91D98C7D1737B6FE00A160B2 /* libPharmacyConsole.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		913958DE1706256F003334F7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Mihai Costea";
+			};
+			buildConfigurationList = 913958E11706256F003334F7 /* Build configuration list for PBXProject "PharmacyC++" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 913958DD1706256F003334F7;
+			productRefGroup = 913958E71706256F003334F7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91D98C4D1737B67700A160B2 /* PharmacyRepository */,
+				91D98C591737B69900A160B2 /* PharmacyDomain */,
+				91D98C651737B6BA00A160B2 /* PharmacyUtilities */,
+				91D98C6F1737B6D400A160B2 /* PharmacyController */,
+				91D98C7C1737B6FE00A160B2 /* PharmacyConsole */,
+				913958E51706256F003334F7 /* PharmacyC++ */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		913958E21706256F003334F7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				913958EA1706256F003334F7 /* main.cpp in Sources */,
+				9122307E1722DF2D001E061E /* LinkedList.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C4A1737B67700A160B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D98C521737B68100A160B2 /* Repository.cpp in Sources */,
+				91D98C531737B68100A160B2 /* RepositoryAbstract.cpp in Sources */,
+				91D98C541737B68100A160B2 /* RepositoryInMemory.cpp in Sources */,
+				91D98C551737B68D00A160B2 /* TestRepository.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C561737B69900A160B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D98C5E1737B6AB00A160B2 /* Medication.cpp in Sources */,
+				91D98C5F1737B6AB00A160B2 /* Substance.cpp in Sources */,
+				91D98C601737B6AB00A160B2 /* Sale.cpp in Sources */,
+				91D98C611737B6AB00A160B2 /* TestMedication.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C621737B6BA00A160B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D98C6A1737B6CA00A160B2 /* PharmacyException.cpp in Sources */,
+				91D98C6B1737B6CA00A160B2 /* AllTests.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C6C1737B6D400A160B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D98C741737B6E300A160B2 /* Controller.cpp in Sources */,
+				91D98C751737B6E300A160B2 /* Validator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D98C791737B6FE00A160B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D98C811737B70400A160B2 /* Console.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91D98C831737B71800A160B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91D98C4D1737B67700A160B2 /* PharmacyRepository */;
+			targetProxy = 91D98C821737B71800A160B2 /* PBXContainerItemProxy */;
+		};
+		91D98C851737B71800A160B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91D98C591737B69900A160B2 /* PharmacyDomain */;
+			targetProxy = 91D98C841737B71800A160B2 /* PBXContainerItemProxy */;
+		};
+		91D98C871737B71800A160B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91D98C651737B6BA00A160B2 /* PharmacyUtilities */;
+			targetProxy = 91D98C861737B71800A160B2 /* PBXContainerItemProxy */;
+		};
+		91D98C891737B71800A160B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91D98C6F1737B6D400A160B2 /* PharmacyController */;
+			targetProxy = 91D98C881737B71800A160B2 /* PBXContainerItemProxy */;
+		};
+		91D98C8B1737B71800A160B2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91D98C7C1737B6FE00A160B2 /* PharmacyConsole */;
+			targetProxy = 91D98C8A1737B71800A160B2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		913958ED1706256F003334F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		913958EE1706256F003334F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		913958F01706256F003334F7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		913958F11706256F003334F7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		91D98C501737B67700A160B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		91D98C511737B67700A160B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		91D98C5C1737B69900A160B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		91D98C5D1737B69900A160B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		91D98C681737B6BA00A160B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		91D98C691737B6BA00A160B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		91D98C721737B6D400A160B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		91D98C731737B6D400A160B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		91D98C7F1737B6FE00A160B2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		91D98C801737B6FE00A160B2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		913958E11706256F003334F7 /* Build configuration list for PBXProject "PharmacyC++" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				913958ED1706256F003334F7 /* Debug */,
+				913958EE1706256F003334F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		913958EF1706256F003334F7 /* Build configuration list for PBXNativeTarget "PharmacyC++" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				913958F01706256F003334F7 /* Debug */,
+				913958F11706256F003334F7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D98C4F1737B67700A160B2 /* Build configuration list for PBXNativeTarget "PharmacyRepository" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D98C501737B67700A160B2 /* Debug */,
+				91D98C511737B67700A160B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D98C5B1737B69900A160B2 /* Build configuration list for PBXNativeTarget "PharmacyDomain" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D98C5C1737B69900A160B2 /* Debug */,
+				91D98C5D1737B69900A160B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D98C671737B6BA00A160B2 /* Build configuration list for PBXNativeTarget "PharmacyUtilities" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D98C681737B6BA00A160B2 /* Debug */,
+				91D98C691737B6BA00A160B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D98C711737B6D400A160B2 /* Build configuration list for PBXNativeTarget "PharmacyController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D98C721737B6D400A160B2 /* Debug */,
+				91D98C731737B6D400A160B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D98C7E1737B6FE00A160B2 /* Build configuration list for PBXNativeTarget "PharmacyConsole" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D98C7F1737B6FE00A160B2 /* Debug */,
+				91D98C801737B6FE00A160B2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 913958DE1706256F003334F7 /* Project object */;
+}

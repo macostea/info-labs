@@ -1,0 +1,17 @@
+trace
+
+domains
+	elem=integer
+	lista=elem*
+
+predicates
+	max(lista,elem)
+	
+goal
+	max([1,2,5,6,23,6,7,23,6,4,3],M),
+	write(M).
+	
+clauses
+	max([],_).
+	max([L1|L],E):-L1>E,!,max(L,L1).
+	max([L1|L],E):-L1<=E,max(L,E).

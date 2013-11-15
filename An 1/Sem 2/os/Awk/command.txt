@@ -1,0 +1,4 @@
+Display, from the files given as arguments, the name of the file that has
+the maximum number of words and also this number of the words.
+
+awk -f maxNumberOfWords.awk 1 2 3 4

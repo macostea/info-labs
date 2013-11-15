@@ -1,0 +1,29 @@
+domains
+el=integer
+list=el* %lista omogena 
+ele=i(el);l(list) %element eterogen
+liste=ele* %lista eterogena
+predicates
+%determina elementul maxim din lista eterogena
+%(i,o)
+maxim(liste,el) %(i,o)
+%inlocuieste intr-o lista omogena un element cu un alt element
+%(i,i,i,o)
+inlocLO(list,el,el,list)
+%inloc in toate sublistele omogene ale listei eterogene un element prin altul
+%(i,i,i,o)
+inlocLE(liste,el,el,liste)
+%inloc in toate sublistele omogene ale listei eterogene elementul maxim prin alt element
+%(i,i,o)
+inlocMax(liste,el,liste)
+clauses
+maxim([i(E)],E):-!.
+maxim([i(E)|L],E):-maxim(L,M),E>=M,!.
+maxim([_|L],E):-maxim(L,E). 
+inlocLO([],_,_,[]).
+inlocLO([H|T],E,EN,[EN|L]):-H=E,inlocLO(T,E,EN,L).
+inlocLO([H|T],E,EN,[H|L]):-H<>E,inlocLO(T,E,EN,L).
+inlocLE([],_,_,[]):-!.
+inlocLE([l(L)|LF],E,EN,[l(LRez)|LR]):-inlocLO(L,E,EN,LRez),inlocLE(LF,E,EN,LR).
+inlocLE([i(N)|LF],E,EN,[i(N)|LR]):-inlocLE(LF,E,EN,LR).
+inlocMax(L,E,LF):-maxim(L,M),inlocLE(L,M,E,LF).

@@ -1,0 +1,15 @@
+domains
+ el=integer
+ list=el*
+predicates
+ min(list,el)
+ del(el,list,list)
+ del_min(list,list)
+clauses
+ min([], 32000). 
+ min([H|T], M) :- min(T, M), M<H,!.
+ min([H|_],H).
+ del(_,[ ],[ ]).
+ del(X,[X|T],T):-!.
+ del(X,[H|T],[H|R]):-del(X,T,R).
+ del_min(L,Lrez):-min(L,M),del(M,L,Lrez).

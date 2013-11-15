@@ -1,0 +1,9 @@
+(a) SED
+    Given a file, append at the end of each line the word "cat".
+
+(b) GREP
+    Given a file, display al lthe lines that are not empty
+
+
+a) sed "s/$/cat/g" /etc/passwd
+b) grep -v "^$" /etc/passwd

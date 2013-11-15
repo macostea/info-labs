@@ -1,0 +1,6 @@
+C:\Developer\MAP\Lab3\Lab3\bin\Debug\Lab3.exe.config
+C:\Developer\MAP\Lab3\Lab3\obj\Debug\Lab3.csprojResolveAssemblyReference.cache
+C:\Developer\MAP\Lab3\Lab3\bin\Debug\Lab3.exe
+C:\Developer\MAP\Lab3\Lab3\bin\Debug\Lab3.pdb
+C:\Developer\MAP\Lab3\Lab3\obj\Debug\Lab3.exe
+C:\Developer\MAP\Lab3\Lab3\obj\Debug\Lab3.pdb

@@ -1,0 +1,25 @@
+domains
+   el=integer
+   list=el*
+predicates
+   min(list,el)
+   verif(list,el)
+   parcurg(list)
+   lungime(list,el)
+clauses
+   lungime([],0).
+   lungime([_|T],N):-lungime(T,N1),N=N1+1.
+ 
+   min([],32000).
+   min([H|T],M):-min(T,M),M<H,!.
+   min([H|_],H).
+     
+   verif([],_).
+   verif([H|[H1|T]],M):-H>H1,!,verif([H1|T],M).
+   verif([H|[H1|T]],H):-H<H1,!,verif([H1|T],H).
+     
+   verif([H],M):-M<>H,!.
+     
+
+
+   parcurg(L):-min(L,M),lungime(L,N),N>2,verif(L,M).
