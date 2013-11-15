@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controller\Validator.cs" />
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -55,6 +54,10 @@
     <Compile Include="Utils\StackException.cs" />
     <Compile Include="Utils\LinkedList\Node.cs" />
     <Compile Include="Utils\LinkedList\LinkedList.cs" />
+    <Compile Include="Model\GraduateStudent.cs" />
+    <Compile Include="Model\PhDStudent.cs" />
+    <Compile Include="Model\UndergraduateStudent.cs" />
+    <Compile Include="Model\ComparableStudent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -12,7 +12,7 @@
 
 @interface LGGraph ()
 
-@property (nonatomic, strong) NSSet *vertices;
+@property (nonatomic, strong) NSMutableDictionary *vertices;
 
 @end
 
@@ -20,7 +20,7 @@
 
 #pragma mark - Public methods
 
-- (LGGraph *)initWithVertices:(NSSet *)vertices {
+- (LGGraph *)initWithVertices:(NSMutableDictionary *)vertices {
     self = [super init];
     
     if (self) {
@@ -35,7 +35,7 @@
 }
 
 - (LGEdge *)edgeBetweenSource:(NSInteger)source destination:(NSInteger)destination {
-    LGVertex *sourceVertex = [self vertexWithData:source];
+    LGVertex *sourceVertex = [self.vertices objectForKey:@(source)];
     
     if (!sourceVertex) {
         return nil;
@@ -50,7 +50,7 @@
 }
 
 - (NSInteger)degreeOfVertex:(NSInteger)vertex direction:(LGEdgeDirection)direction {
-    LGVertex *vertexToCompute = [self vertexWithData:vertex];
+    LGVertex *vertexToCompute = [self.vertices objectForKey:@(vertex)];
     
     if (!vertexToCompute) {
         return -1;
@@ -68,8 +68,8 @@
     NSMutableArray *queue = [[NSMutableArray alloc] init];
     NSMutableSet *visited = [[NSMutableSet alloc] init];
     
-    LGVertex *startVertex = [self vertexWithData:firstVertex];
-    LGVertex *endVertex = [self vertexWithData:secondVertex];
+    LGVertex *startVertex = [self.vertices objectForKey:@(firstVertex)];
+    LGVertex *endVertex = [self.vertices objectForKey:@(secondVertex)];
     
     [queue enqueue:[LGNode nodeWithVertex:startVertex]];
     [visited addObject:startVertex];
@@ -99,15 +99,8 @@
     return nil;
 }
 
-#pragma mark - Protected methods
-
 - (LGVertex *)vertexWithData:(NSInteger)data {
-    for (LGVertex *vertex in self.vertices) {
-        if (vertex.data == data) {
-            return vertex;
-        }
-    }
-    return nil;
+    return [self.vertices objectForKey:@(data)];
 }
 
 @end

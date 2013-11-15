@@ -19,13 +19,13 @@
     [lines removeObjectAtIndex:0];
     
     NSInteger numberOfVertices = [firstLineComponents[0] integerValue];
-    NSMutableSet *vertices = [[NSMutableSet alloc] init];
+    NSMutableDictionary *vertices = [[NSMutableDictionary alloc] init];
     
     for (NSInteger it=0; it<numberOfVertices; it++) {
         LGVertex *vertex = [[LGVertex alloc] init];
         vertex.data = it;
         
-        [vertices addObject:vertex];
+        [vertices setObject:vertex forKey:@(it)];
     }
     
     LGGraph *graph = [[LGGraph alloc] initWithVertices:vertices];

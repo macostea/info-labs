@@ -14,6 +14,46 @@ namespace Lab2
 	    {
 	        private Repository repo;
 
+			/**
+		     *
+		     * Gets a String representation of all the students from a given Stack
+		     * @param stack The stack to process
+		     * @return An ArrayList<String> of all the String representations of the elements from the given Stack
+		     */
+			public static ArrayList<String> studentsFromStack(Stack<Student> stack) {
+				Stack<Student> copy = stack.copy();
+				ArrayList<String> students = new ArrayList<String>();
+
+				while (!copy.isEmpty()) {
+					try {
+						Student student = copy.pop();
+						String studentString;
+						studentString = String.Format("%d|%s|%d|", student.id, student.name, student.grade);
+						//TODO: This shit does not work. Fix it. FIX IT NAO!
+						if (student.GetType() == GraduateStudent) {
+							String concatString;
+							GraduateStudent gradStud = (GraduateStudent)student;
+							concatString = String.format("%d|%d|%s|", gradStud.grade2, gradStud.grade3, gradStud.supervisor);
+							studentString = studentString.concat(concatString);
+						} else if (student.getClass() == UndergraduateStudent.class) {
+							String concatString;
+							UndergraduateStudent gradStud = (UndergraduateStudent)student;
+							concatString = String.format("%d|", gradStud.grade2);
+							studentString = studentString.concat(concatString);
+						} else if (student.getClass() == PhDStudent.class) {
+							String concatString;
+							PhDStudent phdStudent = (PhDStudent)student;
+							concatString = String.format("%d|%s|%s|", phdStudent.grade2, phdStudent.supervisor, phdStudent.thesis);
+							studentString = studentString.concat(concatString);
+						}
+						students.add(studentString);
+					} catch (StackException e) {
+						e.printStackTrace();
+					}
+				}
+				return students;
+			}
+
 	        /**
 	         * 
 	         * Constructor.

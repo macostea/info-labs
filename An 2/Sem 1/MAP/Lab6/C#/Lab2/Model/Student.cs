@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lab2
 {
 	namespace Lab2_Model {
-	    class Student
+	    class Student : ComparableStudent
 	    {
 	        public string name;
 	        public int id;
@@ -19,6 +19,14 @@ namespace Lab2
 	            this.name = name;
 	            this.grade = grade;
 	        }
+
+			public virtual float average() {
+				return grade;
+			}
+
+			bool ComparableStudent.isGreaterThan(Student student) {
+				return (this.grade > student.grade);
+			}
 	    }
 	}
 }

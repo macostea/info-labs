@@ -17,13 +17,13 @@ typedef enum {
 
 @interface LGGraph : NSObject
 
-- (LGGraph *)initWithVertices:(NSSet *)vertices;
+- (LGGraph *)initWithVertices:(NSMutableDictionary *)vertices;
 
 - (NSInteger)numberOfVertices;
 - (LGEdge *)edgeBetweenSource:(NSInteger)source destination:(NSInteger)destination;
 - (NSInteger)degreeOfVertex:(NSInteger)vertex direction:(LGEdgeDirection)direction;
 - (NSArray *)pathBetweenFirstVertex:(NSInteger)firstVertex secondVertex:(NSInteger)secondVertex;
 
-- (LGVertex *)vertexWithData:(NSInteger)data; //protected
+- (LGVertex *)vertexWithData:(NSInteger)data;
 
 @end

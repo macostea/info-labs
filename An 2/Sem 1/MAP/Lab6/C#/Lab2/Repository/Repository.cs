@@ -72,6 +72,29 @@ namespace Lab2
 	            return this.students.getSize();
 	        }
 
+			/**
+		     *
+		     * Return the number of student greater than a given student
+		     * @param student The student to compare to.
+		     * @return The number of students.
+		     */
+			public int numberOfStudentsGreaterThan(Student student) {
+				int no = 0;
+
+				Stack<Student> copy = this.allStudents();
+				while (!copy.isEmpty()) {
+					try {
+						ComparableStudent comparableStudent = copy.pop();
+						if (comparableStudent.isGreaterThan(student)) {
+							no++;
+						}
+					} catch (StackException e) {
+						Console.Out.WriteLine(e.Message);
+					}
+				}
+				return no;
+			}
+
 	        /**
 	         * 
 	         * Returns a copy of the students stack.
