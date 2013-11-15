@@ -42,7 +42,6 @@ Pods
 *.dylib
 
 # Executables
-*.exe
 *.out
 *.app
 # Compiled Object files
