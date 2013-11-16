@@ -27,8 +27,8 @@ public class LinkedList<T> {
         Node<T> currNode = firstNode;
         Node<T> nextNode = firstNode.next;
 
-        if (firstNode == node) {
-            firstNode = null;
+        if (this.firstNode == node) {
+            this.firstNode = nextNode;
             return;
         }
 
