@@ -94,7 +94,7 @@ nosetests.xml
 .project
 .pydevproject
 
-
-An 2/Sem 1/Graphs/objc/Lab2.xcodeproj/project.xcworkspace/xcuserdata/mihai.xcuserdatad/UserInterfaceState.xcuserstate
-
 An 2/Sem 1/MAP/Lab6/Java/.idea/workspace.xml
+
+*.xcworkspace
+*.xcuserdatad
