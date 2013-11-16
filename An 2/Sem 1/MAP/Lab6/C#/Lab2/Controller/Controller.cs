@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Lab2.Lab2_Controller;
 using Lab2.Lab2_Model;
 using Lab2.Lab2_Repository;
+using Lab2.Lab2_Utils;
 
 namespace Lab2
 {
@@ -20,35 +21,34 @@ namespace Lab2
 		     * @param stack The stack to process
 		     * @return An ArrayList<String> of all the String representations of the elements from the given Stack
 		     */
-			public static ArrayList<String> studentsFromStack(Stack<Student> stack) {
+			public static ArrayList studentsFromStack(Stack<Student> stack) {
 				Stack<Student> copy = stack.copy();
-				ArrayList<String> students = new ArrayList<String>();
+				ArrayList students = new ArrayList();
 
 				while (!copy.isEmpty()) {
 					try {
 						Student student = copy.pop();
 						String studentString;
-						studentString = String.Format("%d|%s|%d|", student.id, student.name, student.grade);
-						//TODO: This shit does not work. Fix it. FIX IT NAO!
-						if (student.GetType() == GraduateStudent) {
+						studentString = String.Format("{0}|{1}|{2}|", student.id, student.name, student.grade);
+						if (student is GraduateStudent) {
 							String concatString;
 							GraduateStudent gradStud = (GraduateStudent)student;
-							concatString = String.format("%d|%d|%s|", gradStud.grade2, gradStud.grade3, gradStud.supervisor);
-							studentString = studentString.concat(concatString);
-						} else if (student.getClass() == UndergraduateStudent.class) {
+							concatString = String.Format("{0}|{1}|{2}|", gradStud.grade2, gradStud.grade3, gradStud.supervisor);
+							studentString += concatString;
+						} else if (student is UndergraduateStudent) {
 							String concatString;
 							UndergraduateStudent gradStud = (UndergraduateStudent)student;
-							concatString = String.format("%d|", gradStud.grade2);
-							studentString = studentString.concat(concatString);
-						} else if (student.getClass() == PhDStudent.class) {
+							concatString = String.Format("{0}|", gradStud.grade2);
+							studentString += concatString;
+						} else if (student is PhDStudent) {
 							String concatString;
 							PhDStudent phdStudent = (PhDStudent)student;
-							concatString = String.format("%d|%s|%s|", phdStudent.grade2, phdStudent.supervisor, phdStudent.thesis);
-							studentString = studentString.concat(concatString);
+							concatString = String.Format("{0}|{1}|{2}|", phdStudent.grade2, phdStudent.supervisor, phdStudent.thesis);
+							studentString += concatString;
 						}
-						students.add(studentString);
+						students.Add(studentString);
 					} catch (StackException e) {
-						e.printStackTrace();
+						Console.WriteLine(e.Message);
 					}
 				}
 				return students;
@@ -65,27 +65,58 @@ namespace Lab2
 	            this.repo = repo;
 	        }
 
-	        /**
-	         * 
-	         * Controller method to add a new student to the repository.
-	         * 
-	         * @param id Student id. Must be a unique positive int.
-	         * @param name Student name. Cannot be an empty string.
-	         * @param grade Student grade. Must be an int between 1 and 10.
-	         * @return A list of error messages from the Validator.
-	         */
-	        public ArrayList addStudent(int id, String name, int grade)
-	        {
-	            Student student = new Student(id, name, grade);
-	            Validator validator = new Validator(this.repo);
-	            ArrayList errorList = validator.validateStudent(student);
+			/**
+		     * 
+		     * Controller method to add a new student to the repository.
+		     * 
+		     * @param id Student id. Must be a unique positive int.
+		     * @param name Student name. Cannot be an empty string.
+		     * @param grade Student grade. Must be an int between 1 and 10.
+		     * @return A list of error messages from the Validator.
+		     */
+			public ArrayList addStudent(int id, String name, int grade){
+				Student student = new Student(id, name, grade);
+				Validator validator = new Validator(this.repo);
+				ArrayList errorList = validator.validateStudent(student);
 
-	            if (errorList.Count == 0)
-	            {
-	                repo.addStudent(student);
-	            }
-	            return errorList;
-	        }
+				if (errorList.Count == 0){
+					repo.addStudent(student);
+				}
+				return errorList;
+			}
+
+			public ArrayList addStudent(int id, String name, int grade, int grade2){
+				Student student = new UndergraduateStudent(id, name, grade, grade2);
+				Validator validator = new Validator(this.repo);
+				ArrayList errorList = validator.validateStudent(student);
+
+				if (errorList.Count == 0){
+					repo.addStudent(student);
+				}
+				return errorList;
+			}
+
+			public ArrayList addStudent(int id, String name, int grade, int grade2, int grade3, String supervisor){
+				Student student = new GraduateStudent(id, name, grade, supervisor, grade2, grade3);
+				Validator validator = new Validator(this.repo);
+				ArrayList errorList = validator.validateStudent(student);
+
+				if (errorList.Count == 0){
+					repo.addStudent(student);
+				}
+				return errorList;
+			}
+
+			public ArrayList addStudent(int id, String name, int grade, int grade2, String supervisor, String thesis){
+				Student student = new PhDStudent(id, name, grade, supervisor, thesis, grade2);
+				Validator validator = new Validator(this.repo);
+				ArrayList errorList = validator.validateStudent(student);
+
+				if (errorList.Count == 0){
+					repo.addStudent(student);
+				}
+				return errorList;
+			}
 
 	        /**
 	         * 
@@ -107,10 +138,9 @@ namespace Lab2
 	         * 
 	         * @return A stack of students from the repository.
 	         */
-	        public Lab2.Lab2_Repository.Stack<Student> allStudents()
-	        {
-	            return this.repo.allStudents();
-	        }
+			public ArrayList allStudents() {
+				return Controller.studentsFromStack(this.repo.allStudents());
+			}
 
 	        /**
 	         * 
@@ -122,6 +152,32 @@ namespace Lab2
 	        {
 	            return this.repo.numberOfStudents();
 	        }
+
+			/**
+		     *
+		     * Computes the total number of Students greater than a given student
+		     * @param id The id of the student to compare to.
+		     * @return The number of students greater than the given student.
+		     */
+			public int numberOfStudentGreaterThan(int id) {
+				Stack<Student> allStudents = this.repo.allStudents();
+				Student student = null;
+				int no = -1;
+				while (!allStudents.isEmpty()) {
+					try {
+						student = allStudents.pop();
+						if (student.id == id) {
+							break;
+						}
+					} catch (StackException e) {
+						System.Console.WriteLine(e.Message);
+					}
+				}
+				if (student != null) {
+					no = this.repo.numberOfStudentsGreaterThan(student);
+				}
+				return no;
+			}
 	    }
 	}
 }

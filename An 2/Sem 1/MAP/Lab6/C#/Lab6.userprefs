@@ -1,32 +1,32 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Lab2/Controller/Controller.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Lab2/UI/UI.cs">
     <Files>
-      <File FileName="../Lab2/Repository/Stack.cs" Line="1" Column="1" />
-      <File FileName="../Lab2/Utils/LinkedList/Node.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Repository/Stack.cs" Line="91" Column="28" />
+      <File FileName="../Lab2/Utils/LinkedList/Node.cs" Line="5" Column="24" />
       <File FileName="../Lab2/Utils/StackException.cs" Line="1" Column="1" />
       <File FileName="../Lab2/Utils/LinkedList/LinkedList.cs" Line="59" Column="14" />
-      <File FileName="../Lab2/Repository/Repository.cs" Line="93" Column="7" />
-      <File FileName="../Lab2/Controller/Controller.cs" Line="32" Column="59" />
+      <File FileName="../Lab2/Repository/Repository.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Controller/Controller.cs" Line="46" Column="49" />
       <File FileName="../Lab2/Controller/Validator.cs" Line="1" Column="1" />
-      <File FileName="../Lab2/UI/UI.cs" Line="1" Column="1" />
-      <File FileName="../Lab2/Model/GraduateStudent.cs" Line="13" Column="34" />
-      <File FileName="../Lab2/Model/PhDStudent.cs" Line="22" Column="4" />
-      <File FileName="../Lab2/Model/UndergraduateStudent.cs" Line="18" Column="4" />
-      <File FileName="../Lab2/Model/Student.cs" Line="23" Column="18" />
-      <File FileName="../Lab2/Model/ComparableStudent.cs" Line="14" Column="4" />
+      <File FileName="../Lab2/UI/UI.cs" Line="116" Column="41" />
+      <File FileName="../Lab2/Model/GraduateStudent.cs" Line="12" Column="10" />
+      <File FileName="../Lab2/Model/PhDStudent.cs" Line="15" Column="26" />
+      <File FileName="../Lab2/Model/UndergraduateStudent.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/Student.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/ComparableStudent.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowVersionControlOverlays" value="False" />
           <Node name="Lab6" expanded="True">
-            <Node name="Controller" expanded="True">
-              <Node name="Controller.cs" selected="True" />
-            </Node>
+            <Node name="Controller" expanded="True" />
             <Node name="Model" expanded="True" />
             <Node name="Repository" expanded="True" />
-            <Node name="UI" expanded="True" />
+            <Node name="UI" expanded="True">
+              <Node name="UI.cs" selected="True" />
+            </Node>
             <Node name="Utils" expanded="True">
               <Node name="LinkedList" expanded="True" />
             </Node>

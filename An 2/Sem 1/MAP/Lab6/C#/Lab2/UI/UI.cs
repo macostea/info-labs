@@ -22,6 +22,7 @@ namespace Lab2
 	                + "(2) Remove students until 10-grade student is found\n"
 	                + "(3) All students\n"
 	                + "(4) Number of students\n"
+					+ "(5) Number of students greater than a given student\n"
 	                + kMenuDelimiter
 	                + kMenuExit;
 	        private const String kStudentAddedMessage = "Student Added!";
@@ -45,13 +46,16 @@ namespace Lab2
 	                    this.allStudents();
 	                } else if ("4".Equals(userInput)) {
 	                    this.numberOfStudents();
-	                }
+					} else if ("5".Equals(userInput)) {
+						this.numberOfStudentGreaterThan();
+					}
 	            }
 	        }
 	    
 	        private void addStudent() {
-	            int id, grade;
-	            String name;
+				int id, grade, grade2, grade3, studentType;
+				String name, supervisor, thesis;
+				ArrayList errorList;
 	                
 	            try{
 	                System.Console.Write("Student ID: ");
@@ -61,8 +65,42 @@ namespace Lab2
 	                System.Console.Write("Student Grade: ");
 	                grade = Convert.ToInt16(System.Console.ReadLine());
 
-	                ArrayList errorList = this.controller.addStudent(id, name, grade);
-	                if (errorList.Count != 0) {
+					Console.Write("Student Type:\n(1)Regular\n(2)Graduate\n(3)Undergraduate\n(4)PhD");
+					studentType = Convert.ToInt16(System.Console.ReadLine());
+
+					switch (studentType) {
+					case 1:
+						errorList = this.controller.addStudent(id, name, grade);
+						break;
+					case 2:
+						System.Console.Write("Grade2: ");
+						grade2 = Convert.ToInt16(System.Console.ReadLine());
+						System.Console.Write("Grade3: ");
+						grade3 = Convert.ToInt16(System.Console.ReadLine());
+						System.Console.Write("Supervisor: ");
+						supervisor = System.Console.ReadLine();
+						errorList = this.controller.addStudent(id, name, grade, grade2, grade3, supervisor);
+						break;
+					case 3:
+						System.Console.Write("Grade2: ");
+						grade2 = Convert.ToInt16(System.Console.ReadLine());
+						errorList = this.controller.addStudent(id, name, grade, grade2);
+						break;
+					case 4:
+						System.Console.Write("Grade2: ");
+						grade2 = Convert.ToInt16(System.Console.ReadLine());
+						System.Console.Write("Supervisor: ");
+						supervisor = System.Console.ReadLine();
+						System.Console.Write("Thesis: ");
+						thesis = System.Console.ReadLine();
+
+						errorList = this.controller.addStudent(id, name, grade, grade2, supervisor, thesis);
+						break;
+					default:
+						System.Console.Write("Invalid choice!");
+						return;
+					}
+					if (errorList.Count != 0) {
 	                    foreach (String error in errorList) {
 	                        System.Console.WriteLine(error);
 	                    }
@@ -86,19 +124,10 @@ namespace Lab2
 	        }
 	    
 	        private void allStudents() {
-	            Lab2.Lab2_Repository.Stack<Student> allStudents = this.controller.allStudents();
-	            while (!allStudents.isEmpty()) {
-	                Student currStudent = allStudents.pop();
-	                if (currStudent != null)
-	                {
-	                    System.Console.Write(currStudent.id);
-	                    System.Console.Write(" | ");
-	                    System.Console.Write(currStudent.name);
-	                    System.Console.Write(" | ");
-	                    System.Console.Write(currStudent.grade);
-	                    System.Console.WriteLine();
-	                }
-	            }
+				ArrayList allStudents = this.controller.allStudents();
+				foreach (String student in allStudents) {
+					System.Console.WriteLine(student);
+				}
 	        }
 	    
 	        private void numberOfStudents() {
@@ -106,6 +135,13 @@ namespace Lab2
 	            System.Console.Write(this.controller.numberOfStudents());
 	            System.Console.WriteLine();
 	        }
+
+			private void numberOfStudentGreaterThan() {
+				System.Console.Write("Student id: ");
+				int id = Convert.ToInt16 (System.Console.ReadLine ());
+				int no = this.controller.numberOfStudentGreaterThan(id);
+				System.Console.WriteLine("Number of students greater than {0}: {1}\n", id, no);
+			}
 	    }
 	}
 }
