@@ -1,0 +1,11 @@
+Create PROCEDURE removeColumn
+
+AS
+BEGIN
+DECLARE @Sql VARCHAR(1000)
+
+SELECT @Sql = 'ALTER TABLE newTable DROP COLUMN newColumn'
+
+EXEC(@Sql)
+
+END

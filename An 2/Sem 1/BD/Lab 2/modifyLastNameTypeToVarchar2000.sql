@@ -1,0 +1,10 @@
+Create PROCEDURE modifyLastNameTypeToVarchar2000
+AS
+BEGIN
+DECLARE @Sql VARCHAR(1000)
+
+SELECT @Sql = 'ALTER TABLE newTable ALTER COLUMN lastName VARCHAR(2000)'
+
+EXEC (@Sql)
+
+END

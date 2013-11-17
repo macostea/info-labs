@@ -1,0 +1,9 @@
+Create PROCEDURE dropTable
+AS
+BEGIN
+DECLARE @Sql VARCHAR(1000)
+
+SELECT @Sql = 'DROP TABLE newTable'
+
+EXEC (@Sql)
+END

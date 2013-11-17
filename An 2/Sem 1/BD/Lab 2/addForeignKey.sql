@@ -1,0 +1,11 @@
+Create PROCEDURE addForeignKey
+
+AS
+BEGIN
+DECLARE @Sql VARCHAR(1000)
+
+SELECT @Sql = 'ALTER TABLE newTable ADD CONSTRAINT fk_Product FOREIGN KEY (id) REFERENCES SalesLT.Product(ProductID)'
+
+EXEC(@Sql)
+
+END

@@ -1,0 +1,11 @@
+Create PROCEDURE removeForeignKey
+
+AS
+BEGIN
+DECLARE @Sql VARCHAR(1000)
+
+SELECT @Sql = 'ALTER TABLE newTable DROP CONSTRAINT fk_Product'
+
+EXEC(@Sql)
+
+END
