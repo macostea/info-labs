@@ -136,12 +136,12 @@ namespace Lab2
 	            System.Console.WriteLine();
 	        }
 
-			private void numberOfStudentGreaterThan() {
-				System.Console.Write("Student id: ");
-				int id = Convert.ToInt16 (System.Console.ReadLine ());
-				int no = this.controller.numberOfStudentGreaterThan(id);
-				System.Console.WriteLine("Number of students greater than {0}: {1}\n", id, no);
-			}
+		private void numberOfStudentGreaterThan() {
+			System.Console.Write("Student id: ");
+			int id = Convert.ToInt16 (System.Console.ReadLine ());
+			int no = this.controller.numberOfStudentGreaterThan(id);
+			System.Console.WriteLine("Number of students greater than {0}: {1}\n", id, no);
+		}
 	    }
 	}
 }
