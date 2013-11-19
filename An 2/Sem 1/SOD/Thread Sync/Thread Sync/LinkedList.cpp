@@ -25,27 +25,28 @@ int LinkedList::numberOfElements() {
 }
 
 void LinkedList::removeNode(Node *node) {
+    Node *currNode = this->firstNode;
+    Node *nextNode = currNode->next;
+    
     if (this->firstNode == node && this->firstNode != nullptr) {
         this->firstNode = this->firstNode->next;
         return;
     }
-    Node *currNode = this->firstNode;
-    if (currNode != nullptr) {
-        Node *nextNode = currNode->next;
-        while (nextNode != nullptr) {
-            if (nextNode == node) {
-                currNode->next = nextNode->next;
-                delete node;
-            }
-            currNode = currNode->next;
-            nextNode = currNode->next->next;
+    
+    while (nextNode != nullptr) {
+        if (nextNode == node) {
+            currNode->next = nextNode->next;
+            nextNode = currNode->next;
+        } else {
+            currNode = nextNode;
+            nextNode = nextNode->next;
         }
     }
 }
 
 void LinkedList::printList() {
     Node *currNode = this->firstNode;
-    std::cout << "[ " << " ";
+    std::cout << "[" << " ";
     while (currNode != nullptr) {
         std::cout << currNode->value << " ";
         currNode = currNode->next;

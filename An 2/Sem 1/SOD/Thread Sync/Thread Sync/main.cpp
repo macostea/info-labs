@@ -9,6 +9,8 @@
 #include <iostream>
 #include <math.h>
 #include <pthread.h>
+#include <semaphore.h>
+#include <unistd.h>
 #include "LinkedList.h"
 
 using namespace std;
@@ -17,24 +19,21 @@ static int const kSimultanousThreads = 3;
 
 pthread_t *mWorkers;
 pthread_mutex_t mClearSmallValuesMutex;
-pthread_mutex_t mSimultaneousThreadsMutex[kSimultanousThreads];
+pthread_rwlock_t mRWLock;
+sem_t mSimultaneousThreadsSemaphore;
 LinkedList *mLinkedList;
 typedef struct {
     int workerNumber;
 }WorkerArgs;
 
 void *workerFunction(void *args) {
+    sleep(1);
     WorkerArgs *workerArgs = (WorkerArgs *)args;
+    int numberOfElements = mLinkedList->numberOfElements();
     
-    while (mLinkedList->numberOfElements() != 0) {
-        int trylock = -1;
-        int it = 0;
-        while (trylock != 0) {
-            trylock = pthread_mutex_trylock(&mSimultaneousThreadsMutex[it]);
-            if (++it == kSimultanousThreads) {
-                it = 0;
-            }
-        }
+    while (numberOfElements != 0) {
+        sem_wait(&mSimultaneousThreadsSemaphore);
+        pthread_rwlock_rdlock(&mRWLock);
         Node *currNode = mLinkedList->firstNode;
         int numberOfRequiredElements = 0;
         
@@ -52,23 +51,26 @@ void *workerFunction(void *args) {
             pthread_mutex_unlock(&mClearSmallValuesMutex);
         }
         
-        pthread_mutex_unlock(&mSimultaneousThreadsMutex[it]);
+        numberOfElements = mLinkedList->numberOfElements();
+        pthread_rwlock_unlock(&mRWLock);
+        sem_post(&mSimultaneousThreadsSemaphore);
     }
     
     return nullptr;
 }
 
 void clearSmallValues() {
+    pthread_rwlock_wrlock(&mRWLock);
+    printf("Number of elements: %d\n", mLinkedList->numberOfElements());
     mLinkedList->printList();
     Node *currNode = mLinkedList->firstNode;
     while (currNode != nullptr) {
         if (currNode->value < 2) {
             mLinkedList->removeNode(currNode);
-            currNode = mLinkedList->firstNode;
-        } else {
-            currNode = currNode->next;
         }
+        currNode = currNode->next;
     }
+    pthread_rwlock_unlock(&mRWLock);
 }
 
 int main(int argc, const char * argv[])
@@ -106,10 +108,9 @@ int main(int argc, const char * argv[])
     }
     
     pthread_mutex_init(&mClearSmallValuesMutex, nullptr);
-
-    for (int it=0; it<kSimultanousThreads; it++) {
-        pthread_mutex_init(&mSimultaneousThreadsMutex[it], nullptr);
-    }
+    pthread_rwlock_init(&mRWLock, nullptr);
+    sem_init(&mSimultaneousThreadsSemaphore, 0, kSimultanousThreads);
+    
     pthread_mutex_lock(&mClearSmallValuesMutex);
     
     for (int it=0; it<numberOfWorkers; it++) {
@@ -128,9 +129,8 @@ int main(int argc, const char * argv[])
     }
     
     pthread_mutex_destroy(&mClearSmallValuesMutex);
-    for (int it=0; it<kSimultanousThreads; it++) {
-        pthread_mutex_destroy(&mSimultaneousThreadsMutex[it]);
-    }
+    pthread_rwlock_destroy(&mRWLock);
+    sem_destroy(&mSimultaneousThreadsSemaphore);
     
     delete mLinkedList;
     
