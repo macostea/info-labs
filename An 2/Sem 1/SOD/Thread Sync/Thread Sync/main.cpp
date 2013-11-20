@@ -20,6 +20,7 @@ static int const kSimultanousThreads = 3;
 pthread_t *mWorkers;
 pthread_mutex_t mClearSmallValuesMutex;
 pthread_rwlock_t mRWLock;
+bool mListIsEmpty = false;
 sem_t mSimultaneousThreadsSemaphore;
 LinkedList *mLinkedList;
 typedef struct {
@@ -27,7 +28,6 @@ typedef struct {
 }WorkerArgs;
 
 void *workerFunction(void *args) {
-    sleep(1);
     WorkerArgs *workerArgs = (WorkerArgs *)args;
     int numberOfElements = mLinkedList->numberOfElements();
     
@@ -69,6 +69,10 @@ void clearSmallValues() {
             mLinkedList->removeNode(currNode);
         }
         currNode = currNode->next;
+    }
+    
+    if (mLinkedList->numberOfElements() == 0) {
+        mListIsEmpty = true;
     }
     pthread_rwlock_unlock(&mRWLock);
 }
@@ -119,9 +123,12 @@ int main(int argc, const char * argv[])
         pthread_create(&mWorkers[it], nullptr, workerFunction, args);
     }
     
-    while (mLinkedList->numberOfElements() != 0) {
+    while (1) {
         pthread_mutex_lock(&mClearSmallValuesMutex);
         clearSmallValues();
+        if (mListIsEmpty) {
+            break;
+        }
     }
     
     for (int it=0; it<numberOfWorkers; it++) {
