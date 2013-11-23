@@ -1,0 +1,5 @@
+/Users/mihai/Box Documents/Info/An 2/Sem 1/MAP/Lab7/C#/Lab2/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/mihai/Box Documents/Info/An 2/Sem 1/MAP/Lab7/C#/Lab2/obj/Debug/Lab2.exe
+/Users/mihai/Box Documents/Info/An 2/Sem 1/MAP/Lab7/C#/Lab2/obj/Debug/Lab2.exe.mdb
+/Users/mihai/Box Documents/Info/An 2/Sem 1/MAP/Lab7/C#/Lab2/bin/Debug/Lab2.exe.mdb
+/Users/mihai/Box Documents/Info/An 2/Sem 1/MAP/Lab7/C#/Lab2/bin/Debug/Lab2.exe

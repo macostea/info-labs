@@ -179,6 +179,10 @@ namespace Lab2
 				}
 				return no;
 			}
+
+			public void saveStudentsToFile(string filename) {
+				this.repo.saveRepoToFile (filename);
+			}
 	    }
 	}
 }

@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 namespace Lab2
 {
 	namespace Lab2_Model {
-		class Student : Comparable<Student>
+		[Serializable()]
+		class Student : Comparable<Student>, Readable
 	    {
 	        public string name;
 	        public int id;
 	        public int grade;
+
+			public Student() {
+			}
 
 	        public Student(int id, string name, int grade)
 	        {
@@ -29,7 +33,14 @@ namespace Lab2
 			}
 
 			public override String ToString() {
-				return String.Format("{0}|{1}|{2}|", this.id, this.name, this.grade);
+				return String.Format("{0}|{1}|{2}|{3}|", this.GetType(), this.id, this.name, this.grade);
+			}
+
+			void Readable.readAttributesFromString(String inputString) {
+				string[] tokens = inputString.Split ('|');
+				this.id = Convert.ToInt16 (tokens [1]);
+				this.name = tokens [2];
+				this.grade = Convert.ToInt16 (tokens [3]);
 			}
 	    }
 	}

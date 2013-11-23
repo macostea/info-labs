@@ -19,9 +19,10 @@ namespace Lab2
 	        private const String kMenuDelimiter = "----------\n";
 	        private const String kMenuExit = "(x) Exit";
 	        private const String kMenu = "(1) Add student\n"
-	                + "(2) Remove students until 10-grade student is found\n"
-	                + "(3) All students\n"
-	                + "(4) Number of students\n"
+                  	+ "(2) Remove students until 10-grade student is found\n"
+                  	+ "(3) All students\n"
+                  	+ "(4) Number of students\n"
+                    + "(5) Save students to file\n"
 	                + kMenuDelimiter
 	                + kMenuExit;
 	        private const String kStudentAddedMessage = "Student Added!";
@@ -37,14 +38,16 @@ namespace Lab2
 	            while (!kExitString.Equals(userInput)) {
 	                System.Console.WriteLine(kMenu);
 	                userInput = System.Console.ReadLine();
-	                if ("1".Equals(userInput)) {
-	                    this.addStudent();
-	                } else if ("2".Equals(userInput)) {
-	                    this.removeStudents();
-	                } else if ("3".Equals(userInput)) {
-	                    this.allStudents();
-	                } else if ("4".Equals(userInput)) {
-	                    this.numberOfStudents();
+					if ("1".Equals (userInput)) {
+						this.addStudent ();
+					} else if ("2".Equals (userInput)) {
+						this.removeStudents ();
+					} else if ("3".Equals (userInput)) {
+						this.allStudents ();
+					} else if ("4".Equals (userInput)) {
+						this.numberOfStudents ();
+					} else if ("5".Equals (userInput)) {
+						this.saveStudentsToFile ();
 					}
 	            }
 	        }
@@ -132,6 +135,13 @@ namespace Lab2
 	            System.Console.Write(this.controller.numberOfStudents());
 	            System.Console.WriteLine();
 	        }
+
+			private void saveStudentsToFile() {
+				System.Console.Write ("Filname: ");
+				string filename = System.Console.ReadLine ();
+
+				this.controller.saveStudentsToFile (filename);
+			}
 	    }
 	}
 }

@@ -4,6 +4,7 @@ namespace Lab2
 {
 	namespace Lab2_Utils {
 		namespace Lab2_LinkedList {
+			[Serializable()]
 			public class Node<T>
 			{
 				public T data;

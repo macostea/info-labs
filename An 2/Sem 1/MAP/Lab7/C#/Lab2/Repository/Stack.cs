@@ -10,6 +10,7 @@ using Lab2.Lab2_Utils.Lab2_LinkedList;
 namespace Lab2
 {
 	namespace Lab2_Repository {
+		[Serializable()]
 	    class Stack<T> {
 			private Lab2.Lab2_Utils.Lab2_LinkedList.LinkedList<T> elements;
 			private int size = 0;
