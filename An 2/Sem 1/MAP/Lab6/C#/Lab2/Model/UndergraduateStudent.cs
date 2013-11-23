@@ -3,7 +3,7 @@ using System;
 namespace Lab2
 {
 	namespace Lab2_Model {
-		class UndergraduateStudent : Student, ComparableStudent
+		class UndergraduateStudent : Student
 		{
 			public int grade2;
 
@@ -15,9 +15,14 @@ namespace Lab2
 				return (this.grade + this.grade2) / 2;
 			}
 
-			bool ComparableStudent.isGreaterThan(Student student) {
+			bool Comparable<Student>.isGreaterThan(Student student) {
 				return (this.average() > student.average());
 			}
+
+
+			public override String ToString() {
+				return String.Format("{0}|{1}|{2}|{3}|", this.id, this.name, this.grade, this.grade2);
+		    }
 		}
 	}
 }

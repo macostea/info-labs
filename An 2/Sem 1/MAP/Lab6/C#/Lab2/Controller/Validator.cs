@@ -15,7 +15,7 @@ namespace Lab2
 	        private const String kDuplicateId = "Id must be unique";
 	        private const String kInvalidGrade = "Grade is an int between 1 and 10";
 	    
-	        private Repository repo;
+			private Repository<Student> repo;
 	        private ArrayList errorList;
 
 	        /**
@@ -24,7 +24,7 @@ namespace Lab2
 	         * 
 	         * @param repo The repository to search in.
 	         */
-	        public Validator(Repository repo) {
+			public Validator(Repository<Student> repo) {
 	            this.errorList = new ArrayList();
 	            this.repo = repo;
 	        }
@@ -51,7 +51,7 @@ namespace Lab2
 	         * @param id The id to be checked.
 	         */
 	        private void validateId(int id) {
-	            Lab2.Lab2_Repository.Stack<Student> students = this.repo.allStudents();
+				Lab2.Lab2_Repository.Stack<Student> students = this.repo.allElements();
 	        
 	            Boolean found = false;
 	            while (!students.isEmpty()) {

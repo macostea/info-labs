@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lab2
 {
 	namespace Lab2_Model {
-	    class Student : ComparableStudent
+		class Student : Comparable<Student>
 	    {
 	        public string name;
 	        public int id;
@@ -24,8 +24,12 @@ namespace Lab2
 				return grade;
 			}
 
-			bool ComparableStudent.isGreaterThan(Student student) {
+			bool Comparable<Student>.isGreaterThan(Student student) {
 				return (this.grade > student.grade);
+			}
+
+			public override String ToString() {
+				return String.Format("{0}|{1}|{2}|", this.id, this.name, this.grade);
 			}
 	    }
 	}

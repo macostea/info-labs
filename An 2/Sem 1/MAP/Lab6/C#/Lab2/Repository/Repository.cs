@@ -9,101 +9,78 @@ using Lab2.Lab2_Utils;
 namespace Lab2
 {
 	namespace Lab2_Repository {
-	    class Repository
+		class Repository<T>
 	    {
-	        private Stack<Student> students = new Stack<Student>();
+			private Stack<T> elements = new Stack<T>();
 
 	        /**
 	         * 
-	         * Adds a student in the repository.
+	         * Adds an element in the repository.
 	         * 
-	         * @param student The student to be added.
+	         * @param element The element to be added.
 	         */
-	        public void addStudent(Student student)
+			public void addElement(T element)
 	        {
-	            this.students.push(student);
+				this.elements.push(element);
 	        }
 
 	        /**
 	         * 
-	         * Removes a student from the repository.
+	         * Removes an element from the repository.
 	         * 
-	         * @param student The student to be removed.
+	         * @param element The element to be removed.
 	         */
-	        public void removeStudent(Student student)
+			public void removeElement(T element)
 	        {
-	            Stack<Student> temp = new Stack<Student>();
+				Stack<T> temp = new Stack<T>();
 	            while (true)
 	            {
-	                Student element = this.students.pop();
-	                if (element.Equals(student))
+					T topElement = this.elements.pop();
+					if (topElement.Equals(element))
 	                {
 	                    break;
 	                }
-	                temp.push(element);
+					temp.push(topElement);
 	            }
 	            while (temp.getSize() != 0)
 	            {
-	                this.students.push(temp.pop());
+					this.elements.push(temp.pop());
 	            }
 	        }
 
 	        /**
 	         * 
-	         * Returns the student from the top of the stack.
+	         * Returns the element from the top of the stack.
 	         * 
-	         * @return The student from the top of the stack.
+	         * @return The element from the top of the stack.
 	         */
-	        public Student getTopStudent()
+			public T getTopElement()
 	        {
-	            Student temp = this.students.pop();
-	            this.students.push(temp);
+				T temp = this.elements.pop();
+				this.elements.push(temp);
 	            return temp;
 	        }
 
 	        /**
 	         * 
-	         * Returns the number of students in the repository.
+	         * Returns the number of elements in the repository.
 	         * 
-	         * @return The number of students in the repository. Positive int.
+	         * @return The number of elements in the repository. Positive int.
 	         */
-	        public int numberOfStudents()
+			public int numberOfElements()
 	        {
-	            return this.students.getSize();
+				return this.elements.getSize();
 	        }
-
-			/**
-		     *
-		     * Return the number of student greater than a given student
-		     * @param student The student to compare to.
-		     * @return The number of students.
-		     */
-			public int numberOfStudentsGreaterThan(Student student) {
-				int no = 0;
-
-				Stack<Student> copy = this.allStudents();
-				while (!copy.isEmpty()) {
-					try {
-						ComparableStudent comparableStudent = copy.pop();
-						if (comparableStudent.isGreaterThan(student)) {
-							no++;
-						}
-					} catch (StackException e) {
-						Console.Out.WriteLine(e.Message);
-					}
-				}
-				return no;
-			}
 
 	        /**
 	         * 
-	         * Returns a copy of the students stack.
+	         * Returns a copy of the elements stack.
 	         * 
-	         * @return A copy of the students stack.
+	         * @return A copy of the elements stack.
 	         */
-	        public Stack<Student> allStudents()
+			public Stack<T> allElements()
 	        {
-	            return this.students.copy();
+				return this.elements.copy();
 	        }
 	    }
 	}

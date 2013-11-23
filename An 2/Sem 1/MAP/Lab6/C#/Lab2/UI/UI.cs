@@ -22,7 +22,6 @@ namespace Lab2
 	                + "(2) Remove students until 10-grade student is found\n"
 	                + "(3) All students\n"
 	                + "(4) Number of students\n"
-					+ "(5) Number of students greater than a given student\n"
 	                + kMenuDelimiter
 	                + kMenuExit;
 	        private const String kStudentAddedMessage = "Student Added!";
@@ -46,8 +45,6 @@ namespace Lab2
 	                    this.allStudents();
 	                } else if ("4".Equals(userInput)) {
 	                    this.numberOfStudents();
-					} else if ("5".Equals(userInput)) {
-						this.numberOfStudentGreaterThan();
 					}
 	            }
 	        }
@@ -135,13 +132,6 @@ namespace Lab2
 	            System.Console.Write(this.controller.numberOfStudents());
 	            System.Console.WriteLine();
 	        }
-
-		private void numberOfStudentGreaterThan() {
-			System.Console.Write("Student id: ");
-			int id = Convert.ToInt16 (System.Console.ReadLine ());
-			int no = this.controller.numberOfStudentGreaterThan(id);
-			System.Console.WriteLine("Number of students greater than {0}: {1}\n", id, no);
-		}
 	    }
 	}
 }

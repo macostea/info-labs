@@ -13,45 +13,50 @@ namespace Lab2
 	namespace Lab2_Controller {
 	    class Controller
 	    {
-	        private Repository repo;
+			private Repository<Student> repo;
 
 			/**
 		     *
-		     * Gets a String representation of all the students from a given Stack
+		     * Gets a String representation of all the elements from a given Stack
 		     * @param stack The stack to process
 		     * @return An ArrayList<String> of all the String representations of the elements from the given Stack
 		     */
-			public static ArrayList studentsFromStack(Stack<Student> stack) {
-				Stack<Student> copy = stack.copy();
-				ArrayList students = new ArrayList();
+			public static ArrayList elementsFromStack<T>(Stack<T> stack) {
+				Stack<T> copy = stack.copy();
+				ArrayList strings = new ArrayList();
 
 				while (!copy.isEmpty()) {
 					try {
-						Student student = copy.pop();
-						String studentString;
-						studentString = String.Format("{0}|{1}|{2}|", student.id, student.name, student.grade);
-						if (student is GraduateStudent) {
-							String concatString;
-							GraduateStudent gradStud = (GraduateStudent)student;
-							concatString = String.Format("{0}|{1}|{2}|", gradStud.grade2, gradStud.grade3, gradStud.supervisor);
-							studentString += concatString;
-						} else if (student is UndergraduateStudent) {
-							String concatString;
-							UndergraduateStudent gradStud = (UndergraduateStudent)student;
-							concatString = String.Format("{0}|", gradStud.grade2);
-							studentString += concatString;
-						} else if (student is PhDStudent) {
-							String concatString;
-							PhDStudent phdStudent = (PhDStudent)student;
-							concatString = String.Format("{0}|{1}|{2}|", phdStudent.grade2, phdStudent.supervisor, phdStudent.thesis);
-							studentString += concatString;
-						}
-						students.Add(studentString);
+						T element = copy.pop();
+						strings.Add(element.ToString());
 					} catch (StackException e) {
 						Console.WriteLine(e.Message);
 					}
 				}
-				return students;
+				return strings;
+			}
+			/**
+		     *
+		     * Moves all elements from a stack to another stack
+		     * @param source The stack to move the elements from
+		     * @param destination The stack to move the elements to
+		     */
+			public static void moveElements<W,T>(Stack<W> source, Stack<T> destination) where W:T {
+				Stack<T> temp = new Stack<T>();
+				while (!source.isEmpty()) {
+					try {
+						temp.push(source.pop());
+					} catch (StackException e) {
+						System.Console.WriteLine(e.Message);
+					}
+				}
+				while (!temp.isEmpty()) {
+					try {
+						destination.push(temp.pop());
+					} catch (StackException e) {
+						System.Console.WriteLine(e.Message);
+					}
+				}
 			}
 
 	        /**
@@ -60,7 +65,7 @@ namespace Lab2
 	         * 
 	         * @param repo The repository to be used. Cannot be null.
 	         */
-	        public Controller(Repository repo)
+			public Controller(Repository<Student> repo)
 	        {
 	            this.repo = repo;
 	        }
@@ -80,7 +85,7 @@ namespace Lab2
 				ArrayList errorList = validator.validateStudent(student);
 
 				if (errorList.Count == 0){
-					repo.addStudent(student);
+					repo.addElement(student);
 				}
 				return errorList;
 			}
@@ -91,7 +96,7 @@ namespace Lab2
 				ArrayList errorList = validator.validateStudent(student);
 
 				if (errorList.Count == 0){
-					repo.addStudent(student);
+					repo.addElement(student);
 				}
 				return errorList;
 			}
@@ -102,7 +107,7 @@ namespace Lab2
 				ArrayList errorList = validator.validateStudent(student);
 
 				if (errorList.Count == 0){
-					repo.addStudent(student);
+					repo.addElement(student);
 				}
 				return errorList;
 			}
@@ -113,7 +118,7 @@ namespace Lab2
 				ArrayList errorList = validator.validateStudent(student);
 
 				if (errorList.Count == 0){
-					repo.addStudent(student);
+					repo.addElement(student);
 				}
 				return errorList;
 			}
@@ -124,11 +129,11 @@ namespace Lab2
 	         */
 	        public void removeStudentsUntilMaxGrade()
 	        {
-	            Student currentStudent = this.repo.getTopStudent();
+				Student currentStudent = this.repo.getTopElement();
 	            while (currentStudent.grade != 10)
 	            {
-	                this.repo.removeStudent(currentStudent);
-	                currentStudent = this.repo.getTopStudent();
+					this.repo.removeElement(currentStudent);
+					currentStudent = this.repo.getTopElement();
 	            }
 	        }
 
@@ -139,7 +144,7 @@ namespace Lab2
 	         * @return A stack of students from the repository.
 	         */
 			public ArrayList allStudents() {
-				return Controller.studentsFromStack(this.repo.allStudents());
+				return Controller.elementsFromStack(this.repo.allElements());
 			}
 
 	        /**
@@ -150,31 +155,27 @@ namespace Lab2
 	         */
 	        public int numberOfStudents()
 	        {
-	            return this.repo.numberOfStudents();
+				return this.repo.numberOfElements();
 	        }
 
 			/**
 		     *
 		     * Computes the total number of Students greater than a given student
-		     * @param id The id of the student to compare to.
+		     * @param id The student to compare to.
 		     * @return The number of students greater than the given student.
 		     */
-			public int numberOfStudentGreaterThan(int id) {
-				Stack<Student> allStudents = this.repo.allStudents();
-				Student student = null;
-				int no = -1;
+			public int numberOfStudentsGreaterThan(Student student) {
+				Stack<Student> allStudents = this.repo.allElements();
+				int no = 0;
 				while (!allStudents.isEmpty()) {
 					try {
-						student = allStudents.pop();
-						if (student.id == id) {
-							break;
+						Comparable<Student> comparableStudent = allStudents.pop();
+						if (comparableStudent.isGreaterThan(student)) {
+							no++;
 						}
 					} catch (StackException e) {
 						System.Console.WriteLine(e.Message);
 					}
-				}
-				if (student != null) {
-					no = this.repo.numberOfStudentsGreaterThan(student);
 				}
 				return no;
 			}

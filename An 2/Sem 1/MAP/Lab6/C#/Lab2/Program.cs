@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Lab2.Lab2_Repository;
 using Lab2.Lab2_Controller;
 using Lab2.Lab2_UI;
+using Lab2.Lab2_Model;
 
 namespace Lab2
 {
@@ -13,7 +14,7 @@ namespace Lab2
     {
         static void Main(string[] args)
         {
-            Repository repo = new Repository();
+			Repository<Student> repo = new Repository<Student>();
             Controller controller = new Controller(repo);
             UI ui = new UI(controller);
 

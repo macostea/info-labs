@@ -57,7 +57,7 @@
     <Compile Include="Model\GraduateStudent.cs" />
     <Compile Include="Model\PhDStudent.cs" />
     <Compile Include="Model\UndergraduateStudent.cs" />
-    <Compile Include="Model\ComparableStudent.cs" />
+    <Compile Include="Model\Comparable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
