@@ -178,4 +178,15 @@ public class Controller {
 
         return no;
     }
+
+
+    /**
+     *
+     * Saves the assigned repository to a text file
+     *
+     * @param filename The name of the file to save in.
+     */
+    public void saveStudentsToFile(String filename) {
+        this.repo.saveRepoToFile(filename);
+    }
 }

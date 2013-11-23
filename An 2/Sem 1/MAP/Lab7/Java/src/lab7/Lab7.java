@@ -3,12 +3,10 @@ package lab7;
 import lab7.Controller.Controller;
 import lab7.Model.Student;
 import lab7.Repository.Repository;
-import lab7.Repository.Stack;
 import lab7.UI.UI;
 import lab7.Utils.StackException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  *
@@ -29,20 +27,25 @@ public class Lab7 {
         controller.addStudent(2,"fkleaj",9,10);
         controller.addStudent(3,"fekljaj",7,10,"alsjkf","alkfja");
 
-        Stack<Student> source = repo.allElements();
-        Stack<Student> dest = new Stack<Student>();
+//        Stack<Student> source = repo.allElements();
+//        Stack<Student> dest = new Stack<Student>();
+//
+//        Student topStudent = repo.getTopElement();
+//
+//        Controller.moveElements(source, dest);
+//        ArrayList<String> strings = Controller.elementsFromStack(dest);
+//
+//        for (String student : strings) {
+//            System.out.println(student);
+//        }
+//
+//        System.out.println(controller.numberOfStudentGreaterThan(topStudent));
+//        repo.serializeDataToFile("whateverman.txt");
+//        repo.deserializeDataFromFile("whateverman.txt");
 
-        Student topStudent = repo.getTopElement();
+        repo.saveRepoToFile("textfile.txt");
+        repo.readRepoFromFile("textfile.txt");
 
-        Controller.moveElements(source, dest);
-        ArrayList<String> strings = Controller.elementsFromStack(dest);
-
-        for (String student : strings) {
-            System.out.println(student);
-        }
-
-        System.out.println(controller.numberOfStudentGreaterThan(topStudent));
-
-//        ui.showMenu();
+        ui.showMenu();
     }
 }

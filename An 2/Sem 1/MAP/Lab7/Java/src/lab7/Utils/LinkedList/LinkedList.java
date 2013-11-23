@@ -1,6 +1,8 @@
 package lab7.Utils.LinkedList;
 
-public class LinkedList<T> {
+import java.io.Serializable;
+
+public class LinkedList<T> implements Serializable{
     public Node<T> firstNode;
 
     /**

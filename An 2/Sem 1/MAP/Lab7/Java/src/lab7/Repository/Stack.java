@@ -4,11 +4,13 @@ import lab7.Utils.LinkedList.LinkedList;
 import lab7.Utils.LinkedList.Node;
 import lab7.Utils.StackException;
 
+import java.io.Serializable;
+
 /**
  *
  * @author mihai
  */
-public class Stack<T> {
+public class Stack<T> implements Serializable {
     private LinkedList<T> elements;
     private int size = 0;
 

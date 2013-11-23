@@ -5,6 +5,10 @@ public class GraduateStudent extends Student {
     public int grade2;
     public int grade3;
 
+    public GraduateStudent() {
+        super();
+    }
+
     public GraduateStudent(int id, String name, int grade, String supervisor, int grade2, int grade3) {
         super(id, name, grade);
         this.supervisor = supervisor;
@@ -24,6 +28,17 @@ public class GraduateStudent extends Student {
 
     @Override
     public String toString() {
-        return String.format("%d|%s|%d|%d|%d|%s|", this.id, this.name, this.grade, this.grade2, this.grade3, this.supervisor);
+        return String.format("%s|%d|%s|%d|%d|%d|%s|", this.getClass().toString(), this.id, this.name, this.grade, this.grade2, this.grade3, this.supervisor);
+    }
+
+    @Override
+    public void readAttributesFromString(String string) {
+        String[] tokens = string.split("[|]+");
+        this.id = Integer.parseInt(tokens[1]);
+        this.name = tokens[2];
+        this.grade = Integer.parseInt(tokens[3]);
+        this.grade2 = Integer.parseInt(tokens[4]);
+        this.grade3 = Integer.parseInt(tokens[5]);
+        this.supervisor = tokens[6];
     }
 }

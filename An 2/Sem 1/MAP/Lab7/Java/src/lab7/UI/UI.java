@@ -23,7 +23,7 @@ public class UI {
             + "(2) Remove students until 10-grade student is found\n"
             + "(3) All students\n"
             + "(4) Number of students\n"
-            + "(5) Number of students greater than a given student\n"
+            + "(5) Save students to file\n"
             + kMenuDelimiter
             + kMenuExit;
     final String kStudentAddedMessage = "Student Added!";
@@ -49,6 +49,8 @@ public class UI {
                     this.allStudents();
                 } else if ("4".equals(userInput)) {
                     this.numberOfStudents();
+                } else if ("5".equals(userInput)) {
+                    this.saveStudentsToFile();
                 }
             } catch (InputMismatchException e) {
                 
@@ -144,5 +146,13 @@ public class UI {
     
     private void numberOfStudents() {
         System.out.printf("Total number of students: %d\n", this.controller.numberOfStudents());
+    }
+
+    private void saveStudentsToFile() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Filename: ");
+        String filename = input.nextLine();
+
+        this.controller.saveStudentsToFile(filename);
     }
 }
