@@ -51,12 +51,11 @@ public class LinkedList<T> {
      */
     public LinkedList<T> copy() {
         LinkedList<T> copy = new LinkedList<T>();
-        Node<T> currNode = null, currNodeCopy = null, nextNode = null, nextNodeCopy = null;
+        Node<T> currNodeCopy, nextNode, nextNodeCopy;
         if (this.firstNode != null) {
             Node<T> firstNodeCopy = new Node<T>(this.firstNode.data);
             copy.firstNode = firstNodeCopy;
 
-            currNode = firstNode;
             currNodeCopy = firstNodeCopy;
 
             nextNode = firstNode.next;
@@ -64,7 +63,6 @@ public class LinkedList<T> {
             while (nextNode != null) {
                 nextNodeCopy = new Node<T>(nextNode.data);
                 currNodeCopy.next = nextNodeCopy;
-                currNode = nextNode;
                 currNodeCopy = nextNodeCopy;
 
                 nextNode = nextNode.next;

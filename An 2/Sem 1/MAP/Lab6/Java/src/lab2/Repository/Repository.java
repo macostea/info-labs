@@ -1,98 +1,73 @@
 package lab2.Repository;
 
-import lab2.Model.ComparableStudent;
-import lab2.Model.Student;
 import lab2.Utils.StackException;
 
 /**
  *
  * @author mihai
  */
-public class Repository {
-    private Stack<Student> students = new Stack<Student>();
+public class Repository<T> {
+    private Stack<T> elements = new Stack<T>();
     
     /**
      * 
-     * Adds a student in the repository.
+     * Adds an element in the repository.
      * 
-     * @param student The student to be added.
+     * @param element The element to be added.
      */
-    public void addStudent(Student student){
-        this.students.push(student);
+    public void addElement(T element){
+        this.elements.push(element);
     }
     
     /**
      * 
-     * Removes a student from the repository.
+     * Removes an element from the repository.
      * 
-     * @param student The student to be removed.
+     * @param element The element to be removed.
      */
-    public void removeStudent(Student student) throws StackException{
-        Stack<Student> temp = new Stack<Student>();
+    public void removeElement(T element) throws StackException{
+        Stack<T> temp = new Stack<T>();
         while (true) {
-            Student element = this.students.pop();
-            if (element.equals(student)){
+            T topElement = this.elements.pop();
+            if (element.equals(topElement)){
                 break;
             }
-            temp.push(element);
+            temp.push(topElement);
         }
         while (temp.getSize() != 0) {
-            this.students.push(temp.pop());
+            this.elements.push(temp.pop());
         }
     }
     
     /**
      * 
-     * Returns the student from the top of the stack.
+     * Returns the element from the top of the stack.
      * 
-     * @return The student from the top of the stack.
+     * @return The element from the top of the stack.
      */
-    public Student getTopStudent() throws StackException {
-        Student temp = this.students.pop();
-        this.students.push(temp);
+    public T getTopElement() throws StackException {
+        T temp = this.elements.pop();
+        this.elements.push(temp);
         return temp;
     }
     
     /**
      * 
-     * Returns the number of students in the repository.
+     * Returns the number of elements in the repository.
      * 
-     * @return The number of students in the repository. Positive int.
+     * @return The number of elements in the repository. Positive int.
      */
-    public int numberOfStudents() {
-        return this.students.getSize();
-    }
-
-    /**
-     *
-     * Return the number of student greater than a given student
-     * @param student The student to compare to.
-     * @return The number of students.
-     */
-    public int numberOfStudentsGreaterThan(Student student) {
-        int no = 0;
-
-        Stack<Student> copy = this.allStudents();
-        while (!copy.isEmpty()) {
-            try {
-                ComparableStudent comparableStudent = copy.pop();
-                if (comparableStudent.isGreaterThan(student)) {
-                    no++;
-                }
-            } catch (StackException e) {
-                e.printStackTrace();
-            }
-        }
-        return no;
+    public int numberOfElements() {
+        return this.elements.getSize();
     }
     
     /**
      * 
-     * Returns a copy of the students stack.
+     * Returns a copy of the elements stack.
      * 
-     * @return A copy of the students stack.
+     * @return A copy of the elements stack.
      */
-    public Stack<Student> allStudents() {
-        return this.students.copy();
+    public Stack<T> allElements() {
+        return this.elements.copy();
     }
 }

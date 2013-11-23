@@ -1,9 +1,7 @@
 package lab2.Controller;
 
-import lab2.Model.GraduateStudent;
-import lab2.Model.PhDStudent;
-import lab2.Model.Student;
-import lab2.Model.UndergraduateStudent;
+import lab2.Model.*;
+import lab2.Model.Comparable;
 import lab2.Repository.Repository;
 import lab2.Repository.Stack;
 import lab2.Utils.StackException;
@@ -15,45 +13,27 @@ import java.util.ArrayList;
  * @author mihai
  */
 public class Controller {
-    private Repository repo;
+    private Repository<Student> repo;
 
     /**
      *
-     * Gets a String representation of all the students from a given Stack
+     * Gets a String representation of all the elements from a given Stack
      * @param stack The stack to process
      * @return An ArrayList<String> of all the String representations of the elements from the given Stack
      */
-    public static ArrayList<String> studentsFromStack(Stack<Student> stack) {
-        Stack<Student> copy = stack.copy();
-        ArrayList<String> students = new ArrayList<String>();
+    public static<T> ArrayList<String> elementsFromStack(Stack<T> stack) {
+        Stack<T> copy = stack.copy();
+        ArrayList<String> strings = new ArrayList<String>();
 
         while (!copy.isEmpty()) {
             try {
-                Student student = copy.pop();
-                String studentString;
-                studentString = String.format("%d|%s|%d|", student.id, student.name, student.grade);
-                if (student.getClass() == GraduateStudent.class) {
-                    String concatString;
-                    GraduateStudent gradStud = (GraduateStudent)student;
-                    concatString = String.format("%d|%d|%s|", gradStud.grade2, gradStud.grade3, gradStud.supervisor);
-                    studentString = studentString.concat(concatString);
-                } else if (student.getClass() == UndergraduateStudent.class) {
-                    String concatString;
-                    UndergraduateStudent gradStud = (UndergraduateStudent)student;
-                    concatString = String.format("%d|", gradStud.grade2);
-                    studentString = studentString.concat(concatString);
-                } else if (student.getClass() == PhDStudent.class) {
-                    String concatString;
-                    PhDStudent phdStudent = (PhDStudent)student;
-                    concatString = String.format("%d|%s|%s|", phdStudent.grade2, phdStudent.supervisor, phdStudent.thesis);
-                    studentString = studentString.concat(concatString);
-                }
-                students.add(studentString);
+                T element = copy.pop();
+                strings.add(element.toString());
             } catch (StackException e) {
                 e.printStackTrace();
             }
         }
-        return students;
+        return strings;
     }
 
     /**
@@ -62,8 +42,8 @@ public class Controller {
      * @param source The stack to move the elements from
      * @param destination The stack to move the elements to
      */
-    public static void moveElements(Stack source, Stack destination) {
-        Stack temp = new Stack();
+    public static<T> void moveElements(Stack<? extends T> source, Stack<T> destination) {
+        Stack<T> temp = new Stack<T>();
         while (!source.isEmpty()) {
             try {
                 temp.push(source.pop());
@@ -86,7 +66,7 @@ public class Controller {
      * 
      * @param repo The repository to be used. Cannot be null.
      */
-    public Controller(Repository repo){
+    public Controller(Repository<Student> repo){
         this.repo = repo;
     }
     
@@ -105,7 +85,7 @@ public class Controller {
         ArrayList<String> errorList = validator.validateStudent(student);
         
         if (errorList.isEmpty()){
-            repo.addStudent(student);
+            repo.addElement(student);
         }
         return errorList;
     }
@@ -116,7 +96,7 @@ public class Controller {
         ArrayList<String> errorList = validator.validateStudent(student);
 
         if (errorList.isEmpty()){
-            repo.addStudent(student);
+            repo.addElement(student);
         }
         return errorList;
     }
@@ -127,7 +107,7 @@ public class Controller {
         ArrayList<String> errorList = validator.validateStudent(student);
 
         if (errorList.isEmpty()){
-            repo.addStudent(student);
+            repo.addElement(student);
         }
         return errorList;
     }
@@ -138,7 +118,7 @@ public class Controller {
         ArrayList<String> errorList = validator.validateStudent(student);
 
         if (errorList.isEmpty()){
-            repo.addStudent(student);
+            repo.addElement(student);
         }
         return errorList;
     }
@@ -148,10 +128,10 @@ public class Controller {
      * Removes students from the repository until a student with grade == 0 is found.
      */
     public void removeStudentsUntilMaxGrade() throws StackException{
-        Student currentStudent = this.repo.getTopStudent();
+        Student currentStudent = this.repo.getTopElement();
         while (currentStudent.average() != 10){
-            this.repo.removeStudent(currentStudent);
-            currentStudent = this.repo.getTopStudent();
+            this.repo.removeElement(currentStudent);
+            currentStudent = this.repo.getTopElement();
         }
     }
     
@@ -162,7 +142,7 @@ public class Controller {
      * @return A stack of students from the repository.
      */
     public ArrayList<String> allStudents() {
-        return Controller.studentsFromStack(this.repo.allStudents());
+        return Controller.elementsFromStack(this.repo.allElements());
     }
     
     /**
@@ -172,32 +152,30 @@ public class Controller {
      * @return Total number of students in the repository.
      */
     public int numberOfStudents() {
-        return this.repo.numberOfStudents();
+        return this.repo.numberOfElements();
     }
 
     /**
      *
      * Computes the total number of Students greater than a given student
-     * @param id The id of the student to compare to.
+     * @param student The student to compare to.
      * @return The number of students greater than the given student.
      */
-    public int numberOfStudentGreaterThan(int id) {
-        Stack<Student> allStudents = this.repo.allStudents();
-        Student student = null;
-        int no = -1;
+    public int numberOfStudentGreaterThan(Student student) {
+        Stack<Student> allStudents = this.repo.allElements();
+        int no = 0;
+
         while (!allStudents.isEmpty()) {
             try {
-                student = allStudents.pop();
-                if (student.id == id) {
-                    break;
+                Comparable<Student> comparableStudent = allStudents.pop();
+                if (comparableStudent.isGreaterThan(student)) {
+                    no++;
                 }
             } catch (StackException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }
         }
-        if (student != null) {
-            no = this.repo.numberOfStudentsGreaterThan(student);
-        }
+
         return no;
     }
 }

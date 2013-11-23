@@ -54,7 +54,7 @@ public class Validator {
      * @param id The id to be checked.
      */
     private void validateId(int id) {
-        Stack<Student> students = this.repo.allStudents();
+        Stack<Student> students = this.repo.allElements();
         
         boolean found = false;
         while (!students.isEmpty()) {

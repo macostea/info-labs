@@ -1,6 +1,6 @@
 package lab2.Model;
 
-public class PhDStudent extends Student implements ComparableStudent{
+public class PhDStudent extends Student {
     public String supervisor;
     public String thesis;
     public int grade2;
@@ -19,6 +19,11 @@ public class PhDStudent extends Student implements ComparableStudent{
 
     @Override
     public boolean isGreaterThan(Student student) {
-        return (this.average() > this.average());
+        return (this.average() > student.average());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%d|%s|%d|%d|%s|%s|", this.id, this.name, this.grade, this.grade2, this.supervisor, this.thesis);
     }
 }

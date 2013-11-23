@@ -49,8 +49,6 @@ public class UI {
                     this.allStudents();
                 } else if ("4".equals(userInput)) {
                     this.numberOfStudents();
-                } else if ("5".equals(userInput)) {
-                    this.numberOfStudentGreaterThan();
                 }
             } catch (InputMismatchException e) {
                 
@@ -146,14 +144,5 @@ public class UI {
     
     private void numberOfStudents() {
         System.out.printf("Total number of students: %d\n", this.controller.numberOfStudents());
-    }
-
-    private void numberOfStudentGreaterThan() {
-        Scanner input = new Scanner(System.in);
-        input.useDelimiter("\n");
-        System.out.print("Student id: ");
-        int id = input.nextInt();
-        int no = this.controller.numberOfStudentGreaterThan(id);
-        System.out.printf("Number of students greater than %d: %d\n", id, no);
     }
 }
