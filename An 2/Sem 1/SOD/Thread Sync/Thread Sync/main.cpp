@@ -20,6 +20,7 @@ static int const kSimultanousThreads = 3;
 pthread_t *mWorkers;
 pthread_mutex_t mClearSmallValuesMutex;
 pthread_rwlock_t mRWLock;
+pthread_cond_t mCond;
 bool mListIsEmpty = false;
 sem_t mSimultaneousThreadsSemaphore;
 LinkedList *mLinkedList;
@@ -41,14 +42,21 @@ void *workerFunction(void *args) {
             if (currNode->worker == workerArgs->workerNumber) {
                 currNode->value = sqrt(currNode->value);
             }
+            currNode = currNode->next;
+        }
+        
+        pthread_rwlock_unlock(&mRWLock);
+        pthread_rwlock_rdlock(&mRWLock);
+        numberOfRequiredElements = 0;
+        while (currNode != nullptr) {
             if (currNode->value < 2) {
                 numberOfRequiredElements++;
             }
             currNode = currNode->next;
         }
         
-        if (numberOfRequiredElements >= 5 || numberOfRequiredElements == mLinkedList->numberOfElements()) {
-            pthread_mutex_unlock(&mClearSmallValuesMutex);
+        if (numberOfRequiredElements >= 5 || numberOfRequiredElements == numberOfElements) {
+            pthread_cond_signal(&mCond);
         }
         
         numberOfElements = mLinkedList->numberOfElements();
@@ -124,7 +132,7 @@ int main(int argc, const char * argv[])
     }
     
     while (1) {
-        pthread_mutex_lock(&mClearSmallValuesMutex);
+        pthread_cond_wait(&mCond, &mClearSmallValuesMutex);
         clearSmallValues();
         if (mListIsEmpty) {
             break;
