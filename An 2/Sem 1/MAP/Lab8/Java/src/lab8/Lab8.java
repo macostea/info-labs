@@ -22,8 +22,8 @@ public class Lab8 {
         Controller controller = new Controller(repo);
         UI ui = new UI(controller);
 
-        controller.addStudent(0,"asfas",10);
-        controller.addStudent(1,"galkdj",9);
+        controller.addStudent(0,"asfas",6);
+        controller.addStudent(1,"galkdj",10);
         controller.addStudent(2,"fkleaj",9,10);
         controller.addStudent(3,"fekljaj",7,10,"alsjkf","alkfja");
 

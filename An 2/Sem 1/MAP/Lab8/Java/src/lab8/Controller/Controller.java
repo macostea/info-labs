@@ -4,7 +4,6 @@ import lab8.Model.Comparable;
 import lab8.Model.*;
 import lab8.Model.Readable;
 import lab8.Repository.Repository;
-import lab8.Repository.Stack;
 import lab8.Utils.StackException;
 
 import java.io.BufferedReader;
@@ -12,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -22,72 +23,53 @@ public class Controller {
 
     /**
      *
-     * Gets a String representation of all the elements from a given Stack
-     * @param stack The stack to process
+     * Gets a String representation of all the elements from a given Map
+     * @param map The Map to process
      * @return An ArrayList<String> of all the String representations of the elements from the given Stack
      */
-    public static<T> ArrayList<String> elementsFromStack(Stack<T> stack) {
-        Stack<T> copy = stack.copy();
+    public static<T> ArrayList<String> elementsFromMap(Map<Integer, T> map) {
         ArrayList<String> strings = new ArrayList<String>();
-
-        while (!copy.isEmpty()) {
-            try {
-                T element = copy.pop();
-                strings.add(element.toString());
-            } catch (StackException e) {
-                e.printStackTrace();
-            }
+        for (T element : map.values()) {
+            strings.add(element.toString());
         }
         return strings;
     }
 
     /**
      *
-     * Moves all elements from a stack to another stack
-     * @param source The stack to move the elements from
-     * @param destination The stack to move the elements to
+     * Moves all elements from a map to another map
+     * @param source The map to move the elements from
+     * @param destination The map to move the elements to
      */
-    public static<T> void moveElements(Stack<? extends T> source, Stack<T> destination) {
-        Stack<T> temp = new Stack<T>();
-        while (!source.isEmpty()) {
-            try {
-                temp.push(source.pop());
-            } catch (StackException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        while (!temp.isEmpty()) {
-            try {
-                destination.push(temp.pop());
-            } catch (StackException e) {
-                System.out.println(e.getMessage());
-            }
+    public static<T> void moveElements(Map<Integer, ? extends HasId> source, Map<Integer, HasId> destination) {
+        for (HasId element : source.values()){
+            destination.put(element.getId(), element);
         }
     }
 
-    /**
-     *
-     * Moves all elements from a stack to another stack
-     * @param source The stack to move the elements from
-     * @param destination The stack to move the elements to
-     */
-    public static void moveElements2(Stack<? extends Student> source, Stack<? super Student> destination) {
-        Stack<Student> temp = new Stack<Student>();
-        while (!source.isEmpty()) {
-            try {
-                temp.push(source.pop());
-            } catch (StackException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        while (!temp.isEmpty()) {
-            try {
-                destination.push(temp.pop());
-            } catch (StackException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+//    /**
+//     *
+//     * Moves all elements from a stack to another stack
+//     * @param source The stack to move the elements from
+//     * @param destination The stack to move the elements to
+//     */
+//    public static void moveElements2(Stack<? extends Student> source, Stack<? super Student> destination) {
+//        Stack<Student> temp = new Stack<Student>();
+//        while (!source.isEmpty()) {
+//            try {
+//                temp.push(source.pop());
+//            } catch (StackException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//        while (!temp.isEmpty()) {
+//            try {
+//                destination.push(temp.pop());
+//            } catch (StackException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
     
     /**
      * 
@@ -153,12 +135,12 @@ public class Controller {
     }
     
     /**
-     * 
+     *
      * Removes students from the repository until a student with grade == 0 is found.
      */
     public void removeStudentsUntilMaxGrade() throws StackException{
         Student currentStudent = this.repo.getTopElement();
-        while (currentStudent.average() != 10){
+        while (currentStudent != null && currentStudent.average() != 10){
             this.repo.removeElement(currentStudent);
             currentStudent = this.repo.getTopElement();
         }
@@ -171,7 +153,7 @@ public class Controller {
      * @return A stack of students from the repository.
      */
     public ArrayList<String> allStudents() {
-        return Controller.elementsFromStack(this.repo.allElements());
+        return Controller.elementsFromMap(this.repo.allElements());
     }
     
     /**
@@ -191,20 +173,14 @@ public class Controller {
      * @return The number of students greater than the given student.
      */
     public int numberOfStudentGreaterThan(Student student) {
-        Stack<Student> allStudents = this.repo.allElements();
+        Map<Integer, Student> allStudents = this.repo.allElements();
         int no = 0;
 
-        while (!allStudents.isEmpty()) {
-            try {
-                Comparable<Student> comparableStudent = allStudents.pop();
-                if (comparableStudent.isGreaterThan(student)) {
-                    no++;
-                }
-            } catch (StackException e) {
-                System.out.println(e.getMessage());
+        for (Comparable<Student> comparableStudent : allStudents.values()) {
+            if (comparableStudent.isGreaterThan(student)) {
+                no++;
             }
         }
-
         return no;
     }
 
@@ -227,7 +203,7 @@ public class Controller {
      */
     public void readRepoFromFile(String filename) {
         BufferedReader reader;
-        Stack<Student> stack = new Stack<Student>();
+        Map<Integer, Student> map = new LinkedHashMap<Integer, Student>();
 
         try {
             reader = new BufferedReader(new InputStreamReader(
@@ -250,10 +226,10 @@ public class Controller {
                 }
 
                 element.readAttributesFromString(line);
-                stack.push((Student)element);
+                Student student = (Student) element;
+                map.put(student.getId(), student);
             }
-            Repository<Student> repo = new Repository<Student>(stack);
-            this.repo = repo;
+            this.repo = new Repository<Student>(map);
 
         } catch (IOException e) {
             e.printStackTrace();

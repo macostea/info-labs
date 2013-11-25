@@ -2,12 +2,9 @@ package lab8.Controller;
 
 import lab8.Model.Student;
 import lab8.Repository.Repository;
-import lab8.Repository.Stack;
-import lab8.Utils.StackException;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Map;
 
 /**
  *
@@ -54,19 +51,14 @@ public class Validator {
      * @param id The id to be checked.
      */
     private void validateId(int id) {
-        Stack<Student> students = this.repo.allElements();
+        Map<Integer, Student> students = this.repo.allElements();
         
         boolean found = false;
-        while (!students.isEmpty()) {
-            Student currStudent;
-            try {
-                currStudent = students.pop();
-                if (currStudent.id == id) {
-                    found = true;
-                    break;
-                }
-            } catch (StackException ex) {
-                Logger.getLogger(Validator.class.getName()).log(Level.SEVERE, null, ex);
+
+        for (Student currStudent : students.values()) {
+            if (currStudent.id == id) {
+                found = true;
+                break;
             }
         }
         

@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author mihai
  */
-public class Student implements Comparable<Student>, Readable, Serializable {
+public class Student implements Comparable<Student>, Readable, Serializable, HasId {
     public String name;
     public int id;
     public int grade;
@@ -41,5 +41,10 @@ public class Student implements Comparable<Student>, Readable, Serializable {
         this.id = Integer.parseInt(tokens[1]);
         this.name = tokens[2];
         this.grade = Integer.parseInt(tokens[3]);
+    }
+
+    @Override
+    public Integer getId() {
+        return this.id;
     }
 }

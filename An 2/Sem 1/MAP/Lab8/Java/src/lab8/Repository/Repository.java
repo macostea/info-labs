@@ -1,15 +1,17 @@
 package lab8.Repository;
 
-import lab8.Utils.StackException;
+import lab8.Model.HasId;
 
 import java.io.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
  * @author mihai
  */
-public class Repository<T> {
-    private Stack<T> elements = new Stack<T>();
+public class Repository<T extends HasId> {
+    private Map<Integer, T> elements = new LinkedHashMap<Integer, T>();
 
     /**
      * Constructor
@@ -22,7 +24,7 @@ public class Repository<T> {
      *
      * @param adt The adt to use for the repository
      */
-    public Repository(Stack<T> adt) {
+    public Repository(Map<Integer, T> adt) {
         this.elements = adt;
     }
 
@@ -33,7 +35,7 @@ public class Repository<T> {
      * @param element The element to be added.
      */
     public void addElement(T element){
-        this.elements.push(element);
+        this.elements.put(element.getId(), element);
     }
     
     /**
@@ -42,18 +44,8 @@ public class Repository<T> {
      * 
      * @param element The element to be removed.
      */
-    public void removeElement(T element) throws StackException{
-        Stack<T> temp = new Stack<T>();
-        while (true) {
-            T topElement = this.elements.pop();
-            if (element.equals(topElement)){
-                break;
-            }
-            temp.push(topElement);
-        }
-        while (temp.getSize() != 0) {
-            this.elements.push(temp.pop());
-        }
+    public void removeElement(T element){
+        this.elements.remove(element.getId());
     }
     
     /**
@@ -62,10 +54,12 @@ public class Repository<T> {
      * 
      * @return The element from the top of the stack.
      */
-    public T getTopElement() throws StackException {
-        T temp = this.elements.pop();
-        this.elements.push(temp);
-        return temp;
+    public T getTopElement(){
+        for (T element : this.elements.values()) {
+            return element;
+        }
+
+        return null;
     }
     
     /**
@@ -75,17 +69,19 @@ public class Repository<T> {
      * @return The number of elements in the repository. Positive int.
      */
     public int numberOfElements() {
-        return this.elements.getSize();
+        return this.elements.size();
     }
     
     /**
      * 
-     * Returns a copy of the elements stack.
+     * Returns a copy of the elements.
      * 
-     * @return A copy of the elements stack.
+     * @return A copy of the elements.
      */
-    public Stack<T> allElements() {
-        return this.elements.copy();
+    public Map<Integer, T> allElements() {
+        Map<Integer, T> copy = new LinkedHashMap<Integer, T>();
+        copy.putAll(this.elements);
+        return copy;
     }
 
     /**
@@ -102,16 +98,13 @@ public class Repository<T> {
                                             new FileOutputStream(filename),
                                             "utf-8"));
 
-            Stack<T> copy = this.allElements();
-            while (!copy.isEmpty()) {
-                T element = copy.pop();
+            Map<Integer, T> copy = this.allElements();
+            for (T element : copy.values()) {
                 writer.write(element.toString());
                 writer.write("\n");
             }
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (StackException e) {
             e.printStackTrace();
         }
     }
@@ -144,8 +137,8 @@ public class Repository<T> {
         try {
             FileInputStream fileIn = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            Stack<T> stack = (Stack<T>) in.readObject();
-            this.elements = stack;
+            Map<Integer, T> map = (Map<Integer, T>) in.readObject();
+            this.elements = map;
             in.close();
             fileIn.close();
         } catch (IOException e) {
