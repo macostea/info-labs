@@ -6,7 +6,7 @@ import java.io.Serializable;
  *
  * @author mihai
  */
-public class Student implements Comparable<Student>, Readable<Student>, Serializable {
+public class Student implements Comparable<Student>, Readable, Serializable {
     public String name;
     public int id;
     public int grade;

@@ -23,11 +23,11 @@ namespace Lab2
 			controller.addStudent(2,"fkleaj",9,10);
 			controller.addStudent(3,"fekljaj",7,10,"alsjkf","alkfja");
 
-			repo.serializeDataToFile("whateverman.txt");
-	        repo.deserializeDataFromFile("whateverman.txt");
+//			repo.serializeDataToFile("whateverman.txt");
+//	        repo.deserializeDataFromFile("whateverman.txt");
 
-//			repo.saveRepoToFile("textfile.txt");
-//			repo.readRepoFromFile("textfile.txt");
+			repo.saveRepoToFile("textfile.txt");
+			controller.readRepoFromFile("textfile.txt");
 
             ui.showMenu();
         }

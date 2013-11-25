@@ -1,20 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../Lab2/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Lab2/Repository/Stack.cs">
     <Files>
-      <File FileName="../Lab2/Controller/Controller.cs" Line="185" Column="5" />
-      <File FileName="../Lab2/Model/Student.cs" Line="36" Column="43" />
-      <File FileName="../Lab2/Model/GraduateStudent.cs" Line="31" Column="55" />
-      <File FileName="../Lab2/Model/PhDStudent.cs" Line="31" Column="55" />
-      <File FileName="../Lab2/Model/UndergraduateStudent.cs" Line="28" Column="65" />
+      <File FileName="../Lab2/Controller/Controller.cs" Line="10" Column="1" />
+      <File FileName="../Lab2/Model/Student.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/GraduateStudent.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/PhDStudent.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/UndergraduateStudent.cs" Line="1" Column="1" />
       <File FileName="../Lab2/Model/Comparable.cs" Line="1" Column="1" />
-      <File FileName="../Lab2/Model/Readable.cs" Line="8" Column="33" />
-      <File FileName="../Lab2/Repository/Repository.cs" Line="131" Column="6" />
-      <File FileName="../Lab2/Repository/Stack.cs" Line="13" Column="19" />
-      <File FileName="../Lab2/UI/UI.cs" Line="143" Column="15" />
-      <File FileName="../Lab2/Utils/LinkedList/LinkedList.cs" Line="7" Column="20" />
+      <File FileName="../Lab2/Model/Readable.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Repository/Repository.cs" Line="9" Column="54" />
+      <File FileName="../Lab2/Repository/Stack.cs" Line="16" Column="25" />
+      <File FileName="../Lab2/UI/UI.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Utils/LinkedList/LinkedList.cs" Line="1" Column="1" />
       <File FileName="../Lab2/Utils/LinkedList/Node.cs" Line="1" Column="1" />
-      <File FileName="../Lab2/Program.cs" Line="23" Column="40" />
+      <File FileName="../Lab2/Program.cs" Line="26" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

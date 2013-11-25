@@ -1,7 +1,5 @@
 package lab7.Repository;
 
-import lab7.Model.*;
-import lab7.Model.Readable;
 import lab7.Utils.StackException;
 
 import java.io.*;
@@ -12,7 +10,22 @@ import java.io.*;
  */
 public class Repository<T> {
     private Stack<T> elements = new Stack<T>();
-    
+
+    /**
+     * Constructor
+     */
+    public Repository() {
+    }
+
+    /**
+     * Constructor
+     *
+     * @param adt The adt to use for the repository
+     */
+    public Repository(Stack<T> adt) {
+        this.elements = adt;
+    }
+
     /**
      * 
      * Adds an element in the repository.
@@ -103,40 +116,12 @@ public class Repository<T> {
         }
     }
 
-    public void readRepoFromFile(String filename) {
-        BufferedReader reader;
-        Stack<T> stack = new Stack<T>();
-
-        try {
-            reader = new BufferedReader(new InputStreamReader(
-                                            new FileInputStream(filename),
-                                            "utf-8"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split("[|]+");
-                Readable<?> element;
-                if (tokens[0].contains("GraduateStudent")) {
-                    element = new GraduateStudent();
-                } else if (tokens[0].contains("PhDStudent")) {
-                    element = new PhDStudent();
-                } else if (tokens[0].contains("UndergraduateStudent")) {
-                    element = new UndergraduateStudent();
-                } else if (tokens[0].contains("Student")) {
-                    element = new Student();
-                } else {
-                    return;
-                }
-
-                element.readAttributesFromString(line);
-                stack.push((T)element);
-            }
-            this.elements = stack;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     *
+     * Serialize the repository to a file
+     *
+     * @param filename The file to save in.
+     */
     public void serializeDataToFile(String filename) {
         try {
             FileOutputStream fileOut = new FileOutputStream(filename);
@@ -149,6 +134,12 @@ public class Repository<T> {
         }
     }
 
+    /**
+     *
+     * Deserialize the repository from a file
+     *
+     * @param filename The file to read from.
+     */
     public void deserializeDataFromFile(String filename) {
         try {
             FileInputStream fileIn = new FileInputStream(filename);

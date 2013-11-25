@@ -1,5 +1,5 @@
 package lab7.Model;
 
-public interface Readable<T> {
+public interface Readable {
     public void readAttributesFromString(String string);
 }

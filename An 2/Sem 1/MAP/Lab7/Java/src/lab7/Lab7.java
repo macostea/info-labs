@@ -44,7 +44,7 @@ public class Lab7 {
 //        repo.deserializeDataFromFile("whateverman.txt");
 
         repo.saveRepoToFile("textfile.txt");
-        repo.readRepoFromFile("textfile.txt");
+        controller.readRepoFromFile("textfile.txt");
 
         ui.showMenu();
     }

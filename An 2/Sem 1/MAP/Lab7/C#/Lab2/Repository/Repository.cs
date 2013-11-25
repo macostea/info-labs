@@ -15,6 +15,21 @@ namespace Lab2
 	    {
 			private Stack<T> elements = new Stack<T>();
 
+			/**
+			 * Constructor
+			 */
+			public Repository() {
+			}
+
+			/**
+			 * Constructor
+			 * 
+			 * @param adt The adt to use for the repository
+			 */
+			public Repository(Stack<T> adt) {
+				this.elements = adt;
+			}
+
 	        /**
 	         * 
 	         * Adds an element in the repository.
@@ -101,35 +116,6 @@ namespace Lab2
 					System.Console.WriteLine (e.Message);
 				}
 			}
-
-			public void readRepoFromFile(string filename) {
-				StreamReader reader = new StreamReader (filename);
-				Stack<T> stack = new Stack<T> ();
-				try {
-					string line;
-					while ((line = reader.ReadLine ()) != null) {
-						string[] tokens = line.Split ('|');
-						Readable element;
-						if (tokens [0].Contains ("GraduateStudent")) {
-							element = new GraduateStudent ();
-						} else if (tokens [0].Contains ("PhDStudent")) {
-							element = new PhDStudent ();
-						} else if (tokens [0].Contains ("UndergraduateStudent")) {
-							element = new UndergraduateStudent ();
-						} else if (tokens [0].Contains ("Student")) {
-							element = new Student ();
-						} else {
-							return;
-						}
-
-						element.readAttributesFromString (line);
-						stack.push ((T)element);
-					}
-					this.elements = stack;
-				} catch (IOException e) {
-					System.Console.WriteLine (e.Message);
-				}
-	    	}
 
 			public void serializeDataToFile(string filename) {
 				Stream fileStream = File.Create (filename);

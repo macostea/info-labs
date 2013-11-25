@@ -1,11 +1,16 @@
 package lab7.Controller;
 
-import lab7.Model.*;
 import lab7.Model.Comparable;
+import lab7.Model.*;
+import lab7.Model.Readable;
 import lab7.Repository.Repository;
 import lab7.Repository.Stack;
 import lab7.Utils.StackException;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -44,6 +49,30 @@ public class Controller {
      */
     public static<T> void moveElements(Stack<? extends T> source, Stack<T> destination) {
         Stack<T> temp = new Stack<T>();
+        while (!source.isEmpty()) {
+            try {
+                temp.push(source.pop());
+            } catch (StackException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        while (!temp.isEmpty()) {
+            try {
+                destination.push(temp.pop());
+            } catch (StackException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    /**
+     *
+     * Moves all elements from a stack to another stack
+     * @param source The stack to move the elements from
+     * @param destination The stack to move the elements to
+     */
+    public static void moveElements2(Stack<? extends Student> source, Stack<? super Student> destination) {
+        Stack<Student> temp = new Stack<Student>();
         while (!source.isEmpty()) {
             try {
                 temp.push(source.pop());
@@ -188,5 +217,46 @@ public class Controller {
      */
     public void saveStudentsToFile(String filename) {
         this.repo.saveRepoToFile(filename);
+    }
+
+    /**
+     *
+     * Reads the repository from a text file
+     *
+     * @param filename The filename of the file.
+     */
+    public void readRepoFromFile(String filename) {
+        BufferedReader reader;
+        Stack<Student> stack = new Stack<Student>();
+
+        try {
+            reader = new BufferedReader(new InputStreamReader(
+                    new FileInputStream(filename),
+                    "utf-8"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split("[|]+");
+                Readable element;
+                if (tokens[0].contains("GraduateStudent")) {
+                    element = new GraduateStudent();
+                } else if (tokens[0].contains("PhDStudent")) {
+                    element = new PhDStudent();
+                } else if (tokens[0].contains("UndergraduateStudent")) {
+                    element = new UndergraduateStudent();
+                } else if (tokens[0].contains("Student")) {
+                    element = new Student();
+                } else {
+                    return;
+                }
+
+                element.readAttributesFromString(line);
+                stack.push((Student)element);
+            }
+            Repository<Student> repo = new Repository<Student>(stack);
+            this.repo = repo;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

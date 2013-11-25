@@ -86,7 +86,7 @@ public class Stack<T> implements Serializable {
      * @return A copy of this stack.
      */
     public Stack<T> copy() {
-        Stack<T> copy = new Stack();
+        Stack<T> copy = new Stack<T>();
         copy.elements = this.elements.copy();
         copy.size = this.size;
         
