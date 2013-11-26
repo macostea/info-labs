@@ -8,7 +8,7 @@ namespace Lab2
 {
 	namespace Lab2_Model {
 		[Serializable()]
-		class Student : Comparable<Student>, Readable
+		class Student : Comparable<Student>, Readable, HasId
 	    {
 	        public string name;
 	        public int id;
@@ -41,6 +41,10 @@ namespace Lab2
 				this.id = Convert.ToInt16 (tokens [1]);
 				this.name = tokens [2];
 				this.grade = Convert.ToInt16 (tokens [3]);
+			}
+
+			int HasId.getId() {
+				return this.id;
 			}
 	    }
 	}

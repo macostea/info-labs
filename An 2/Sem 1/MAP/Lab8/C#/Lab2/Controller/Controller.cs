@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,45 +19,28 @@ namespace Lab2
 
 			/**
 		     *
-		     * Gets a String representation of all the elements from a given Stack
-		     * @param stack The stack to process
-		     * @return An ArrayList<String> of all the String representations of the elements from the given Stack
+		     * Gets a String representation of all the elements from a given Dict
+		     * @param dict The dict to process
+		     * @return An ArrayList<String> of all the String representations of the elements from the given dict
 		     */
-			public static ArrayList elementsFromStack<T>(Stack<T> stack) {
-				Stack<T> copy = stack.copy();
+			public static ArrayList elementsFromDict<T>(IDictionary<int, T> dict) {
 				ArrayList strings = new ArrayList();
 
-				while (!copy.isEmpty()) {
-					try {
-						T element = copy.pop();
-						strings.Add(element.ToString());
-					} catch (StackException e) {
-						Console.WriteLine(e.Message);
-					}
+				foreach (T element in dict.Values) {
+					strings.Add (element.ToString ());
 				}
 				return strings;
 			}
 			/**
 		     *
-		     * Moves all elements from a stack to another stack
-		     * @param source The stack to move the elements from
-		     * @param destination The stack to move the elements to
+		     * Moves all elements from a dict to another dict
+		     * @param source The dict to move the elements from
+		     * @param destination The dict to move the elements to
 		     */
-			public static void moveElements<W,T>(Stack<W> source, Stack<T> destination) where W:T {
-				Stack<T> temp = new Stack<T>();
-				while (!source.isEmpty()) {
-					try {
-						temp.push(source.pop());
-					} catch (StackException e) {
-						System.Console.WriteLine(e.Message);
-					}
-				}
-				while (!temp.isEmpty()) {
-					try {
-						destination.push(temp.pop());
-					} catch (StackException e) {
-						System.Console.WriteLine(e.Message);
-					}
+			public static void moveElements<W, T>(IDictionary<int, W> source, IDictionary<int, T> destination) where W:T
+																											   where T : HasId {
+				foreach (T element in source.Values) {
+					destination.Add (element.getId (), element);
 				}
 			}
 
@@ -131,7 +115,7 @@ namespace Lab2
 	        public void removeStudentsUntilMaxGrade()
 	        {
 				Student currentStudent = this.repo.getTopElement();
-	            while (currentStudent.grade != 10)
+				while (currentStudent != null && currentStudent.grade != 10)
 	            {
 					this.repo.removeElement(currentStudent);
 					currentStudent = this.repo.getTopElement();
@@ -145,7 +129,7 @@ namespace Lab2
 	         * @return A stack of students from the repository.
 	         */
 			public ArrayList allStudents() {
-				return Controller.elementsFromStack(this.repo.allElements());
+				return Controller.elementsFromDict(this.repo.allElements());
 			}
 
 	        /**
@@ -166,16 +150,11 @@ namespace Lab2
 		     * @return The number of students greater than the given student.
 		     */
 			public int numberOfStudentsGreaterThan(Student student) {
-				Stack<Student> allStudents = this.repo.allElements();
+				IDictionary<int, Student> allStudents = this.repo.allElements();
 				int no = 0;
-				while (!allStudents.isEmpty()) {
-					try {
-						Comparable<Student> comparableStudent = allStudents.pop();
-						if (comparableStudent.isGreaterThan(student)) {
-							no++;
-						}
-					} catch (StackException e) {
-						System.Console.WriteLine(e.Message);
+				foreach (Comparable<Student> comparableStudent in allStudents.Values) {
+					if (comparableStudent.isGreaterThan (student)) {
+						no++;
 					}
 				}
 				return no;
@@ -183,7 +162,7 @@ namespace Lab2
 
 			public void readRepoFromFile(string filename) {
 				StreamReader reader = new StreamReader (filename);
-				Stack<Student> stack = new Stack<Student> ();
+				IDictionary<int, Student> dict = new Dictionary<int, Student> ();
 				try {
 					string line;
 					while ((line = reader.ReadLine ()) != null) {
@@ -202,10 +181,10 @@ namespace Lab2
 						}
 
 						element.readAttributesFromString (line);
-						stack.push ((Student)element);
+						Student student = (Student) element;
+						dict.Add(student.id, student);
 					}
-					Repository<Student> repo = new Repository<Student>(stack);
-					this.repo = repo;
+					this.repo = new Repository<Student>(dict);
 				} catch (IOException e) {
 					System.Console.WriteLine (e.Message);
 				}

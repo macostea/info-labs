@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,16 +52,16 @@ namespace Lab2
 	         * @param id The id to be checked.
 	         */
 	        private void validateId(int id) {
-				Lab2.Lab2_Repository.Stack<Student> students = this.repo.allElements();
+				IDictionary<int, Student> students = this.repo.allElements();
 	        
 	            Boolean found = false;
-	            while (!students.isEmpty()) {
-	                Student currStudent = students.pop();
-	                if (currStudent.id == id) {
-	                    found = true;
-	                    break;
-	                }
-	            }
+				foreach (Student currStudent in students.Values) {
+					if (currStudent.id == id) {
+						found = true;
+						break;
+
+					}
+				}
 	        
 	            if (found) this.errorList.Add(kDuplicateId);
 	        }

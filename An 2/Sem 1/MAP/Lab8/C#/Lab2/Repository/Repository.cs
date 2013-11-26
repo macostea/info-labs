@@ -11,9 +11,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Lab2
 {
 	namespace Lab2_Repository {
-		class Repository<T>
+		class Repository<T> where T : HasId
 	    {
-			private Stack<T> elements = new Stack<T>();
+			private IDictionary<int, T> elements = new Dictionary<int, T>();
 
 			/**
 			 * Constructor
@@ -26,7 +26,7 @@ namespace Lab2
 			 * 
 			 * @param adt The adt to use for the repository
 			 */
-			public Repository(Stack<T> adt) {
+			public Repository(IDictionary<int, T> adt) {
 				this.elements = adt;
 			}
 
@@ -38,7 +38,7 @@ namespace Lab2
 	         */
 			public void addElement(T element)
 	        {
-				this.elements.push(element);
+				this.elements.Add (element.getId(), element);
 	        }
 
 	        /**
@@ -49,20 +49,7 @@ namespace Lab2
 	         */
 			public void removeElement(T element)
 	        {
-				Stack<T> temp = new Stack<T>();
-	            while (true)
-	            {
-					T topElement = this.elements.pop();
-					if (topElement.Equals(element))
-	                {
-	                    break;
-	                }
-					temp.push(topElement);
-	            }
-	            while (temp.getSize() != 0)
-	            {
-					this.elements.push(temp.pop());
-	            }
+				this.elements.Remove (element.getId ());
 	        }
 
 	        /**
@@ -73,9 +60,11 @@ namespace Lab2
 	         */
 			public T getTopElement()
 	        {
-				T temp = this.elements.pop();
-				this.elements.push(temp);
-	            return temp;
+				foreach (T element in this.elements.Values) {
+					return element;
+				}
+
+				return default(T);
 	        }
 
 	        /**
@@ -86,33 +75,30 @@ namespace Lab2
 	         */
 			public int numberOfElements()
 	        {
-				return this.elements.getSize();
+				return this.elements.Count();
 	        }
 
 	        /**
 	         * 
-	         * Returns a copy of the elements stack.
+	         * Returns a copy of the elements.
 	         * 
-	         * @return A copy of the elements stack.
+	         * @return A copy of the elements.
 	         */
-			public Stack<T> allElements()
+			public IDictionary<int, T> allElements()
 	        {
-				return this.elements.copy();
+				return new Dictionary<int, T> (this.elements);
 	        }
 
 			public void saveRepoToFile(string filename) {
 				StreamWriter writer = new StreamWriter (filename);
 
 				try {
-					Stack<T> copy = this.allElements();
-					while (!copy.isEmpty()) {
-						T element = copy.pop();
+					IDictionary<int, T> copy = this.allElements();
+					foreach (T element in copy.Values) {
 						writer.WriteLine(element.ToString());
 					}
 					writer.Close();
 				} catch (IOException e) {
-					System.Console.WriteLine (e.Message);
-				} catch (StackException e) {
 					System.Console.WriteLine (e.Message);
 				}
 			}
@@ -128,8 +114,8 @@ namespace Lab2
 				if (File.Exists (filename)) {
 					Stream fileStream = File.OpenRead (filename);
 					BinaryFormatter deserializer = new BinaryFormatter ();
-					Stack<T> stack = (Stack<T>)deserializer.Deserialize (fileStream);
-					this.elements = stack;
+					IDictionary<int, T> dict = (IDictionary<int, T>)deserializer.Deserialize (fileStream);
+					this.elements = dict;
 					fileStream.Close ();
 				}
 			}
