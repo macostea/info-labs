@@ -23,6 +23,7 @@ typedef enum {
 - (LGEdge *)edgeBetweenSource:(NSInteger)source destination:(NSInteger)destination;
 - (NSInteger)degreeOfVertex:(NSInteger)vertex direction:(LGEdgeDirection)direction;
 - (NSArray *)pathBetweenFirstVertex:(NSInteger)firstVertex secondVertex:(NSInteger)secondVertex;
+- (NSArray *)lowestCostPathBetweenFirstVertex:(NSInteger)firstVertex secondVertex:(NSInteger)secondVertex;
 
 - (LGVertex *)vertexWithData:(NSInteger)data;
 

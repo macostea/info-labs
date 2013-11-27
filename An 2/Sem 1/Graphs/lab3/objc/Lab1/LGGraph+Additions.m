@@ -43,7 +43,10 @@
         LGEdge *outEdge = [[LGEdge alloc] initWithDestination:destination cost:cost];
         LGEdge *inEdge = [[LGEdge alloc] initWithDestination:source cost:cost];
         
+        outEdge.source = source;
         [source.outEdges addObject:outEdge];
+        
+        inEdge.source = destination;
         [destination.inEdges addObject:inEdge];
     }
     
