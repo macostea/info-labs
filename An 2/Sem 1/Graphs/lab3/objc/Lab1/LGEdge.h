@@ -11,6 +11,7 @@
 
 @interface LGEdge : NSObject
 
+@property (nonatomic, weak) LGVertex        *source;
 @property (nonatomic, strong) LGVertex      *destination;
 @property (nonatomic) NSInteger             cost;
 

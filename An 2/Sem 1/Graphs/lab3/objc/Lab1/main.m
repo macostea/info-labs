@@ -30,6 +30,12 @@ int main(int argc, const char * argv[])
             NSLog(@"%ld", vertex.data);
         }
         
+        NSArray *lowCost = [graph lowestCostPathBetweenFirstVertex:0 secondVertex:3];
+        NSLog(@"The lowest cost path from 0 to 3 is: ");
+        for (LGVertex *vertex in lowCost) {
+            NSLog(@"%ld", vertex.data);
+        }
+        
     }
     return 0;
 }

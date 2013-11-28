@@ -99,8 +99,72 @@
     return nil;
 }
 
+- (NSArray *)lowestCostPathBetweenFirstVertex:(NSInteger)firstVertex secondVertex:(NSInteger)secondVertex {
+    LGVertex *startVertex = [self.vertices objectForKey:@(firstVertex)];
+    
+    NSMutableArray *distance = [[NSMutableArray alloc] initWithCapacity:[self numberOfVertices]];
+    NSMutableArray *predecessor = [[NSMutableArray alloc] initWithCapacity:[self numberOfVertices]];
+
+    // Init distance array with INT16_MAX and predecessor with null
+    for (LGVertex *vertex in [self.vertices allValues]) {
+        [distance addObject:@(INT16_MAX)];
+        [predecessor addObject:[NSNull null]];
+    }
+    distance[startVertex.data] = @(0);
+    
+    NSMutableSet *allEdges = [self allEdges];
+    
+    // Iterate through all the edges |V|-1 times
+    for (int it = 1; it<[[self.vertices allValues] count]; it++) {
+        [allEdges enumerateObjectsUsingBlock:^(LGEdge *edge, BOOL *stop) {
+            if ([distance[edge.source.data] integerValue] + edge.cost < [distance[edge.destination.data] integerValue]) {
+                distance[edge.destination.data] = @([distance[edge.source.data] integerValue] + edge.cost);
+                predecessor[edge.destination.data] = edge.source;
+            }
+        }];
+    }
+    
+    // Check if there are any negative cost cycles
+    __block BOOL negativeCost = NO;
+    [allEdges enumerateObjectsUsingBlock:^(LGEdge *edge, BOOL *stop) {
+        if ([distance[edge.source.data] integerValue] + edge.cost < [distance[edge.destination.data] integerValue]) {
+            negativeCost = YES;
+            *stop = YES;
+        }
+    }];
+    
+    if (negativeCost) {
+        NSLog(@"Graph contains a negative-cost cycle!");
+        return nil;
+    }
+    
+    // Parse the predecessors and get the path to the vertex
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    [result addObject:[self vertexWithData:secondVertex]];
+    LGVertex *currentVertex = predecessor[secondVertex];
+    while (![currentVertex isKindOfClass:[NSNull class]]) {
+        [result addObject:currentVertex];
+        currentVertex = predecessor[currentVertex.data];
+    }
+    
+    return [[result reverseObjectEnumerator] allObjects];;
+}
+
 - (LGVertex *)vertexWithData:(NSInteger)data {
     return [self.vertices objectForKey:@(data)];
+}
+
+#pragma mark - Private methods
+
+- (NSMutableSet *)allEdges {
+    NSMutableSet *allEdges = [[NSMutableSet alloc] init];
+    for (LGVertex *vertex in [self.vertices allValues]) {
+        for (LGEdge *edge in vertex.outEdges) {
+            [allEdges addObject:edge];
+        }
+    }
+    
+    return allEdges;
 }
 
 @end
