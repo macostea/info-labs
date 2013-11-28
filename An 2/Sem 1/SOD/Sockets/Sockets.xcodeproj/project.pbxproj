@@ -33,7 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A7132DFD18472F19007E34FC /* Sockets */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Sockets; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7132DFD18472F19007E34FC /* Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Server; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7132E0018472F19007E34FC /* server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = server.cpp; sourceTree = "<group>"; };
 		A7132E0918472F40007E34FC /* client.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = client.cpp; sourceTree = "<group>"; };
 		A7132E1018472F66007E34FC /* Client */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Client; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,7 +69,7 @@
 		A7132DFE18472F19007E34FC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A7132DFD18472F19007E34FC /* Sockets */,
+				A7132DFD18472F19007E34FC /* Server */,
 				A7132E1018472F66007E34FC /* Client */,
 			);
 			name = Products;
@@ -102,7 +102,7 @@
 			);
 			name = Server;
 			productName = Sockets;
-			productReference = A7132DFD18472F19007E34FC /* Sockets */;
+			productReference = A7132DFD18472F19007E34FC /* Server */;
 			productType = "com.apple.product-type.tool";
 		};
 		A7132E0F18472F66007E34FC /* Client */ = {
@@ -288,6 +288,7 @@
 				A7132E0818472F19007E34FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A7132E1618472F66007E34FC /* Build configuration list for PBXNativeTarget "Client" */ = {
 			isa = XCConfigurationList;
@@ -296,6 +297,7 @@
 				A7132E1818472F66007E34FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

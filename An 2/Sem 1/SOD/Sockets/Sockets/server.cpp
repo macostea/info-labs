@@ -26,10 +26,10 @@ pthread_rwlock_t mRWLock;
 void *workerFunc(void *attr) {
     workerArgs_t *args = (workerArgs_t *) attr;
     int signal = kThreadCreated;
-    send(args->clientSock, &signal, sizeof(signal), 0);
+    send(args->clientSock, &signal, sizeof(int), 0);
     
     message_t *receivedMessage = new message_t;
-    recv(args->clientSock, receivedMessage, sizeof(message_t), 0);
+    int recvBytes = recv(args->clientSock, receivedMessage, sizeof(message_t), 0);
     
     pthread_rwlock_rdlock(&mRWLock);
     if (receivedMessage->n1 + receivedMessage->n2 + receivedMessage->n3 > mLargestSumTriplet.n1 + mLargestSumTriplet.n2 + mLargestSumTriplet.n3) {
@@ -56,19 +56,22 @@ void *workerFunc(void *attr) {
     
     pthread_rwlock_unlock(&mRWLock);
     
+    mWorkers[args->threadId].isAllocated = false;
     sem_post(&mSemaphore);
     return nullptr;
 }
 
-void createThread(int socket, struct sockaddr_in clientAddr) {
+void createThread(int socket, struct sockaddr_in *clientAddr) {
     workerArgs_t *args = new workerArgs_t;
-    args->clientAddr = &clientAddr;
+    args->clientAddr = clientAddr;
     args->clientSock = socket;
     
     for (int it=0; it<5; it++) {
         if (!mWorkers[it].isAllocated) {
-            pthread_create(&mWorkers[it].thread, nullptr, workerFunc, &args);
+            args->threadId = it;
+            pthread_create(&mWorkers[it].thread, nullptr, workerFunc, args);
             mWorkers[it].isAllocated = true;
+            return;
         }
     }
 }
@@ -78,8 +81,11 @@ int main(int argc, const char * argv[]) {
     struct sockaddr_in serverAddr, clientAddr;
     mLargestSumClient = new sockaddr_in;
     memset(&mLargestSumTriplet, 0, sizeof(mLargestSumTriplet));
-    pthread_rwlock_init(&mRWLock, nullptr);
+    for (int it=0; it<5; it++) {
+        mWorkers[it].isAllocated = false;
+    }
     
+    pthread_rwlock_init(&mRWLock, nullptr);
     sem_init(&mSemaphore, 0, 5);
     
     serverSock = socket(AF_INET, SOCK_STREAM, 0);
@@ -108,7 +114,7 @@ int main(int argc, const char * argv[]) {
         clientSock = accept(serverSock, (struct sockaddr *)&clientAddr, &l);
         sem_wait(&mSemaphore);
         
-        createThread(clientSock, clientAddr);
+        createThread(clientSock, &clientAddr);
     }
         
     close(clientSock);

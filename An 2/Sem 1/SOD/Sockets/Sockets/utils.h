@@ -32,6 +32,7 @@ typedef struct {
 typedef struct {
     int             clientSock;
     sockaddr_in     *clientAddr;
+    int             threadId;
 } workerArgs_t;
 
 #endif

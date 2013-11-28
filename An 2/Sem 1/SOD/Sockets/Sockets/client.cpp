@@ -50,9 +50,9 @@ int main(int argc, const char * argv[])
     recv(clientSock, &isThreadCreated, sizeof(isThreadCreated), 0);
     
     if (isThreadCreated == kThreadCreated) {
-        send(clientSock, &message, sizeof(message), 0);
+        send(clientSock, &message, sizeof(message_t), 0);
         
-        recv(clientSock, &resp, sizeof(message_t), 0);
+        int recvBytes = recv(clientSock, &resp, sizeof(message_t), 0);
         
         printf("The triplet with the largest sum is %f %f %f\n", resp->n1, resp->n2, resp->n3);
     }
