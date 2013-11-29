@@ -22,14 +22,35 @@ sem_t mSemaphore;
 sockaddr_in *mLargestSumClient;
 message_t mLargestSumTriplet;
 pthread_rwlock_t mRWLock;
+int mServerSock;
+
+void safeExit() {
+    for (int it=0; it<5; it++) {
+        pthread_join(mWorkers[it].thread, nullptr);
+    }
+    
+    sem_destroy(&mSemaphore);
+    pthread_rwlock_destroy(&mRWLock);
+    
+    close(mServerSock);
+    
+    exit(0);
+}
+
+void sigint_handler(int signal) {
+    safeExit();
+}
 
 void *workerFunc(void *attr) {
     workerArgs_t *args = (workerArgs_t *) attr;
     int signal = kThreadCreated;
     send(args->clientSock, &signal, sizeof(int), 0);
     
+    char *buffer = (char *)malloc(sizeof(message_t));
+    
     message_t *receivedMessage = new message_t;
-    int recvBytes = recv(args->clientSock, receivedMessage, sizeof(message_t), 0);
+    recv(args->clientSock, buffer, sizeof(message_t), 0);
+    memcpy(receivedMessage, buffer, sizeof(message_t)); // deserialize the data
     
     pthread_rwlock_rdlock(&mRWLock);
     if (receivedMessage->n1 + receivedMessage->n2 + receivedMessage->n3 > mLargestSumTriplet.n1 + mLargestSumTriplet.n2 + mLargestSumTriplet.n3) {
@@ -52,12 +73,17 @@ void *workerFunc(void *attr) {
     sendToClient.n3 = mLargestSumTriplet.n3;
     inet_ntop(AF_INET, &mLargestSumClient->sin_addr, sendToClient.ip, sizeof(sendToClient.ip));
     
-    send(args->clientSock, &sendToClient, sizeof(sendToClient), 0);
+    memset(buffer, 0, sizeof(message_t));
+    memcpy(buffer, &sendToClient, sizeof(message_t)); // serialize the data
+    send(args->clientSock, buffer, sizeof(sendToClient), 0);
     
     pthread_rwlock_unlock(&mRWLock);
     
     mWorkers[args->threadId].isAllocated = false;
+    close(args->clientSock);
     sem_post(&mSemaphore);
+    
+    pthread_exit(nullptr);
     return nullptr;
 }
 
@@ -77,10 +103,13 @@ void createThread(int socket, struct sockaddr_in *clientAddr) {
 }
 
 int main(int argc, const char * argv[]) {
-    int serverSock, clientSock;
+    signal(SIGINT, sigint_handler);
+    int clientSock;
     struct sockaddr_in serverAddr, clientAddr;
     mLargestSumClient = new sockaddr_in;
-    memset(&mLargestSumTriplet, 0, sizeof(mLargestSumTriplet));
+    mLargestSumTriplet.n1 = 0;
+    mLargestSumTriplet.n2 = 0;
+    mLargestSumTriplet.n3 = 0;
     for (int it=0; it<5; it++) {
         mWorkers[it].isAllocated = false;
     }
@@ -88,9 +117,9 @@ int main(int argc, const char * argv[]) {
     pthread_rwlock_init(&mRWLock, nullptr);
     sem_init(&mSemaphore, 0, 5);
     
-    serverSock = socket(AF_INET, SOCK_STREAM, 0);
+    mServerSock = socket(AF_INET, SOCK_STREAM, 0);
     
-    if (serverSock < 0) {
+    if (mServerSock < 0) {
         perror("Failed to create socket!");
         return errno;
     }
@@ -100,25 +129,24 @@ int main(int argc, const char * argv[]) {
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_addr.s_addr = INADDR_ANY;
     
-    if (bind(serverSock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
+    if (bind(mServerSock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
         perror("Failed to bind!");
         return errno;
     }
     
-    listen(serverSock, 5);
+    listen(mServerSock, 5);
     
     socklen_t l;
     memset(&clientAddr, 0, sizeof(clientAddr));
     l = sizeof(clientAddr);
     while (1) {
-        clientSock = accept(serverSock, (struct sockaddr *)&clientAddr, &l);
+        clientSock = accept(mServerSock, (struct sockaddr *)&clientAddr, &l);
         sem_wait(&mSemaphore);
         
         createThread(clientSock, &clientAddr);
     }
         
-    close(clientSock);
-    close(serverSock);
+    safeExit();
     
     return 0;
 }

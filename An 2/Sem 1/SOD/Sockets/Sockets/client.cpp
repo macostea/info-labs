@@ -46,15 +46,22 @@ int main(int argc, const char * argv[])
     message->n2 = rand() % 100;
     message->n3 = rand() % 100;
     
+    char *buffer = (char *)malloc(sizeof(message_t)); // buffer for serialization/deserialization
+    
     int isThreadCreated = 0;
     recv(clientSock, &isThreadCreated, sizeof(isThreadCreated), 0);
     
     if (isThreadCreated == kThreadCreated) {
-        send(clientSock, &message, sizeof(message_t), 0);
+        sleep(1); // used to check if concurrent clients can be handled
+        memcpy(buffer, message, sizeof(message_t)); // serialize the data
+        send(clientSock, buffer, sizeof(message_t), 0);
         
-        int recvBytes = recv(clientSock, &resp, sizeof(message_t), 0);
+        memset(buffer, 0, sizeof(message_t));
+        recv(clientSock, buffer, sizeof(message_t), 0);
+        memcpy(resp, buffer, sizeof(message_t)); // deserialize the data
         
-        printf("The triplet with the largest sum is %f %f %f\n", resp->n1, resp->n2, resp->n3);
+        std::cout << "The triplet with the largest sum is "  << resp->n1 << " " << resp->n2 << " " << resp->n3 << std::endl;
+        std::cout << "The ip of the client with the largest sum is: " << resp->ip << std::endl;
     }
     
 
