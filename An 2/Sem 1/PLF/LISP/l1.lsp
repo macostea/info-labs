@@ -19,3 +19,12 @@
 (t (cons (car l2) (mergeLists l1 (cdr l2))))
 )
 )
+
+(defun isLinear (l)
+(cond
+((null l) T)
+((null (cdr l)) T)
+((> (car l) (car (cdr l))) nil)
+(T (isLinear (cdr l)))
+)
+)
