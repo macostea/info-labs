@@ -13,6 +13,8 @@
 + (LGGraph *)graphFromTextFile:(NSString *)textFile {
     NSString *fileRoot = [[NSBundle mainBundle] pathForResource:textFile ofType:@"txt"];
     NSString *fileContent = [NSString stringWithContentsOfFile:fileRoot encoding:NSUTF8StringEncoding error:nil];
+    
+    // Each line from the file is represented as an element in this array
     NSMutableArray *lines = [[fileContent componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] mutableCopy];
     
     NSArray *firstLineComponents = [lines[0] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -22,14 +24,17 @@
     NSMutableDictionary *vertices = [[NSMutableDictionary alloc] init];
     
     for (NSInteger it=0; it<numberOfVertices; it++) {
+        // Create vertexes from 0 to numberOfVertices - 1
         LGVertex *vertex = [[LGVertex alloc] init];
         vertex.data = it;
         
         [vertices setObject:vertex forKey:@(it)];
     }
     
+    // Create the graph with the vertices created earlier
     LGGraph *graph = [[LGGraph alloc] initWithVertices:vertices];
     
+    // Parse the rest of the lines, create edges and add them to their corresponding vertices
     for (NSString *line in lines) {
         NSArray *lineComponents = [line componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         

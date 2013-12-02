@@ -65,6 +65,7 @@
 }
 
 - (NSArray *)pathBetweenFirstVertex:(NSInteger)firstVertex secondVertex:(NSInteger)secondVertex {
+    // Breadth first search
     NSMutableArray *queue = [[NSMutableArray alloc] init];
     NSMutableSet *visited = [[NSMutableSet alloc] init];
     
@@ -147,7 +148,7 @@
         currentVertex = predecessor[currentVertex.data];
     }
     
-    return [[result reverseObjectEnumerator] allObjects];;
+    return [[result reverseObjectEnumerator] allObjects];
 }
 
 - (LGVertex *)vertexWithData:(NSInteger)data {
