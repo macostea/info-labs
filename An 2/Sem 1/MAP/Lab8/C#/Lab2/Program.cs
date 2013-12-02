@@ -26,6 +26,15 @@ namespace Lab2
 //			repo.serializeDataToFile("whateverman.txt");
 //	        repo.deserializeDataFromFile("whateverman.txt");
 
+			IDictionary<int, Student> source = repo.allElements ();
+			IDictionary<int, Student> dest = new Dictionary<int, Student> ();
+
+			Controller.moveElements (source, dest);
+
+			foreach (Student student in dest.Values) {
+				Console.WriteLine (student.ToString ());
+			}
+
 			repo.saveRepoToFile("textfile.txt");
 			controller.readRepoFromFile("textfile.txt");
 

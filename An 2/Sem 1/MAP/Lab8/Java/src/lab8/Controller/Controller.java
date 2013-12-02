@@ -41,9 +41,10 @@ public class Controller {
      * @param source The map to move the elements from
      * @param destination The map to move the elements to
      */
-    public static<T> void moveElements(Map<Integer, ? extends HasId> source, Map<Integer, HasId> destination) {
+    public static<T> void moveElements(Map<Integer, ? extends HasId> source, Map<Integer,T> destination) {
         for (HasId element : source.values()){
-            destination.put(element.getId(), element);
+            T elementT = (T)element;
+            destination.put(element.getId(), elementT);
         }
     }
 

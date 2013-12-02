@@ -7,6 +7,8 @@ import lab8.UI.UI;
 import lab8.Utils.StackException;
 
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  *
@@ -42,6 +44,15 @@ public class Lab8 {
 //        System.out.println(controller.numberOfStudentGreaterThan(topStudent));
 //        repo.serializeDataToFile("whateverman.txt");
 //        repo.deserializeDataFromFile("whateverman.txt");
+
+        Map<Integer, Student> source = repo.allElements();
+        Map<Integer, Student> dest = new LinkedHashMap<Integer, Student>();
+
+        Controller.moveElements(source, dest);
+
+        for (Student student : dest.values()) {
+            System.out.println(student.toString());
+        }
 
         repo.saveRepoToFile("textfile.txt");
         controller.readRepoFromFile("textfile.txt");
