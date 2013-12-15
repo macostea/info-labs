@@ -1,0 +1,303 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		915285901857585000A8DF7F /* LGEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 915285851857585000A8DF7F /* LGEdge.m */; };
+		915285911857585000A8DF7F /* LGGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 915285871857585000A8DF7F /* LGGraph.m */; };
+		915285921857585000A8DF7F /* LGGraph+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 915285891857585000A8DF7F /* LGGraph+Additions.m */; };
+		915285931857585000A8DF7F /* LGNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152858B1857585000A8DF7F /* LGNode.m */; };
+		915285941857585000A8DF7F /* LGVertex.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152858D1857585000A8DF7F /* LGVertex.m */; };
+		915285951857585000A8DF7F /* NSMutableArray+Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9152858F1857585000A8DF7F /* NSMutableArray+Queue.m */; };
+		915285981857597E00A8DF7F /* graph.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 915285971857590A00A8DF7F /* graph.txt */; };
+		91E1E04B185752C300218663 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91E1E04A185752C300218663 /* Foundation.framework */; };
+		91E1E04E185752C300218663 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 91E1E04D185752C300218663 /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		91E1E045185752C300218663 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				915285981857597E00A8DF7F /* graph.txt in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		915285841857585000A8DF7F /* LGEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGEdge.h; sourceTree = "<group>"; };
+		915285851857585000A8DF7F /* LGEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGEdge.m; sourceTree = "<group>"; };
+		915285861857585000A8DF7F /* LGGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGGraph.h; sourceTree = "<group>"; };
+		915285871857585000A8DF7F /* LGGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGGraph.m; sourceTree = "<group>"; };
+		915285881857585000A8DF7F /* LGGraph+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LGGraph+Additions.h"; sourceTree = "<group>"; };
+		915285891857585000A8DF7F /* LGGraph+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LGGraph+Additions.m"; sourceTree = "<group>"; };
+		9152858A1857585000A8DF7F /* LGNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGNode.h; sourceTree = "<group>"; };
+		9152858B1857585000A8DF7F /* LGNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGNode.m; sourceTree = "<group>"; };
+		9152858C1857585000A8DF7F /* LGVertex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGVertex.h; sourceTree = "<group>"; };
+		9152858D1857585000A8DF7F /* LGVertex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGVertex.m; sourceTree = "<group>"; };
+		9152858E1857585000A8DF7F /* NSMutableArray+Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Queue.h"; sourceTree = "<group>"; };
+		9152858F1857585000A8DF7F /* NSMutableArray+Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Queue.m"; sourceTree = "<group>"; };
+		915285971857590A00A8DF7F /* graph.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = graph.txt; sourceTree = "<group>"; };
+		91E1E047185752C300218663 /* Lab4 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab4; sourceTree = BUILT_PRODUCTS_DIR; };
+		91E1E04A185752C300218663 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		91E1E04D185752C300218663 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		91E1E050185752C300218663 /* Lab4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lab4-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91E1E044185752C300218663 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91E1E04B185752C300218663 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		915285961857585900A8DF7F /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				915285841857585000A8DF7F /* LGEdge.h */,
+				915285851857585000A8DF7F /* LGEdge.m */,
+				915285861857585000A8DF7F /* LGGraph.h */,
+				915285871857585000A8DF7F /* LGGraph.m */,
+				915285881857585000A8DF7F /* LGGraph+Additions.h */,
+				915285891857585000A8DF7F /* LGGraph+Additions.m */,
+				9152858A1857585000A8DF7F /* LGNode.h */,
+				9152858B1857585000A8DF7F /* LGNode.m */,
+				9152858C1857585000A8DF7F /* LGVertex.h */,
+				9152858D1857585000A8DF7F /* LGVertex.m */,
+				9152858E1857585000A8DF7F /* NSMutableArray+Queue.h */,
+				9152858F1857585000A8DF7F /* NSMutableArray+Queue.m */,
+			);
+			name = Graph;
+			sourceTree = "<group>";
+		};
+		91E1E03E185752C300218663 = {
+			isa = PBXGroup;
+			children = (
+				915285971857590A00A8DF7F /* graph.txt */,
+				91E1E04C185752C300218663 /* Lab4 */,
+				91E1E049185752C300218663 /* Frameworks */,
+				91E1E048185752C300218663 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91E1E048185752C300218663 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91E1E047185752C300218663 /* Lab4 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91E1E049185752C300218663 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91E1E04A185752C300218663 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91E1E04C185752C300218663 /* Lab4 */ = {
+			isa = PBXGroup;
+			children = (
+				91E1E04D185752C300218663 /* main.m */,
+				91E1E04F185752C300218663 /* Supporting Files */,
+			);
+			path = Lab4;
+			sourceTree = "<group>";
+		};
+		91E1E04F185752C300218663 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				915285961857585900A8DF7F /* Graph */,
+				91E1E050185752C300218663 /* Lab4-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91E1E046185752C300218663 /* Lab4 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91E1E055185752C400218663 /* Build configuration list for PBXNativeTarget "Lab4" */;
+			buildPhases = (
+				91E1E043185752C300218663 /* Sources */,
+				91E1E044185752C300218663 /* Frameworks */,
+				91E1E045185752C300218663 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lab4;
+			productName = Lab4;
+			productReference = 91E1E047185752C300218663 /* Lab4 */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91E1E03F185752C300218663 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Mihai Costea";
+			};
+			buildConfigurationList = 91E1E042185752C300218663 /* Build configuration list for PBXProject "Lab4" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 91E1E03E185752C300218663;
+			productRefGroup = 91E1E048185752C300218663 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91E1E046185752C300218663 /* Lab4 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91E1E043185752C300218663 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				915285941857585000A8DF7F /* LGVertex.m in Sources */,
+				915285951857585000A8DF7F /* NSMutableArray+Queue.m in Sources */,
+				91E1E04E185752C300218663 /* main.m in Sources */,
+				915285921857585000A8DF7F /* LGGraph+Additions.m in Sources */,
+				915285911857585000A8DF7F /* LGGraph.m in Sources */,
+				915285901857585000A8DF7F /* LGEdge.m in Sources */,
+				915285931857585000A8DF7F /* LGNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		91E1E053185752C400218663 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		91E1E054185752C400218663 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		91E1E056185752C400218663 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lab4/Lab4-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		91E1E057185752C400218663 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Lab4/Lab4-Prefix.pch";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91E1E042185752C300218663 /* Build configuration list for PBXProject "Lab4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91E1E053185752C400218663 /* Debug */,
+				91E1E054185752C400218663 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91E1E055185752C400218663 /* Build configuration list for PBXNativeTarget "Lab4" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91E1E056185752C400218663 /* Debug */,
+				91E1E057185752C400218663 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91E1E03F185752C300218663 /* Project object */;
+}
