@@ -9,10 +9,10 @@
 #ifndef Sockets_utils_h
 #define Sockets_utils_h
 
-#include <iostream>
 #include <netinet/ip.h>
 #include <netinet/in.h>
 
+#define MAXSTRING 100
 
 static const int kThreadCreated = 5; //random value;
 
@@ -21,17 +21,16 @@ typedef struct {
     float       n2;
     float       n3;
     
-    char        ip[INET6_ADDRSTRLEN];
+    char        ip[MAXSTRING];
 } message_t;
 
 typedef struct {
     pthread_t   thread;
-    bool        isAllocated;
+    int	        isAllocated;
 } threadinfo_t;
 
 typedef struct {
-    int             clientSock;
-    sockaddr_in     *clientAddr;
+	message_t		*message;
     int             threadId;
 } workerArgs_t;
 
