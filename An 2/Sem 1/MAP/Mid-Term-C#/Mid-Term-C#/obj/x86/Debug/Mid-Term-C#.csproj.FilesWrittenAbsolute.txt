@@ -1,0 +1,5 @@
+/Users/mihai/Desktop/Mid-Term-C#/Mid-Term-C#/obj/x86/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/mihai/Desktop/Mid-Term-C#/Mid-Term-C#/bin/Debug/Mid-Term-C#.exe.mdb
+/Users/mihai/Desktop/Mid-Term-C#/Mid-Term-C#/bin/Debug/Mid-Term-C#.exe
+/Users/mihai/Desktop/Mid-Term-C#/Mid-Term-C#/obj/x86/Debug/Mid-Term-C#.exe
+/Users/mihai/Desktop/Mid-Term-C#/Mid-Term-C#/obj/x86/Debug/Mid-Term-C#.exe.mdb

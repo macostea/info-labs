@@ -1,0 +1,21 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Mid-Term-C#/Program.cs">
+    <Files>
+      <File FileName="Mid-Term-C#/Program.cs" Line="20" Column="57" />
+      <File FileName="Mid-Term-C#/Repository.cs" Line="26" Column="12" />
+      <File FileName="Mid-Term-C#/FridgeElement.cs" Line="15" Column="5" />
+      <File FileName="Mid-Term-C#/HasId.cs" Line="10" Column="3" />
+      <File FileName="Mid-Term-C#/Milk.cs" Line="8" Column="76" />
+      <File FileName="Mid-Term-C#/Food.cs" Line="8" Column="76" />
+      <File FileName="Mid-Term-C#/Can.cs" Line="6" Column="35" />
+      <File FileName="Mid-Term-C#/Controller.cs" Line="49" Column="10" />
+      <File FileName="Mid-Term-C#/RepositoryInterface.cs" Line="11" Column="4" />
+      <File FileName="Mid-Term-C#/View.cs" Line="16" Column="34" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
