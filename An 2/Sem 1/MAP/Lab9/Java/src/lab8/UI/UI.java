@@ -14,6 +14,8 @@ import java.util.Scanner;
  */
 public class UI {
     private Controller controller;
+    private StudentsObserver lessThanFiveObserver = new StudentsObserver("<");
+    private StudentsObserver greaterOrEqualToFiveObserver = new StudentsObserver(">=");
 
     final String kGreeting = "Welcome!";
     final String kExitString = "x";
@@ -31,6 +33,8 @@ public class UI {
     
     public UI(Controller controller) {
         this.controller = controller;
+        this.controller.addObserver(this.lessThanFiveObserver);
+        this.controller.addObserver(this.greaterOrEqualToFiveObserver);
     }
     
     public void showMenu() throws IOException {

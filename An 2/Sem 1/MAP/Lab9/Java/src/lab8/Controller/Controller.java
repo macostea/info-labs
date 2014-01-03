@@ -10,10 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Observable;
+import java.util.*;
 
 /**
  *
@@ -21,6 +18,7 @@ import java.util.Observable;
  */
 public class Controller extends Observable {
     private Repository<Student> repo;
+    private ArrayList<Observer> observers = new ArrayList<Observer>();
 
     /**
      *
@@ -99,6 +97,7 @@ public class Controller extends Observable {
         
         if (errorList.isEmpty()){
             repo.addElement(student);
+            this.notifyObservers(this, this.repo.allElements());
         }
         return errorList;
     }
@@ -110,6 +109,7 @@ public class Controller extends Observable {
 
         if (errorList.isEmpty()){
             repo.addElement(student);
+            this.notifyObservers(this, this.repo.allElements());
         }
         return errorList;
     }
@@ -121,6 +121,7 @@ public class Controller extends Observable {
 
         if (errorList.isEmpty()){
             repo.addElement(student);
+            this.notifyObservers(this, this.repo.allElements());
         }
         return errorList;
     }
@@ -132,6 +133,7 @@ public class Controller extends Observable {
 
         if (errorList.isEmpty()){
             repo.addElement(student);
+            this.notifyObservers(this, this.repo.allElements());
         }
         return errorList;
     }
@@ -146,6 +148,7 @@ public class Controller extends Observable {
             this.repo.removeElement(currentStudent);
             currentStudent = this.repo.getTopElement();
         }
+        this.notifyObservers(this, this.repo.allElements());
     }
     
     /**
@@ -235,6 +238,35 @@ public class Controller extends Observable {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    ////
+    // Observable
+    ////
+
+
+    public void setObservers(ArrayList<Observer> observers) {
+        this.observers = observers;
+    }
+
+    public ArrayList<Observer> getObservers() {
+        return this.observers;
+    }
+
+    @Override
+    public synchronized void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    @Override
+    public synchronized void deleteObserver(Observer o) {
+        observers.remove(o);
+    }
+
+    public void notifyObservers(Observable observable, Map<Integer, Student> map) {
+        for (Observer observer : this.observers) {
+            observer.update(observable, map);
         }
     }
 }
