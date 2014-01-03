@@ -8,7 +8,7 @@ namespace Lab2
 {
 	namespace Lab2_Model {
 		[Serializable()]
-		class Student : Comparable<Student>, Readable, HasId
+		public class Student : Comparable<Student>, Readable, HasId
 	    {
 	        public string name;
 	        public int id;

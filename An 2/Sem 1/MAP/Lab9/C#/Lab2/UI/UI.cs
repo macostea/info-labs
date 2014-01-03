@@ -27,9 +27,14 @@ namespace Lab2
 	                + kMenuExit;
 	        private const String kStudentAddedMessage = "Student Added!";
 	        private const String kStudentsRemovedMessage = "Students Removed!";
+
+			private StudentsObserver lessThanFiveObserver = new StudentsObserver("<");
+			private StudentsObserver greaterOrEqualToFiveObserver = new StudentsObserver(">=");
 	    
 	        public UI(Controller controller) {
 	            this.controller = controller;
+				this.lessThanFiveObserver.Subscribe (this.controller);
+				this.greaterOrEqualToFiveObserver.Subscribe (this.controller);
 	        }
 	    
 	        public void showMenu() {
@@ -50,6 +55,8 @@ namespace Lab2
 						this.saveStudentsToFile ();
 					}
 	            }
+				this.lessThanFiveObserver.Unsubscribe ();
+				this.greaterOrEqualToFiveObserver.Unsubscribe ();
 	        }
 	    
 	        private void addStudent() {

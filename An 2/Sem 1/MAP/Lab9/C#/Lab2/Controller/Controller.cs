@@ -13,9 +13,10 @@ using System.IO;
 namespace Lab2
 {
 	namespace Lab2_Controller {
-	    class Controller
+		public class Controller : IObservable<IDictionary<int, Student>>
 	    {
 			private Repository<Student> repo;
+			private List<IObserver<IDictionary<int, Student>>> observers;
 
 			/**
 		     *
@@ -53,6 +54,7 @@ namespace Lab2
 			public Controller(Repository<Student> repo)
 	        {
 	            this.repo = repo;
+				observers = new List<IObserver<IDictionary<int, Student>>>();
 	        }
 
 			/**
@@ -71,6 +73,9 @@ namespace Lab2
 
 				if (errorList.Count == 0){
 					repo.addElement(student);
+					foreach (var observer in observers) {
+						observer.OnNext (this.repo.allElements ());
+					}
 				}
 				return errorList;
 			}
@@ -82,6 +87,9 @@ namespace Lab2
 
 				if (errorList.Count == 0){
 					repo.addElement(student);
+					foreach (var observer in observers) {
+						observer.OnNext (this.repo.allElements ());
+					}
 				}
 				return errorList;
 			}
@@ -93,6 +101,9 @@ namespace Lab2
 
 				if (errorList.Count == 0){
 					repo.addElement(student);
+					foreach (var observer in observers) {
+						observer.OnNext (this.repo.allElements ());
+					}
 				}
 				return errorList;
 			}
@@ -104,6 +115,9 @@ namespace Lab2
 
 				if (errorList.Count == 0){
 					repo.addElement(student);
+					foreach (var observer in observers) {
+						observer.OnNext (this.repo.allElements ());
+					}
 				}
 				return errorList;
 			}
@@ -120,6 +134,10 @@ namespace Lab2
 					this.repo.removeElement(currentStudent);
 					currentStudent = this.repo.getTopElement();
 	            }
+
+				foreach (var observer in observers) {
+					observer.OnNext (this.repo.allElements ());
+				}
 	        }
 
 	        /**
@@ -193,6 +211,36 @@ namespace Lab2
 			public void saveStudentsToFile(string filename) {
 				this.repo.saveRepoToFile (filename);
 			}
+
+			////
+			// Observable
+			////
+
+			public IDisposable Subscribe(IObserver<IDictionary<int, Student>> observer) {
+				if (!observers.Contains (observer)) {
+					observers.Add (observer);
+					observer.OnNext (this.repo.allElements ());
+				}
+				return new Unsubscriber (observers, observer);
+			}
+
+
 	    }
+
+		internal class Unsubscriber : IDisposable {
+			private List<IObserver<IDictionary<int, Student>>> _observers;
+			private IObserver<IDictionary<int, Student>> _observer;
+
+			internal Unsubscriber(List<IObserver<IDictionary<int, Student>>> observers, IObserver<IDictionary<int, Student>> observer) {
+				this._observer = observer;
+				this._observers = observers;
+			}
+
+			public void Dispose() {
+				if (_observers.Contains (_observer)) {
+					_observers.Remove (_observer);
+				}
+			}
+		}
 	}
 }

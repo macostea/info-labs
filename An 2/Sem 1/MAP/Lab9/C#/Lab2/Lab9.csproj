@@ -60,6 +60,7 @@
     <Compile Include="Model\Comparable.cs" />
     <Compile Include="Model\Readable.cs" />
     <Compile Include="Model\HasId.cs" />
+    <Compile Include="UI\StudentsObserver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

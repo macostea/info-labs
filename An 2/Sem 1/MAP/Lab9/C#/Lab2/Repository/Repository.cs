@@ -11,7 +11,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace Lab2
 {
 	namespace Lab2_Repository {
-		class Repository<T> where T : HasId
+		public class Repository<T> where T : HasId
 	    {
 			private IDictionary<int, T> elements = new Dictionary<int, T>();
 
