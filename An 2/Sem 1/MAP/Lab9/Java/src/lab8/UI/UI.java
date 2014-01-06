@@ -59,8 +59,8 @@ public class UI {
             } catch (InputMismatchException e) {
                 
             }
-   
         }
+        this.controller.deleteObservers();
     }
     
     private void addStudent() {
