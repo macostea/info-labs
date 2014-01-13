@@ -14,7 +14,7 @@ else
 		print 'Invalid url'
 	else
 		update Attachment set
-			url = @newURL
+			url = @newURL,
 			uploaderId = @uploaderId
 		where Attachment.url like @url
 
