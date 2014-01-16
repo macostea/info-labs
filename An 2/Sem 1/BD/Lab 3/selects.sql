@@ -1,3 +1,5 @@
+use [Blogging Platform]
+
 /*
  *	Where
  */
@@ -57,5 +59,14 @@ having count(Articles.id) >= 2
  join Attachment on Articles.attachment = Attachment.id
  join Authors on Articles.author = Authors.id
 
+ /*
+  *	Joining more than 2 many to many relationships
+  */
 
-
+  select Categories.name as 'Category', Tags.options as 'Tag option', Authors.name as 'Author' from Articles
+  join TagsArticles on Articles.id = TagsArticles.articleId
+  join Tags on Tags.name = TagsArticles.tagName
+  join ArticlesCategories on Articles.id = ArticlesCategories.ArticleId
+  join Categories on Categories.cid = ArticlesCategories.CategoryId
+  join AuthorsArticles on Articles.id = AuthorsArticles.Articleid
+  join Authors on Authors.id = AuthorsArticles.AuthorId
