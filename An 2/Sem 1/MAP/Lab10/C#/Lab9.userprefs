@@ -1,0 +1,26 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Lab2/UI/UI.cs">
+    <Files>
+      <File FileName="../Lab2/Controller/Controller.cs" Line="97" Column="38" />
+      <File FileName="../Lab2/Model/Student.cs" Line="11" Column="10" />
+      <File FileName="../Lab2/Model/GraduateStudent.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/PhDStudent.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/UndergraduateStudent.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/Comparable.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/Readable.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Repository/Stack.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/UI/UI.cs" Line="37" Column="65" />
+      <File FileName="../Lab2/Utils/LinkedList/LinkedList.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Utils/LinkedList/Node.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Program.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Model/HasId.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Controller/Validator.cs" Line="1" Column="1" />
+      <File FileName="../Lab2/Repository/Repository.cs" Line="14" Column="10" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
