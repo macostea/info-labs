@@ -10,9 +10,10 @@ namespace Lab2
 		[Serializable()]
 		public class Student : Comparable<Student>, Readable, HasId
 	    {
-	        public string name;
-	        public int id;
-	        public int grade;
+            public string name { get; set; }
+            public int id { get; set; }
+            public int grade { get; set; }
+
 
 			public Student() {
 			}

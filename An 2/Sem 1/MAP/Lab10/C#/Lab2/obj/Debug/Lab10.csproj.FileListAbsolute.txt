@@ -1,0 +1,6 @@
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Lab10\C#\Lab2\bin\Debug\Lab2.exe.config
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Lab10\C#\Lab2\obj\Debug\Lab2.exe
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Lab10\C#\Lab2\obj\Debug\Lab2.pdb
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Lab10\C#\Lab2\obj\Debug\Lab10.csprojResolveAssemblyReference.cache
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Lab10\C#\Lab2\bin\Debug\Lab2.exe
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Lab10\C#\Lab2\bin\Debug\Lab2.pdb

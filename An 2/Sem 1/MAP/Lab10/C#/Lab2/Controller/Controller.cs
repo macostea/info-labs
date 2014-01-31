@@ -150,6 +150,18 @@ namespace Lab2
 				return Controller.elementsFromDict(this.repo.allElements());
 			}
 
+            public IList<Student> allStudentObjects()
+            {
+                IDictionary<int, Student> students = this.repo.allElements();
+                List<Student> list = new List<Student>();
+                
+                foreach (Student student in students.Values) {
+                    list.Add(student);
+                }
+
+                return list;
+            }
+
 	        /**
 	         * 
 	         * Gets the number of students from the repository.

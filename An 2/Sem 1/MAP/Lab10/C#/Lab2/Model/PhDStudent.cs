@@ -4,11 +4,11 @@ namespace Lab2
 {
 	namespace Lab2_Model {
 		[Serializable()]
-		class PhDStudent : Student
+		class PhDStudent : Student, Comparable<Student>, Readable
 		{
-			public String supervisor;
-			public String thesis;
-			public int grade2;
+            public String supervisor { get; set; }
+            public String thesis { get; set; }
+            public int grade2 { get; set; }
 
 			public PhDStudent() : base() {
 			}

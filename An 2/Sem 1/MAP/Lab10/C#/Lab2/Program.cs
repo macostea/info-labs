@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,19 @@ using Lab2.Lab2_Repository;
 using Lab2.Lab2_Controller;
 using Lab2.Lab2_UI;
 using Lab2.Lab2_Model;
+using System.Windows.Forms;
+using Lab2.UI;
 
 namespace Lab2
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
 			Repository<Student> repo = new Repository<Student>();
             Controller controller = new Controller(repo);
-            UI ui = new UI(controller);
+
 
 			controller.addStudent(0,"asfas",6);
 			controller.addStudent(1,"galkdj",10);
@@ -38,7 +42,11 @@ namespace Lab2
 			repo.saveRepoToFile("textfile.txt");
 			controller.readRepoFromFile("textfile.txt");
 
-            ui.showMenu();
+//            ui.showMenu();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1(controller));
         }
     }
 }

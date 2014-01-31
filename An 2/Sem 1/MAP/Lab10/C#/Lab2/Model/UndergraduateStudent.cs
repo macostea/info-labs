@@ -4,9 +4,9 @@ namespace Lab2
 {
 	namespace Lab2_Model {
 		[Serializable()]
-		class UndergraduateStudent : Student
+		class UndergraduateStudent : Student, Comparable<Student>, Readable
 		{
-			public int grade2;
+            public int grade2 { get; set; }
 
 			public UndergraduateStudent() : base() {
 			}
