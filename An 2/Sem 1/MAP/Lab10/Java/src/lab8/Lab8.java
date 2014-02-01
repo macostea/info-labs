@@ -3,9 +3,11 @@ package lab8;
 import lab8.Controller.Controller;
 import lab8.Model.Student;
 import lab8.Repository.Repository;
+import lab8.UI.GUI;
 import lab8.UI.UI;
 import lab8.Utils.StackException;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -21,8 +23,9 @@ public class Lab8 {
      */
     public static void main(String[] args) throws IOException, StackException {
         Repository<Student> repo = new Repository<Student>();
-        Controller controller = new Controller(repo);
-        UI ui = new UI(controller);
+        final Controller controller = new Controller(repo);
+//        UI ui = new UI(controller);
+
 
         controller.addStudent(0,"asfas",6);
         controller.addStudent(1,"galkdj",10);
@@ -57,6 +60,14 @@ public class Lab8 {
         repo.saveRepoToFile("textfile.txt");
         controller.readRepoFromFile("textfile.txt");
 
-        ui.showMenu();
+//        ui.showMenu();
+
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                GUI gui = new GUI(controller);
+                gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            }
+        });
     }
 }

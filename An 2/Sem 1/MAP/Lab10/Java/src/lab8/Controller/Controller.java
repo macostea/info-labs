@@ -160,6 +160,16 @@ public class Controller extends Observable {
     public ArrayList<String> allStudents() {
         return Controller.elementsFromMap(this.repo.allElements());
     }
+
+    public ArrayList<Student> allStudentObjects() {
+        ArrayList<Student> list = new ArrayList<Student>();
+
+        for (Student student : this.repo.allElements().values()) {
+            list.add(student);
+        }
+
+        return list;
+    }
     
     /**
      * 
