@@ -1,0 +1,8 @@
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.exe.config
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.csprojResolveAssemblyReference.cache
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp_Exam.Properties.Resources.resources
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.csproj.GenerateResource.Cache
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.exe
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.pdb
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.exe
+\\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.pdb
