@@ -8,8 +8,6 @@ namespace Csharp_Exam.Repository
 {
     interface IRepository<T>
     {
-        void addElement(T element);
-        void removeElement(T element);
         List<T> allElements();
     }
 }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Csharp_Exam.Model
+namespace Csharp_Exam.Controller
 {
-    abstract class Product
+    class ReadingException : Exception
     {
+        public ReadingException()
+        {
+
+        }
     }
 }

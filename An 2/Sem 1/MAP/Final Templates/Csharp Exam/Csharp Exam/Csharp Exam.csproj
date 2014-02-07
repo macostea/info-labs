@@ -45,9 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Controller.cs" />
-    <Compile Include="Model\Bread.cs" />
+    <Compile Include="Controller\ReadingException.cs" />
+    <Compile Include="Model\CommercialSpace.cs" />
+    <Compile Include="Model\Flat.cs" />
+    <Compile Include="Model\House.cs" />
     <Compile Include="Model\IReadable.cs" />
-    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\Property.cs" />
+    <Compile Include="Model\Transaction.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="View\Form1.cs">

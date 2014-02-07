@@ -4,11 +4,9 @@ import com.company.Model.*;
 import com.company.Repository.IRepository;
 import com.company.Repository.Repository;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by C.Mihai on 01/02/14.
@@ -16,36 +14,65 @@ import java.util.ArrayList;
 public class Controller {
     private IRepository<Product> productRepo;
 
-    public void addProduct() {
-        this.productRepo.addElement(new Bagel());
+    public Controller(IRepository<Product> repo) {
+        this.productRepo = repo;
     }
 
-    public void readFromFile(String filename) {
-        BufferedReader reader;
-        ArrayList<Product> products = new ArrayList<Product>();
+    public void addCoffee(String type, String servingType, int price) {
+        Coffee coffee = new Coffee();
+        coffee.type = type;
+        coffee.servingType = servingType;
+        coffee.price = price;
+        this.productRepo.addElement(coffee);
+    }
+
+    public void addSandwich(int weight, String content, String servingType, int price) {
+        Sandwich sandwich = new Sandwich();
+        sandwich.weight = weight;
+        sandwich.content = content;
+        sandwich.servingType = servingType;
+        sandwich.price = price;
+        this.productRepo.addElement(sandwich);
+    }
+
+    public void addCake(String shape, String type, int price) {
+        Cake cake = new Cake();
+        cake.shape = shape;
+        cake.type = type;
+        cake.price = price;
+        cake.servingType = "Cold";
+        this.productRepo.addElement(cake);
+    }
+
+    public List<Product> filteredProducts(String servingType, int price) {
+        List<Product> filteredProducts = new ArrayList<Product>();
+        for (Product product : this.productRepo.allElements()) {
+            if (product.servingType.equals(servingType) && product.price < price) {
+                filteredProducts.add(product);
+            }
+        }
+
+        return filteredProducts;
+    }
+
+    public List<Product> allProducts() {
+        return this.productRepo.allElements();
+    }
+
+    public void writeToFile(String filename) {
+        Writer writer;
 
         try {
-            reader = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(filename),
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream(filename),
                     "utf-8"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split("[,]+");
-                Product element = null;
-                if (tokens[2].contains("Bread")) {
-                    element = new Bread();
-                } else if (tokens[2].contains("Bagel")) {
-                    element = new Bagel();
-                } else if (tokens[2].contains("Cake")) {
-                    element = new Cake();
-                }
 
-                element.readAttributesFromString(line);
-
-                products.add(element);
+            List<Product> copy = this.productRepo.allElements();
+            for (Product product : copy) {
+                writer.write(product.toString());
+                writer.write("\n");
             }
-            this.productRepo = new Repository<Product>(products);
-
+            writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

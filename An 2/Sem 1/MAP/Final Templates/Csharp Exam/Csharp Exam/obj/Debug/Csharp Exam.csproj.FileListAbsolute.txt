@@ -6,3 +6,11 @@
 \\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.pdb
 \\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.exe
 \\psf\Home\Desktop\New folder\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.pdb
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.exe.config
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.exe
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.pdb
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.csprojResolveAssemblyReference.cache
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\obj\Debug\Csharp_Exam.Properties.Resources.resources
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\obj\Debug\Csharp Exam.csproj.GenerateResource.Cache
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.exe
+Z:\Developer\info-labs\An 2\Sem 1\MAP\Final Templates\Csharp Exam\Csharp Exam\bin\Debug\Csharp Exam.pdb
