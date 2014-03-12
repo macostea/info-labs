@@ -1,0 +1,11 @@
+Nr. 14
+
+Clientul trimite serverului 2 numere intregi (count1, count2) pe 4 octeti ce marcheaza numarul de elemente al celor 2 siruri de numere
+
+Daca serverul nu primeste cele 2 numere in 10 secunde sau exista un interval de timp mai mare de 10 secunde intre numerele trimise serverul returneaza -1 (eroare de citire) si inchide
+conexiunea cu clientul
+
+Dupa primirea cu succes a sirurilor de numere, serverul trimite inapoi un numar intreg pe 4 octeti reprezentand numarul de elemente comune ale celor 2 siruri urmat de
+elementele comune.
+Aceleasi conditii de time-out se impun si la comunicarea server-client. Daca exista time-out mai mare de 10 secunde clientul trimite -1 si inchide conexiunea, caz in care serverul
+repeta operatia de trimitere a numarului de elemente comune si a sirului de elemente, dar nu mai mult de 5 ori consecutiv.
