@@ -1,0 +1,9 @@
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\bin\Debug\Lab1.exe.config
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\bin\Debug\Lab1.exe
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\bin\Debug\Lab1.pdb
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\obj\Debug\Lab1.csprojResolveAssemblyReference.cache
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\obj\Debug\Lab1.Form1.resources
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\obj\Debug\Lab1.Properties.Resources.resources
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\obj\Debug\Lab1.csproj.GenerateResource.Cache
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\obj\Debug\Lab1.exe
+Z:\C.Mihai On My Mac\Developer\info-labs\An 2\Sem 2\BD 2\Lab1\Lab1\obj\Debug\Lab1.pdb
