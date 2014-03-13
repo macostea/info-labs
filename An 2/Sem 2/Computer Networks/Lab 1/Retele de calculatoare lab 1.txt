@@ -1,11 +1,18 @@
 Nr. 14
+Un client TCP trimite unui server doua siruri de numere intregi. Serverul va returna clientului sirul de numere comune celor doua siruri primite.
 
-Clientul trimite serverului 2 numere intregi (count1, count2) pe 4 octeti ce marcheaza numarul de elemente al celor 2 siruri de numere
+Serverul asteapta conexiune pe portul 5555
 
-Daca serverul nu primeste cele 2 numere in 10 secunde sau exista un interval de timp mai mare de 10 secunde intre numerele trimise serverul returneaza -1 (eroare de citire) si inchide
-conexiunea cu clientul
+Clientul trimite serverului 2 numere intregi (unsigned) (count1, count2) pe 4 bytes ce marcheaza numarul de elemente al celor 2 siruri de numere
 
-Dupa primirea cu succes a sirurilor de numere, serverul trimite inapoi un numar intreg pe 4 octeti reprezentand numarul de elemente comune ale celor 2 siruri urmat de
-elementele comune.
-Aceleasi conditii de time-out se impun si la comunicarea server-client. Daca exista time-out mai mare de 10 secunde clientul trimite -1 si inchide conexiunea, caz in care serverul
-repeta operatia de trimitere a numarului de elemente comune si a sirului de elemente, dar nu mai mult de 5 ori consecutiv.
+Apoi clientul trimite numerele din cele 2 siruri reprezentate pe 4 octeti fiecare, intai numerele din primul sir, apoi cele din al doilea sir.
+
+Daca serverul nu primeste cele 2 numere in 10 secunde sau exista un interval de timp mai mare de 10 secunde intre numerele trimise serverul returneaza -1 (eroare de citire) si inchide conexiunea cu clientul
+
+Serverul returneaza un numar intreg pe 4 octeti reprezentand codul de eroare:
+	>=0 - succes si acest cod reprezinta si numarul de elemente comune ale celor 2 siruri
+	-1 - eroare de citire
+	
+Daca codul de eroare > 0 serverul trimite sirul de elemente comune, fiecare element fiind reprezentat pe 4 octeti.
+
+Aceleasi conditii de time-out se impun si la comunicarea server-client. Daca exista time-out mai mare de 10 secunde clientul inchide conexiunea, caz in care serverul repeta operatia de trimitere a numarului de elemente comune si a sirului de elemente, dar nu mai mult de 5 ori consecutiv.
