@@ -1,0 +1,4 @@
+class lab8.Model.Student|0|asfas|6|
+class lab8.Model.Student|1|galkdj|10|
+class lab8.Model.UndergraduateStudent|2|fkleaj|9|10|
+class lab8.Model.PhDStudent|3|fekljaj|7|10|alsjkf|alkfja|
