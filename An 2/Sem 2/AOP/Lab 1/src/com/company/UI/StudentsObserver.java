@@ -1,6 +1,6 @@
-package lab8.UI;
+package com.company.UI;
 
-import lab8.Model.Student;
+import com.company.Model.Student;
 
 import java.util.Map;
 import java.util.Observable;

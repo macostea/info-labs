@@ -1,22 +1,25 @@
-package lab8.Repository;
+package com.company.Repository;
 
-import lab8.Model.HasId;
+import com.company.Model.HasId;
 
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  *
  * @author mihai
  */
 public class Repository<T extends HasId> {
-    private Map<Integer, T> elements = new LinkedHashMap<Integer, T>();
+    protected Map<Integer, T> elements = new LinkedHashMap<Integer, T>();
+    private static Logger logger = Logger.getLogger("Students");
 
     /**
      * Constructor
      */
     public Repository() {
+        logger.info("[Entering:] Repository.init");
     }
 
     /**
@@ -25,6 +28,7 @@ public class Repository<T extends HasId> {
      * @param adt The adt to use for the repository
      */
     public Repository(Map<Integer, T> adt) {
+        logger.info("[Entering:] Repository.init(Map<Integer, T>)");
         this.elements = adt;
     }
 
@@ -36,6 +40,7 @@ public class Repository<T extends HasId> {
      */
     public void addElement(T element){
         this.elements.put(element.getId(), element);
+        logger.info("[Entering:] Repository.addElement");
     }
     
     /**
@@ -46,6 +51,7 @@ public class Repository<T extends HasId> {
      */
     public void removeElement(T element){
         this.elements.remove(element.getId());
+        logger.info("[Entering:] Repository.removeElement");
     }
     
     /**
@@ -55,6 +61,7 @@ public class Repository<T extends HasId> {
      * @return The element from the top of the stack.
      */
     public T getTopElement(){
+        logger.info("[Entering:] Repository.getTopElement");
         for (T element : this.elements.values()) {
             return element;
         }
@@ -69,6 +76,7 @@ public class Repository<T extends HasId> {
      * @return The number of elements in the repository. Positive int.
      */
     public int numberOfElements() {
+        logger.info("[Entering:] Repository.numberOfElements");
         return this.elements.size();
     }
     
@@ -79,6 +87,7 @@ public class Repository<T extends HasId> {
      * @return A copy of the elements.
      */
     public Map<Integer, T> allElements() {
+        logger.info("[Entering:] Repository.allElements");
         Map<Integer, T> copy = new LinkedHashMap<Integer, T>();
         copy.putAll(this.elements);
         return copy;
@@ -91,6 +100,7 @@ public class Repository<T extends HasId> {
      * @param filename The name of the file in which to save.
      */
     public void saveRepoToFile(String filename) {
+        logger.info("[Entering:] Repository.saveRepoToFile");
         Writer writer;
 
         try {
@@ -116,6 +126,7 @@ public class Repository<T extends HasId> {
      * @param filename The file to save in.
      */
     public void serializeDataToFile(String filename) {
+        logger.info("[Entering:] Repository.serializeDataToFile");
         try {
             FileOutputStream fileOut = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -134,6 +145,7 @@ public class Repository<T extends HasId> {
      * @param filename The file to read from.
      */
     public void deserializeDataFromFile(String filename) {
+        logger.info("[Entering:] Repository.deserializeDataFromFile");
         try {
             FileInputStream fileIn = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(fileIn);

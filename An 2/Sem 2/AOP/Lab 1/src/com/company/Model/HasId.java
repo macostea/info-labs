@@ -1,4 +1,4 @@
-package lab8.Model;
+package com.company.Model;
 
 public interface HasId {
     public Integer getId();

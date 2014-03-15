@@ -1,12 +1,14 @@
-package lab8.UI;
+package com.company.UI;
 
-import lab8.Controller.Controller;
+import com.company.Controller.Controller;
+import sun.rmi.runtime.Log;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Created by C.Mihai on 01/02/14.
@@ -28,7 +30,10 @@ public class AddStudentDialog extends JDialog {
 
     private JComboBox comboBox = new JComboBox();
 
+    private Logger logger = Logger.getLogger("Students");
+
     public AddStudentDialog(GUI parent, Controller controller) {
+        logger.info("[Entering:]GUI.AddStudentDialog");
         this.controller = controller;
         this.parent = parent;
 

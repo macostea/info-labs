@@ -1,7 +1,8 @@
-package lab8.Controller;
+package com.company.Controller;
 
-import lab8.Model.Student;
-import lab8.Repository.Repository;
+
+import com.company.Model.Student;
+import com.company.Repository.Repository;
 
 import java.util.ArrayList;
 import java.util.Map;

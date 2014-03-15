@@ -1,4 +1,4 @@
-package lab8.Utils.LinkedList;
+package com.company.Utils.LinkedList;
 
 import java.io.Serializable;
 

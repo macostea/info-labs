@@ -1,10 +1,10 @@
-package lab8.UI;
+package com.company.UI;
 
-import lab8.Controller.Controller;
-import lab8.Model.GraduateStudent;
-import lab8.Model.PhDStudent;
-import lab8.Model.Student;
-import lab8.Model.UndergraduateStudent;
+import com.company.Controller.Controller;
+import com.company.Model.GraduateStudent;
+import com.company.Model.PhDStudent;
+import com.company.Model.Student;
+import com.company.Model.UndergraduateStudent;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Logger;
 
 /**
  * Created by C.Mihai on 01/02/14.
@@ -36,9 +37,12 @@ public class GUI extends JFrame {
     private JTextField grade2Box = new JTextField();
     private JTextField grade3Box = new JTextField();
 
+    private Logger logger = Logger.getLogger("Students");
+
     private JComboBox comboBox = new JComboBox();
 
     public GUI(Controller controller) {
+        logger.info("[Entering:]GUI.init");
         this.controller = controller;
         this.setPreferredSize(new Dimension(600, 600));
 
@@ -96,7 +100,7 @@ public class GUI extends JFrame {
                         } else if (selectedStudent instanceof PhDStudent) {
                             PhDStudent student = (PhDStudent)selectedStudent;
                             GUI.this.supervisorBox.setText(student.supervisor);
-                            GUI.this.thesisBox.setText(student.supervisor);
+                            GUI.this.thesisBox.setText(student.thesis);
                             GUI.this.grade2Box.setText(String.valueOf(student.grade2));
                         } else if (selectedStudent instanceof GraduateStudent) {
                             GraduateStudent student = (GraduateStudent)selectedStudent;
@@ -234,7 +238,7 @@ public class GUI extends JFrame {
         this.rightPanel.add(this.comboBox);
     }
 
-    public void addReloadButton() {
+    private void addReloadButton() {
         JButton reloadBtn = new JButton();
         reloadBtn.setPreferredSize(new Dimension(100, 40));
         reloadBtn.setText("Reload");
@@ -248,7 +252,7 @@ public class GUI extends JFrame {
         this.rightPanel.add(reloadBtn);
     }
 
-    public void fillTable(List<Student> list) {
+    protected void fillTable(List<Student> list) {
         this.table.clearSelection();
         if (list == null) {
             list = this.controller.allStudentObjects();
