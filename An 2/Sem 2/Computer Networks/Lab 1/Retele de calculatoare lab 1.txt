@@ -15,4 +15,4 @@ Serverul returneaza un numar intreg pe 4 octeti reprezentand codul de eroare:
 	
 Daca codul de eroare > 0 serverul trimite sirul de elemente comune, fiecare element fiind reprezentat pe 4 octeti.
 
-Aceleasi conditii de time-out se impun si la comunicarea server-client. Daca exista time-out mai mare de 10 secunde clientul inchide conexiunea, caz in care serverul repeta operatia de trimitere a numarului de elemente comune si a sirului de elemente, dar nu mai mult de 5 ori consecutiv.
+Aceleasi conditii de time-out se impun si la comunicarea server-client. Daca exista time-out mai mare de 10 secunde clientul inchide conexiunea.

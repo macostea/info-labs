@@ -37,13 +37,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A762EE9118D1AF07003A7E5F /* Lab1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Lab1; sourceTree = BUILT_PRODUCTS_DIR; };
+		A762EE9118D1AF07003A7E5F /* Lab1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Lab1; path = Server; sourceTree = BUILT_PRODUCTS_DIR; };
 		A762EE9418D1AF07003A7E5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A762EE9618D1AF07003A7E5F /* Lab1.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Lab1.1; sourceTree = "<group>"; };
 		A762EEA118D1AF1F003A7E5F /* Client */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Client; sourceTree = BUILT_PRODUCTS_DIR; };
 		A762EEA318D1AF1F003A7E5F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A762EEA518D1AF1F003A7E5F /* Client.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Client.1; sourceTree = "<group>"; };
-		A762EEAA18D1B330003A7E5F /* utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				A762EE9418D1AF07003A7E5F /* main.cpp */,
-				A762EEAA18D1B330003A7E5F /* utils.h */,
 				A762EE9618D1AF07003A7E5F /* Lab1.1 */,
 			);
 			name = Server;
@@ -307,6 +305,7 @@
 				A762EE9C18D1AF07003A7E5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A762EEA718D1AF1F003A7E5F /* Build configuration list for PBXNativeTarget "Client" */ = {
 			isa = XCConfigurationList;
@@ -315,6 +314,7 @@
 				A762EEA918D1AF1F003A7E5F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
