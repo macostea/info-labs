@@ -1,0 +1,4 @@
+class com.company.Model.Student|0|asfas|6|
+class com.company.Model.Student|1|galkdj|10|
+class com.company.Model.UndergraduateStudent|2|fkleaj|9|10|
+class com.company.Model.PhDStudent|3|fekljaj|7|10|alsjkf|alkfja|

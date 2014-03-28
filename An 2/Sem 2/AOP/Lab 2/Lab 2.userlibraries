@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="mysql-connector-java-5.1.29-bin">
+    <archive path="/Users/C.Mihai/Developer/info-labs/An 2/Sem 2/AOP/Lab 2/libs/mysql-connector-java-5.1.29-bin.jar" />
+  </library>
+  <library name="aspectjrt">
+    <archive path="/Users/C.Mihai/aspectj1.7/lib/aspectjrt.jar" />
+  </library>
+</eclipse-userlibraries>
+
