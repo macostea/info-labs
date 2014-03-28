@@ -64,6 +64,7 @@ int main(int argc, const char * argv[])
     }
     
     send(_client, &count1, sizeof(uint32_t), 0);
+    sleep(11);
     send(_client, &count2, sizeof(uint32_t), 0);
     
     for (int it=0; it<count1; it++) {
@@ -76,20 +77,26 @@ int main(int argc, const char * argv[])
         send(_client, &no, sizeof(int32_t), 0);
     }
     
-    uint32_t count;
+    int32_t count;
     std::vector<int32_t> common;
     signal(SIGALRM, timeOut);
     alarm(10);
-    recv(_client, &count, sizeof(uint32_t), 0);
-    for (int it=0; it<count; it++) {
-        int32_t no = 0;
-        alarm(10);
-        recv(_client, &no, sizeof(int32_t), 0);
-        common.push_back(no);
-    }
+    recv(_client, &count, sizeof(int32_t), 0);
     
-    for (std::vector<int32_t>::iterator it=common.begin(); it!=common.end(); ++it) {
-        std::cout << *it << std::endl;
+    if (count == -1) {
+        std::cout << "Server returned an error code " << count << std::endl;
+        return -1;
+    } else {
+        for (int it=0; it<count; it++) {
+            int32_t no = 0;
+            alarm(10);
+            recv(_client, &no, sizeof(int32_t), 0);
+            common.push_back(no);
+        }
+        
+        for (std::vector<int32_t>::iterator it=common.begin(); it!=common.end(); ++it) {
+            std::cout << *it << std::endl;
+        }
     }
     
     return 0;

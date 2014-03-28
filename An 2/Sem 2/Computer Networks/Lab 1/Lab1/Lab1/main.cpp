@@ -21,7 +21,7 @@ int             _clientSock;
 void timeOut(int signal) {
     int32_t resp = -1;
     resp = htonl(resp);
-    printf("Time out\n!");
+    printf("Time out!\n");
     send(_clientSock, &resp, sizeof(int32_t), 0);
     close(_clientSock);
     
