@@ -18,7 +18,6 @@ public class DBConnection{
         Connection conn = null;
         Properties connectionProps = new Properties();
         connectionProps.put("user", "root");
-//        connectionProps.put("password", "password");
 
         String urlString = "jdbc:mysql://127.0.0.1:3306/Students";
         conn = DriverManager.getConnection(urlString, connectionProps);

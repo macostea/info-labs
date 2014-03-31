@@ -1,19 +1,16 @@
 package com.company;
 
 
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
 import com.company.Controller.Controller;
 import com.company.Model.Student;
-import com.company.Repository.DBConnection;
 import com.company.Repository.DBRepository;
 import com.company.Repository.Repository;
+import com.company.Service.StoreService;
 import com.company.UI.GUI;
-
-import javax.swing.*;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  *
@@ -26,7 +23,8 @@ public class Lab8 {
      */
     public static void main(String[] args) throws IOException {
         Repository<Student> repo = new DBRepository("Students");
-        final Controller controller = new Controller(repo);
+        StoreService storeService = new StoreService(repo);
+        final Controller controller = new Controller(storeService);
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override

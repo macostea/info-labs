@@ -1,26 +1,39 @@
 package com.company.Controller;
 
-import com.company.Model.*;
-import com.company.Model.Comparable;
-import com.company.Model.Readable;
-import com.company.Repository.Repository;
-import com.company.Utils.StackException;
-
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.logging.Logger;
+
+import com.company.Model.Comparable;
+import com.company.Model.GraduateStudent;
+import com.company.Model.HasId;
+import com.company.Model.PhDStudent;
+import com.company.Model.Readable;
+import com.company.Model.Student;
+import com.company.Model.UndergraduateStudent;
+import com.company.Repository.Repository;
+import com.company.Service.StoreService;
 
 /**
  *
  * @author mihai
  */
-public class Controller extends Observable {
-    private Repository<Student> repo;
-    private ArrayList<Observer> observers = new ArrayList<Observer>();
+public class Controller{
+    private StoreService storeService;
     private static Logger logger = Logger.getLogger("Students");
+    
+    public StoreService getStoreService() {
+    	return this.storeService;
+    }
+    
+    private void setStoreService(StoreService storeService) {
+    	this.storeService = storeService;
+    }
 
     /**
      *
@@ -57,9 +70,9 @@ public class Controller extends Observable {
      * 
      * @param repo The repository to be used. Cannot be null.
      */
-    public Controller(Repository<Student> repo){
-        logger.info("[Entering:]Controller.repo");
-        this.repo = repo;
+    public Controller(StoreService storeService){
+        logger.info("[Entering:]Controller");
+        this.setStoreService(storeService);
     }
     
     /**
@@ -74,12 +87,11 @@ public class Controller extends Observable {
     public ArrayList<String> addStudent(int id, String name, int grade){
         logger.info("[Entering:]Controller.addStudent(int, String, int)");
         Student student = new Student(id, name, grade);
-        Validator validator = new Validator(this.repo);
+        Validator validator = new Validator(this.storeService);
         ArrayList<String> errorList = validator.validateStudent(student);
         
         if (errorList.isEmpty()){
-            repo.addElement(student);
-            this.notifyObservers(this, this.repo.allElements());
+        	storeService.addElement(student);
         }
         return errorList;
     }
@@ -87,12 +99,11 @@ public class Controller extends Observable {
     public ArrayList<String> addStudent(int id, String name, int grade, int grade2){
         logger.info("[Entering:]Controller.addStudent(int, String, int, int");
         Student student = new UndergraduateStudent(id, name, grade, grade2);
-        Validator validator = new Validator(this.repo);
+        Validator validator = new Validator(this.storeService);
         ArrayList<String> errorList = validator.validateStudent(student);
 
         if (errorList.isEmpty()){
-            repo.addElement(student);
-            this.notifyObservers(this, this.repo.allElements());
+        	storeService.addElement(student);
         }
         return errorList;
     }
@@ -100,12 +111,11 @@ public class Controller extends Observable {
     public ArrayList<String> addStudent(int id, String name, int grade, int grade2, int grade3, String supervisor){
         logger.info("[Entering:]Controller.addStudent(int, String, int, int, int, String");
         Student student = new GraduateStudent(id, name, grade, supervisor, grade2, grade3);
-        Validator validator = new Validator(this.repo);
+        Validator validator = new Validator(this.storeService);
         ArrayList<String> errorList = validator.validateStudent(student);
 
         if (errorList.isEmpty()){
-            repo.addElement(student);
-            this.notifyObservers(this, this.repo.allElements());
+        	storeService.addElement(student);
         }
         return errorList;
     }
@@ -113,28 +123,13 @@ public class Controller extends Observable {
     public ArrayList<String> addStudent(int id, String name, int grade, int grade2, String supervisor, String thesis){
         logger.info("[Entering:]Controller.addStudent(int, String, int, int, String, String");
         Student student = new PhDStudent(id, name, grade, supervisor, thesis, grade2);
-        Validator validator = new Validator(this.repo);
+        Validator validator = new Validator(this.storeService);
         ArrayList<String> errorList = validator.validateStudent(student);
 
         if (errorList.isEmpty()){
-            repo.addElement(student);
-            this.notifyObservers(this, this.repo.allElements());
+        	storeService.addElement(student);
         }
         return errorList;
-    }
-    
-    /**
-     *
-     * Removes students from the repository until a student with grade == 0 is found.
-     */
-    public void removeStudentsUntilMaxGrade(){
-        logger.info("[Entering:]Controller.removeStudentsUntilMaxGrade");
-        Student currentStudent = this.repo.getTopElement();
-        while (currentStudent != null && currentStudent.average() != 10){
-            this.repo.removeElement(currentStudent);
-            currentStudent = this.repo.getTopElement();
-        }
-        this.notifyObservers(this, this.repo.allElements());
     }
     
     /**
@@ -145,14 +140,14 @@ public class Controller extends Observable {
      */
     public ArrayList<String> allStudents() {
         logger.info("[Entering:]Controller.allStudents");
-        return Controller.elementsFromMap(this.repo.allElements());
+        return Controller.elementsFromMap(this.storeService.allElements());
     }
 
     public ArrayList<Student> allStudentObjects() {
         logger.info("[Entering:]Controller.allStudentObjects");
         ArrayList<Student> list = new ArrayList<Student>();
 
-        for (Student student : this.repo.allElements().values()) {
+        for (Student student : this.storeService.allElements().values()) {
             list.add(student);
         }
 
@@ -167,7 +162,7 @@ public class Controller extends Observable {
      */
     public int numberOfStudents() {
         logger.info("[Entering:]Controller.numberOfStudents");
-        return this.repo.numberOfElements();
+        return this.storeService.numberOfElements();
     }
 
     /**
@@ -178,7 +173,7 @@ public class Controller extends Observable {
      */
     public int numberOfStudentGreaterThan(Student student) {
         logger.info("[Entering:]Controller.numberOfStudentGreaterThan");
-        Map<Integer, Student> allStudents = this.repo.allElements();
+        Map<Integer, Student> allStudents = this.storeService.allElements();
         int no = 0;
 
         for (Comparable<Student> comparableStudent : allStudents.values()) {
@@ -187,93 +182,5 @@ public class Controller extends Observable {
             }
         }
         return no;
-    }
-
-
-    /**
-     *
-     * Saves the assigned repository to a text file
-     *
-     * @param filename The name of the file to save in.
-     */
-    public void saveStudentsToFile(String filename) {
-        logger.info("[Entering:]Controller.saveStudentsToFile");
-        this.repo.saveRepoToFile(filename);
-    }
-
-    /**
-     *
-     * Reads the repository from a text file
-     *
-     * @param filename The filename of the file.
-     */
-    public void readRepoFromFile(String filename) {
-        logger.info("[Entering:]Controller.readRepoFromFile");
-        BufferedReader reader;
-        Map<Integer, Student> map = new LinkedHashMap<Integer, Student>();
-
-        try {
-            reader = new BufferedReader(new InputStreamReader(
-                    new FileInputStream(filename),
-                    "utf-8"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split("[|]+");
-                Readable element;
-                if (tokens[0].contains("GraduateStudent")) {
-                    element = new GraduateStudent();
-                } else if (tokens[0].contains("PhDStudent")) {
-                    element = new PhDStudent();
-                } else if (tokens[0].contains("UndergraduateStudent")) {
-                    element = new UndergraduateStudent();
-                } else if (tokens[0].contains("Student")) {
-                    element = new Student();
-                } else {
-                    return;
-                }
-
-                element.readAttributesFromString(line);
-                Student student = (Student) element;
-                map.put(student.getId(), student);
-            }
-            this.repo = new Repository<Student>(map);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    ////
-    // Observable
-    ////
-
-
-    public void setObservers(ArrayList<Observer> observers) {
-        logger.info("[Entering:]Controller.setObservers");
-        this.observers = observers;
-    }
-
-    public ArrayList<Observer> getObservers() {
-        logger.info("[Entering:]Controller.getObservers");
-        return this.observers;
-    }
-
-    @Override
-    public synchronized void addObserver(Observer o) {
-        logger.info("[Entering:]Controller.addObserver");
-        observers.add(o);
-    }
-
-    @Override
-    public synchronized void deleteObserver(Observer o) {
-        logger.info("[Entering:]Controller.deleteObserver");
-        observers.remove(o);
-    }
-
-    public void notifyObservers(Observable observable, Map<Integer, Student> map) {
-        logger.info("[Entering:]Controller.notifyObservers");
-        for (Observer observer : this.observers) {
-            observer.update(observable, map);
-        }
     }
 }

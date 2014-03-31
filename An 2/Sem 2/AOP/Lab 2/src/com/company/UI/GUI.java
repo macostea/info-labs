@@ -10,18 +10,21 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Vector;
 import java.util.logging.Logger;
 
 /**
  * Created by C.Mihai on 01/02/14.
  */
-public class GUI extends JFrame {
+public class GUI extends JFrame implements Observer {
     private Controller controller;
 
     private JPanel rightPanel = new JPanel();
@@ -61,6 +64,8 @@ public class GUI extends JFrame {
 
         this.pack();
         this.setVisible(true);
+        
+        this.controller.getStoreService().addObserver(this);
     }
 
     private void addList() {
@@ -291,5 +296,10 @@ public class GUI extends JFrame {
         grade2Box.setText("");
         grade3Box.setText("");
     }
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		this.fillTable(null);
+	}
 
 }

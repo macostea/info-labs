@@ -184,7 +184,6 @@ public class AddStudentDialog extends JDialog {
                     }
 
                     if (errors.size() == 0) {
-                        AddStudentDialog.this.parent.fillTable(null);
                         AddStudentDialog.this.dispose();
                     } else {
                         JFrame frame = new JFrame();

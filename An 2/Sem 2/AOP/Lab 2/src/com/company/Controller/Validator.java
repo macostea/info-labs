@@ -1,11 +1,12 @@
 package com.company.Controller;
 
 
-import com.company.Model.Student;
-import com.company.Repository.Repository;
-
 import java.util.ArrayList;
 import java.util.Map;
+
+import com.company.Model.Student;
+import com.company.Repository.Repository;
+import com.company.Service.StoreService;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Validator {
     final String kDuplicateId = "Id must be unique";
     final String kInvalidGrade = "Grade is an int between 1 and 10";
     
-    private Repository repo;
+    private StoreService storeService;
     private ArrayList<String> errorList;
 
     /**
@@ -25,9 +26,9 @@ public class Validator {
      * 
      * @param repo The repository to search in.
      */
-    public Validator(Repository repo) {
+    public Validator(StoreService storeService) {
         this.errorList = new ArrayList<String>();
-        this.repo = repo;
+        this.storeService = storeService;
     }
     
     /**
@@ -52,7 +53,7 @@ public class Validator {
      * @param id The id to be checked.
      */
     private void validateId(int id) {
-        Map<Integer, Student> students = this.repo.allElements();
+        Map<Integer, Student> students = this.storeService.allElements();
         
         boolean found = false;
 
