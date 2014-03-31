@@ -1,14 +1,16 @@
 package com.company.Repository;
 
-import com.company.Model.*;
-
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedHashMap;
 import java.util.logging.Logger;
+
+import com.company.Model.GraduateStudent;
+import com.company.Model.PhDStudent;
+import com.company.Model.Student;
+import com.company.Model.UndergraduateStudent;
 
 /**
  * Created by C.Mihai on 14/03/14.

@@ -1,22 +1,14 @@
 package com.company.Controller;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
 import com.company.Model.Comparable;
 import com.company.Model.GraduateStudent;
-import com.company.Model.HasId;
 import com.company.Model.PhDStudent;
-import com.company.Model.Readable;
 import com.company.Model.Student;
 import com.company.Model.UndergraduateStudent;
-import com.company.Repository.Repository;
 import com.company.Service.StoreService;
 
 /**
@@ -48,20 +40,6 @@ public class Controller{
             strings.add(element.toString());
         }
         return strings;
-    }
-
-    /**
-     *
-     * Moves all elements from a map to another map
-     * @param source The map to move the elements from
-     * @param destination The map to move the elements to
-     */
-    public static<T> void moveElements(Map<Integer, ? extends HasId> source, Map<Integer,T> destination) {
-        logger.info("[Entering:]Controller.moveElements");
-        for (HasId element : source.values()){
-            T elementT = (T)element;
-            destination.put(element.getId(), elementT);
-        }
     }
     
     /**

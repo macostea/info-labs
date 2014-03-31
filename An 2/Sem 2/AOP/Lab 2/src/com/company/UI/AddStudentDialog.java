@@ -1,21 +1,36 @@
 package com.company.UI;
 
-import com.company.Controller.Controller;
-import sun.rmi.runtime.Log;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import com.company.Controller.Controller;
+
 /**
  * Created by C.Mihai on 01/02/14.
  */
 public class AddStudentDialog extends JDialog {
-    private Controller controller;
-    private GUI parent;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Controller controller;
 
     private JPanel leftPanel = new JPanel();
     private JPanel rightPanel = new JPanel();
@@ -32,10 +47,9 @@ public class AddStudentDialog extends JDialog {
 
     private Logger logger = Logger.getLogger("Students");
 
-    public AddStudentDialog(GUI parent, Controller controller) {
+    public AddStudentDialog(Controller controller) {
         logger.info("[Entering:]GUI.AddStudentDialog");
         this.controller = controller;
-        this.parent = parent;
 
         this.setPreferredSize(new Dimension(400, 400));
 

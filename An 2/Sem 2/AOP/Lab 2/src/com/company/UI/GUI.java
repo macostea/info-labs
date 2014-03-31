@@ -197,7 +197,7 @@ public class GUI extends JFrame implements Observer {
         newStudentBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AddStudentDialog addStudentDialog = new AddStudentDialog(GUI.this, controller);
+                AddStudentDialog addStudentDialog = new AddStudentDialog(controller);
                 addStudentDialog.setVisible(true);
             }
         });

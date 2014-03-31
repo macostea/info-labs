@@ -1,11 +1,15 @@
 package com.company.Repository;
 
-import com.company.Model.HasId;
-
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Logger;
+
+import com.company.Model.HasId;
 
 /**
  *
@@ -115,47 +119,6 @@ public class Repository<T extends HasId> {
             }
             writer.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     *
-     * Serialize the repository to a file
-     *
-     * @param filename The file to save in.
-     */
-    public void serializeDataToFile(String filename) {
-        logger.info("[Entering:] Repository.serializeDataToFile");
-        try {
-            FileOutputStream fileOut = new FileOutputStream(filename);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(this.elements);
-            out.close();
-            fileOut.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     *
-     * Deserialize the repository from a file
-     *
-     * @param filename The file to read from.
-     */
-    public void deserializeDataFromFile(String filename) {
-        logger.info("[Entering:] Repository.deserializeDataFromFile");
-        try {
-            FileInputStream fileIn = new FileInputStream(filename);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            Map<Integer, T> map = (Map<Integer, T>) in.readObject();
-            this.elements = map;
-            in.close();
-            fileIn.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

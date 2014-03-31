@@ -1,6 +1,5 @@
 package com.company.Model;
 
-import java.io.Serializable;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -8,7 +7,7 @@ import java.util.logging.Logger;
  *
  * @author mihai
  */
-public class Student implements Comparable<Student>, Readable, Serializable, HasId, Buildable {
+public class Student implements Comparable<Student>, Readable, HasId, Buildable {
     public String name;
     public int id;
     public int grade;
