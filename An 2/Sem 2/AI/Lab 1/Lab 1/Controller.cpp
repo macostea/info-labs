@@ -7,17 +7,15 @@
 //
 
 #include "Controller.h"
-#include "SwitchOperator.h"
 
-Controller::Controller() {
-    
+Controller::Controller(SearchMethod *searchMethod) {
+    this->searchMethod = searchMethod;
 }
 
 void Controller::generateSolutionTreeForVector(std::vector<int> vector) {
-    this->solutionTree.data = vector;
-    
-    for (int it=1; it < vector.size(); it++) {
-        std::vector<int> copy = vector;
-        
-    }
+    this->solutionTree = *this->searchMethod->generateSolutionTree(vector);
+}
+
+std::vector<int> Controller::findSolution() {
+    return this->searchMethod->findSolutionForTree(this->solutionTree);
 }

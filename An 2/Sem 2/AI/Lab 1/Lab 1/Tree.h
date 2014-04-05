@@ -12,10 +12,11 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
-struct treeNode {
-    T data;
-    std::vector<treeNode> children;
+class TreeNode {
+    
+public:
+    std::vector<int> data;
+    std::vector<TreeNode *> children;
 };
 
 #endif /* defined(__Lab_1__Tree__) */

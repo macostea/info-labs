@@ -12,11 +12,10 @@
 #include <iostream>
 #include <vector>
 
-template <typename T>
-void switchElements(std::vector<T> *vector, int pos1, int pos2) {
-    T temp = vector[pos1];
-    vector[pos1] = vector[pos2];
-    vector[pos2] = temp;
-}
+//void switchElements(std::vector<int> *vector, int pos1, int pos2) {
+//    int temp = vector->at(pos1);
+//    vector = vector[pos2];
+//    vector[pos2] = temp;
+//}
 
 #endif /* defined(__Lab_1__SwitchOperator__) */

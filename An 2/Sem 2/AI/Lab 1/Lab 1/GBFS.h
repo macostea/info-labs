@@ -11,11 +11,14 @@
 
 #include <iostream>
 #include "BestFS.h"
+#include "Tree.h"
+#include "SwitchOperator.h"
 
-class GBFS : BestFS {
+class GBFS : public BestFS {
     
 public:
-
+    virtual TreeNode *generateSolutionTree(std::vector<int> vector);
+    virtual std::vector<int> findSolutionForTree(TreeNode tree, bool printSteps = true);
 };
 
 #endif /* defined(__Lab_1__GBFS__) */

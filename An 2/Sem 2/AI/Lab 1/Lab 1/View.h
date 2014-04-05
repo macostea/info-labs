@@ -22,6 +22,7 @@ public:
     
     void readElements();
     void generateTree();
+    void printTree();
 };
 
 #endif /* defined(__Lab_1__View__) */

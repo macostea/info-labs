@@ -12,7 +12,7 @@
 #include <iostream>
 #include "InformedSearchMethod.h"
 
-class BestFS : InformedSearchMethod {
+class BestFS : public InformedSearchMethod {
     
 public:
     

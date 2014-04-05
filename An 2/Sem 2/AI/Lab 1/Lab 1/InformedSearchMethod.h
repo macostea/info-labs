@@ -12,7 +12,7 @@
 #include <iostream>
 #include "SearchMethod.h"
 
-class InformedSearchMethod : SearchMethod {
+class InformedSearchMethod : public SearchMethod {
     
 public:
     

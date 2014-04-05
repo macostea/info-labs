@@ -12,15 +12,21 @@
 #include "Controller.h"
 #include "View.h"
 
+#include "GBFS.h"
+
 using namespace std;
 
 int main(int argc, const char * argv[])
 {
-    View *view = new View(new Controller());
+    SearchMethod *searchMethod = new GBFS();
+    View *view = new View(new Controller(searchMethod));
     
     view->readElements();
+    view->generateTree();
     
-    free(view);
+    view->printTree();
+    
+    delete (view);
     return 0;
 }
 

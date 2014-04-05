@@ -12,7 +12,7 @@
 #include <iostream>
 #include "UninformedSearchMethod.h"
 
-class DFS : UninformedSearchMethod {
+class DFS : public UninformedSearchMethod {
     
 public:
     

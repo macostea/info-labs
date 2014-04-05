@@ -11,10 +11,13 @@
 
 #include <iostream>
 
+#include "Tree.h"
+
 class SearchMethod {
     
 public:
-    
+    virtual TreeNode *generateSolutionTree(std::vector<int> vector) = 0;
+    virtual std::vector<int> findSolutionForTree(TreeNode tree, bool printSteps = true) = 0;
 };
 
 #endif /* defined(__Lab_1__SearchMethod__) */

@@ -13,12 +13,16 @@
 #include <vector>
 
 #include "Tree.h"
+#include "SearchMethod.h"
 
 class Controller {
-    treeNode<std::vector<int>> solutionTree;
+    SearchMethod *searchMethod;
 public:
-    Controller();
+    TreeNode solutionTree;
+    
+    Controller(SearchMethod *searchMethod);
     void generateSolutionTreeForVector(std::vector<int>vector);
+    std::vector<int> findSolution();
 };
 
 #endif /* defined(__Lab_1__Controller__) */

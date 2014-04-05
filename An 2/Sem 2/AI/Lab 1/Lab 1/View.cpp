@@ -27,3 +27,15 @@ void View::readElements() {
 void View::generateTree() {
     this->controller->generateSolutionTreeForVector(this->vector);
 }
+
+void View::printTree() {
+    std::vector<int> solution = this->controller->findSolution();
+    
+    std::cout << "Solution:";
+    
+    for (int i=0; i < solution.size(); i++) {
+        std::cout << solution[i] << " ";
+    }
+    
+    std::cout << std::endl;
+}
