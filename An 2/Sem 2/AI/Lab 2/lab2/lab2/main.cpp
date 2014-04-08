@@ -12,28 +12,11 @@
 #include "Evolutive.h"
 #include "PSO.h"
 
+#include "Controller.h"
+#include "View.h"
+
 int main(int argc, const char * argv[])
 {
-
-    Graph *graph = new Graph();
-    graph->nodes.insert(1);
-    graph->nodes.insert(2);
-    graph->nodes.insert(3);
-    graph->nodes.insert(4);
-    graph->nodes.insert(5);
-    
-    graph->edges.push_back(new Edge(1, 2));
-    graph->edges.push_back(new Edge(2, 3));
-    graph->edges.push_back(new Edge(3, 4));
-    graph->edges.push_back(new Edge(4, 5));
-    graph->edges.push_back(new Edge(5, 1));
-    graph->edges.push_back(new Edge(1, 3));
-    graph->edges.push_back(new Edge(1, 4));
-    graph->edges.push_back(new Edge(3, 5));
-
-//    Evolutive *evolutive = new Evolutive(4, graph, 0.3, 0.3, 2048, 2);
-//    evolutive->findSolution();
-    
     Velocity velocity;
     std::vector<double> e1_velocity, e2_velocity;
     e1_velocity.push_back(1);
@@ -48,13 +31,19 @@ int main(int argc, const char * argv[])
     velocity.e1_velocity = e1_velocity;
     velocity.e2_velocity = e2_velocity;
 
+    SearchMethod *evolutive = new Evolutive(4, 0.3, 0.3, 2048, 2);
+    SearchMethod *pso = new PSO(velocity, 2, 0.729, 1.49445, VICINITY_TYPE_GLOBAL);
+    Controller *controller = new Controller(evolutive);
+//    Controller *controller = new Controller(pso);
     
-    PSO *pso = new PSO(velocity, 2, 0.729, 1.49445, VICINITY_TYPE_GLOBAL, graph);
-    pso->findSolution();
+    View *view = new View(controller);
+    view->readGraphFromFile("graph.txt");
+    view->getSolution();
     
-    
-//    delete evolutive;
-    delete graph;
+    delete view;
+    delete controller;
+    delete pso;
+    delete evolutive;
     
     return 0;
 }

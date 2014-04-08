@@ -11,15 +11,12 @@
 #include "Evolutive.h"
 #include "Utils.h"
 
-Evolutive::Evolutive(int chromosomeSize, Graph *data, double mutationProbability, double crossoverProbability, int numberOfGenerations, int populationSize) {
+Evolutive::Evolutive(int chromosomeSize, double mutationProbability, double crossoverProbability, int numberOfGenerations, int populationSize) {
     this->chromosomeSize = chromosomeSize;
-    this->data = data;
     this->mutationProbability = mutationProbability;
     this->numberOfGenerations = numberOfGenerations;
     this->crossoverProbability = crossoverProbability;
     this->populationSize = populationSize;
-    
-    this->initPopulation();
 }
 
 Evolutive::~Evolutive() {
@@ -196,7 +193,9 @@ inline void print_best(std::vector<Individual *> &population) {
     std::cout << std::endl;
 }
 
-void Evolutive::findSolution() {
+SearchResult Evolutive::findSolution(Graph *graph) {
+    this->data = graph;
+    this->initPopulation();
     std::vector<Individual *> buffer;
     
     for (int it=0; it<this->numberOfGenerations; it++) {
@@ -211,5 +210,11 @@ void Evolutive::findSolution() {
         
         this->mate(buffer);
     }
+    
+    SearchResult result;
+    result.e1 = this->population[0]->e1;
+    result.e2 = this->population[0]->e2;
+    
+    return result;
 }
 

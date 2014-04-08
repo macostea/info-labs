@@ -11,9 +11,14 @@
 
 #include <iostream>
 
+#include "Utils.h"
+#include "Graph.h"
+
 class SearchMethod {
     
 public:
+    virtual SearchResult findSolution(Graph *graph) = 0;
+    virtual ~SearchMethod(){};
 };
 
 #endif /* defined(__Lab_1__SearchMethod__) */

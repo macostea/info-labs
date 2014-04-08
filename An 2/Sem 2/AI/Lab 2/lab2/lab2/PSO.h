@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <vector>
+#include "SearchMethod.h"
 #include "Graph.h"
 #include "Particle.h"
 
@@ -19,7 +20,7 @@ typedef enum {
     VICINITY_TYPE_GLOBAL
 } VicinityType;
 
-class PSO {
+class PSO : public SearchMethod {
 private:
     void initializeSwarm();
     uint32_t calculateFitness(Position &position);
@@ -43,8 +44,9 @@ public:
     
     Graph *data;
     
-    PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType, Graph *data);
-    void findSolution();
+    PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType);
+    
+    virtual SearchResult findSolution(Graph *graph);
 };
 
 #endif /* defined(__lab2__PSO__) */

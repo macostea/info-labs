@@ -33,11 +33,11 @@ public:
     Graph *data;
     std::vector<Individual *> population;
     
-    Evolutive(int chromosomeSize, Graph *data, double mutationProbability, double crossoverProbability, int numberOfGenerations, int populationSize);
+    Evolutive(int chromosomeSize, double mutationProbability, double crossoverProbability, int numberOfGenerations, int populationSize);
     
-    void findSolution();
+    virtual SearchResult findSolution(Graph *graph);
     
-    ~Evolutive();
+    virtual ~Evolutive();
 };
 
 #endif /* defined(__lab2__Evolutive__) */

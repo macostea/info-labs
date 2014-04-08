@@ -11,26 +11,22 @@
 
 #define ARC4RANDOM_MAX      0x100000000
 
-PSO::PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType, Graph *data) {
+PSO::PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType) {
     this->initialVelocity = initialVelocity;
     this->numberOfParticles = numberOfParticles;
     this->inertiaWeight = inertiaWeight;
     this->cognitiveWeight = cognitiveWeight;
     this->socialWeight = cognitiveWeight;
     this->vicinityType = vicinityType;
-    this->data = data;
-    
-    this->min = 0;
-    this->max = (int)this->data->edges.size() - 1;
     
     this->numberOfIterations = 1000;
     
     this->bestGlobalFitness = 0.0;
-    
-    this->initializeSwarm();
 }
 
 void PSO::initializeSwarm() {
+    this->min = 0;
+    this->max = (int)this->data->edges.size() - 1;
     for (int it=0; it<this->numberOfParticles; it++) {
         Position position;
         
@@ -211,7 +207,10 @@ void PSO::updateParticles() {
 
 }
 
-void PSO::findSolution() {
+SearchResult PSO::findSolution(Graph *graph) {
+    this->data = graph;
+    this->initializeSwarm();
+    
     std::cout << "Best position: " << std::endl;
     for (int it=0; it<this->bestGlobalPosition.e1.size(); it++) {
         std::cout << this->bestGlobalPosition.e1[it]->source << "," << this->bestGlobalPosition.e1[it]->destination << " ; ";
@@ -246,4 +245,14 @@ void PSO::findSolution() {
             break;
         }
     }
+    
+    SearchResult result;
+    std::set<Edge *> e1, e2;
+    
+    for (int i=0; i<this->bestGlobalPosition.e1.size(); i++) {
+        e1.insert(this->bestGlobalPosition.e1[i]);
+        e2.insert(this->bestGlobalPosition.e2[i]);
+    }
+    
+    return result;
 }

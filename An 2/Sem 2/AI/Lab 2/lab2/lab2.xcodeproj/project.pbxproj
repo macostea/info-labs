@@ -16,17 +16,21 @@
 		A7B84FA818F2D857000E311D /* Individual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B84FA618F2D857000E311D /* Individual.cpp */; };
 		A7B84FAD18F327C3000E311D /* Particle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B84FAB18F327C3000E311D /* Particle.cpp */; };
 		A7B84FB018F32D9B000E311D /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7B84FAE18F32D9B000E311D /* Utils.cpp */; };
+		A7BE02F018F436280096BFAF /* Controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BE02EE18F436280096BFAF /* Controller.cpp */; };
+		A7BE02F318F4370D0096BFAF /* View.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A7BE02F118F4370D0096BFAF /* View.cpp */; };
+		A7EBE11A18F4418A00FB87A0 /* graph.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = A7EBE11918F43EEC00FB87A0 /* graph.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A7B84F8618F2D117000E311D /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
+				A7EBE11A18F4418A00FB87A0 /* graph.txt in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -49,6 +53,11 @@
 		A7B84FAC18F327C3000E311D /* Particle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Particle.h; sourceTree = "<group>"; };
 		A7B84FAE18F32D9B000E311D /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		A7B84FAF18F32D9B000E311D /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		A7BE02EE18F436280096BFAF /* Controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Controller.cpp; sourceTree = "<group>"; };
+		A7BE02EF18F436280096BFAF /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
+		A7BE02F118F4370D0096BFAF /* View.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = View.cpp; sourceTree = "<group>"; };
+		A7BE02F218F4370D0096BFAF /* View.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = View.h; sourceTree = "<group>"; };
+		A7EBE11918F43EEC00FB87A0 /* graph.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = graph.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +91,10 @@
 			isa = PBXGroup;
 			children = (
 				A7B84F8B18F2D117000E311D /* main.cpp */,
+				A7BE02EA18F431F40096BFAF /* Controller */,
 				A7B84F9718F2D152000E311D /* Model */,
+				A7BE02F418F437100096BFAF /* View */,
+				A7EBE11918F43EEC00FB87A0 /* graph.txt */,
 			);
 			path = lab2;
 			sourceTree = "<group>";
@@ -142,6 +154,24 @@
 			name = PSO;
 			sourceTree = "<group>";
 		};
+		A7BE02EA18F431F40096BFAF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A7BE02EE18F436280096BFAF /* Controller.cpp */,
+				A7BE02EF18F436280096BFAF /* Controller.h */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A7BE02F418F437100096BFAF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A7BE02F118F4370D0096BFAF /* View.cpp */,
+				A7BE02F218F4370D0096BFAF /* View.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -194,12 +224,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7B84FA418F2D388000E311D /* Edge.cpp in Sources */,
+				A7BE02F318F4370D0096BFAF /* View.cpp in Sources */,
 				A7B84FAD18F327C3000E311D /* Particle.cpp in Sources */,
 				A7B84F9618F2D13D000E311D /* SearchMethod.cpp in Sources */,
 				A7B84F9B18F2D19B000E311D /* Evolutive.cpp in Sources */,
 				A7B84FB018F32D9B000E311D /* Utils.cpp in Sources */,
 				A7B84FA818F2D857000E311D /* Individual.cpp in Sources */,
 				A7B84F9E18F2D1A9000E311D /* PSO.cpp in Sources */,
+				A7BE02F018F436280096BFAF /* Controller.cpp in Sources */,
 				A7B84F8C18F2D117000E311D /* main.cpp in Sources */,
 				A7B84FA118F2D2FB000E311D /* Graph.cpp in Sources */,
 			);
