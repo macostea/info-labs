@@ -15,7 +15,7 @@
 class DFS : public UninformedSearchMethod {
     
 public:
-    
+    virtual TreeNode *generateSolutionTree(std::vector<int> vector);
 };
 
 #endif /* defined(__Lab_1__DFS__) */
