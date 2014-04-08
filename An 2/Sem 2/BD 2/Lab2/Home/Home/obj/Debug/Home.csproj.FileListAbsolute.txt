@@ -1,0 +1,9 @@
+\\vmware-host\Shared Folders\Desktop\Home\Home\bin\Debug\Home.exe.config
+\\vmware-host\Shared Folders\Desktop\Home\Home\bin\Debug\Home.exe
+\\vmware-host\Shared Folders\Desktop\Home\Home\bin\Debug\Home.pdb
+\\vmware-host\Shared Folders\Desktop\Home\Home\obj\Debug\Home.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Desktop\Home\Home\obj\Debug\Home.Form1.resources
+\\vmware-host\Shared Folders\Desktop\Home\Home\obj\Debug\Home.Properties.Resources.resources
+\\vmware-host\Shared Folders\Desktop\Home\Home\obj\Debug\Home.csproj.GenerateResource.Cache
+\\vmware-host\Shared Folders\Desktop\Home\Home\obj\Debug\Home.exe
+\\vmware-host\Shared Folders\Desktop\Home\Home\obj\Debug\Home.pdb

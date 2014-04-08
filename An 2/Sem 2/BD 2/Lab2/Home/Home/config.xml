@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config>
+  <!--Connection config-->
+  <dataSource>(local)</dataSource>
+  <dbName>Blogging Platform</dbName>
+  <authentication>Integrated Security=SSPI</authentication>
+
+  <!--Relationship config-->
+  <parentTableName>Polls</parentTableName>
+  <childTableName>Options</childTableName>
+  <primaryKey>id</primaryKey>
+  <foreignKey>poll_id</foreignKey>
+  
+</config>
