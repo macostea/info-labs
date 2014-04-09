@@ -20,6 +20,7 @@ TreeNode *generateSolutionTree(std::vector<int> vector, int i) {
 //    if (i == vector.size() - 1) {
 //        
 //    }
+    return nullptr;
 }
 
 TreeNode *DFS::generateSolutionTree(std::vector<int> vector) {
@@ -27,8 +28,6 @@ TreeNode *DFS::generateSolutionTree(std::vector<int> vector) {
     tree->data = vector;
     
     TreeNode *currentNode = tree;
-    
-    
     
     std::vector<TreeNode *> children;
     for (int i=0; i<vector.size() - 1; i++) {

@@ -27,68 +27,33 @@ PSO::PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, 
 void PSO::initializeSwarm() {
     this->min = 0;
     this->max = (int)this->data->edges.size() - 1;
+    
+    std::vector<bool> visited;
+    for (int it=0; it<this->data->edges.size(); it++) {
+        visited.push_back(false);
+    }
+    
     for (int it=0; it<this->numberOfParticles; it++) {
         Position position;
         
         for (int i=0; i<this->data->edges.size() / 2; i++) {
-            bool found = true;
-            uint32_t it = 0;
-            while (found) {
-                found = false;
+            uint32_t it = arc4random_uniform((uint32_t)this->data->edges.size());
+            while (visited[it]) {
                 it = arc4random_uniform((uint32_t)this->data->edges.size());
-                for (int j=0; j<position.e1.size(); j++) {
-                    for (int k=0; k<position.e1.size(); k++) {
-                        if (position.e1[k] == this->data->edges[it]) {
-                            found = true;
-                            break;
-                        }
-                    }
-                    
-                    if (found) {
-                        break;
-                    }
-                }
             }
             
             position.e1.push_back(this->data->edges[it]);
+            visited[it] = true;
         }
         
         for (int i=0; i<this->data->edges.size() / 2; i++) {
-            bool found = true;
-            uint32_t it = 0;
-            while (found) {
-                found = false;
+            uint32_t it = arc4random_uniform((uint32_t)this->data->edges.size());
+            while (visited[it]) {
                 it = arc4random_uniform((uint32_t)this->data->edges.size());
-                for (int j=0; j<position.e1.size(); j++) {
-                    for (int k=0; k<position.e1.size(); k++) {
-                        if (position.e1[k] == this->data->edges[it]) {
-                            found = true;
-                            break;
-                        }
-                    }
-                    
-                    if (found) {
-                        break;
-                    }
-
-                }
-                
-                for (int j=0; j<position.e2.size(); j++) {
-                    for (int k=0; k<position.e2.size(); k++) {
-                        if (position.e2[k] == this->data->edges[it]) {
-                            found = true;
-                            break;
-                        }
-                    }
-                    
-                    if (found) {
-                        break;
-                    }
-
-                }
             }
             
             position.e2.push_back(this->data->edges[it]);
+            visited[it] = true;
         }
         
         Particle *particle = new Particle(this->initialVelocity, position, this->calculateFitness(position));

@@ -29,45 +29,29 @@ void Evolutive::initPopulation() {
         size_t e1Size = this->chromosomeSize;
         size_t e2Size = this->data->edges.size() - e1Size;
         
+        std::vector<bool> visited;
+        for (int it=0; it<this->data->edges.size(); it++) {
+            visited.push_back(false);
+        }
+        
         for (int i=0; i<e1Size; i++) {
-            bool found = true;
-            uint32_t it = 0;
-            while (found) {
-                found = false;
+            uint32_t it = arc4random_uniform((uint32_t)this->data->edges.size());
+            while (visited[it]) {
                 it = arc4random_uniform((uint32_t)this->data->edges.size());
-                for (int j=0; j<individual->e1.size(); j++) {
-                    if (individual->e1.find(this->data->edges[it]) != individual->e1.end()) {
-                        found = true;
-                        break;
-                    }
-                }
             }
             
             individual->e1.insert(this->data->edges[it]);
+            visited[it] = true;
         }
         
         for (int i=0; i<e2Size; i++) {
-            bool found = true;
-            uint32_t it = 0;
-            while (found) {
-                found = false;
+            uint32_t it = arc4random_uniform((uint32_t)this->data->edges.size());
+            while (visited[it]) {
                 it = arc4random_uniform((uint32_t)this->data->edges.size());
-                for (int j=0; j<individual->e1.size(); j++) {
-                    if (individual->e1.find(this->data->edges[it]) != individual->e1.end()) {
-                        found = true;
-                        break;
-                    }
-                }
-                
-                for (int j=0; j<individual->e2.size(); j++) {
-                    if (individual->e2.find(this->data->edges[it]) != individual->e2.end()) {
-                        found = true;
-                        break;
-                    }
-                }
             }
             
             individual->e2.insert(this->data->edges[it]);
+            visited[it] = true;
         }
         for (std::set<Edge *>::iterator it=individual->e1.begin(); it != individual->e1.end(); ++it) {
             Edge *edge = *it;

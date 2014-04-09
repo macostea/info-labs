@@ -14,18 +14,24 @@ View::View(Controller *controller) {
 
 void View::readElements() {
     std::vector<int> vector;
-    vector.push_back(2);
-    vector.push_back(9);
-    vector.push_back(5);
-    vector.push_back(0);
-    vector.push_back(1);
-    vector.push_back(10);
-    
+    for (int it=0; it<1000; it++) {
+        vector.push_back(2);
+        vector.push_back(9);
+        vector.push_back(5);
+        vector.push_back(0);
+        vector.push_back(1);
+        vector.push_back(10);
+        vector.push_back(6);
+    }
+
     this->vector = vector;
 }
 
 void View::generateTree() {
+    time_t now = time(nullptr);
     this->controller->generateSolutionTreeForVector(this->vector);
+    time_t finished = time(nullptr);
+    std::cout << "Elapsed time: " << finished - now << std::endl;
 }
 
 void View::printTree() {
