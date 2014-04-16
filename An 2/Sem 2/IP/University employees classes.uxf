@@ -4,85 +4,40 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>630</x>
-      <y>110</y>
-      <w>210</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>Employee
-
---
-id: int
-name: String
-age: int
-degree: String
-salary: int</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>290</x>
-      <y>330</y>
-      <w>260</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>Controller
---
-addEmployee(String, int, String, int)
-removeEmployee(Employee)
-getAllEmployees()
-filterEmployeesByAge(int, int)
-filterEmployeesByDegree(String)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>280</x>
-      <y>580</y>
+      <x>350</x>
+      <y>600</y>
       <w>210</w>
       <h>130</h>
     </coordinates>
-    <panel_attributes>Repository
+    <panel_attributes>Repository&lt;T&gt;
 --
-addElement(T)
-removeElement(T)
-getAllElements()
-updateElement(T, T)
-readFromFile(String)
-writeToFile(String)</panel_attributes>
++addElement(T)
++removeElement(T)
++getAllElements(): array
++updateElement(T, T)
++readFromFile(String)
++writeToFile(String)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>290</x>
-      <y>130</y>
+      <x>360</x>
+      <y>100</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>View
 --
+-controller: Controller
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>370</x>
-      <y>210</y>
-      <w>140</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>120;90;30;30</additional_attributes>
-  </element>
-  <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>250</x>
-      <y>290</y>
+      <x>320</x>
+      <y>310</y>
       <w>620</w>
       <h>180</h>
     </coordinates>
@@ -93,10 +48,10 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>260</x>
-      <y>90</y>
+      <x>330</x>
+      <y>20</y>
       <w>280</w>
-      <h>140</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>View
 bg=orange</panel_attributes>
@@ -105,8 +60,8 @@ bg=orange</panel_attributes>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>260</x>
-      <y>540</y>
+      <x>330</x>
+      <y>560</y>
       <w>330</w>
       <h>190</h>
     </coordinates>
@@ -116,40 +71,103 @@ bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <type>com.umlet.element.Relation</type>
-    <coordinates>
-      <x>380</x>
-      <y>450</y>
-      <w>50</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>30;100;30;30</additional_attributes>
-  </element>
-  <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>620</x>
-      <y>350</y>
+      <x>690</x>
+      <y>370</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>Validator
 --
-validate(Employee)</panel_attributes>
+validate(Employee): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <type>com.umlet.element.Package</type>
     <coordinates>
-      <x>610</x>
-      <y>70</y>
+      <x>680</x>
+      <y>0</y>
       <w>250</w>
-      <h>170</h>
+      <h>310</h>
     </coordinates>
     <panel_attributes>Model
 
 bg=orange</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>690</x>
+      <y>30</y>
+      <w>210</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>Employee
+--
+-id: int
+-name: String
+-age: int
+-degree: String
+-salary: float
+--
++getId(): int
++setId(int)
++getName(): String
++setName(String)
++getDegree(): String
++setDegree(String)
++getSalary(): float
++setSalary(float)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>340</x>
+      <y>340</y>
+      <w>300</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Controller
+--
+-repository: Repository
+--
++addEmployee(String, int, String, int)
++removeEmployee(Employee)
++getAllEmployees(): array
++filterEmployeesByAge(int, int): array
++filterEmployeesByDegree(String): array
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>420</x>
+      <y>140</y>
+      <w>50</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>
+m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>30;30;30;190</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>430</x>
+      <y>450</y>
+      <w>50</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=1
+</panel_attributes>
+    <additional_attributes>30;30;30;150</additional_attributes>
   </element>
 </diagram>
