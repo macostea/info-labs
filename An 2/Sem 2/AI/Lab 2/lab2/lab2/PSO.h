@@ -23,11 +23,11 @@ typedef enum {
 class PSO : public SearchMethod {
 private:
     void initializeSwarm();
-    uint32_t calculateFitness(Position &position);
+    uint32_t calculateFitness(std::vector<bool> &position);
     void updateParticles();
     
 public:
-    Velocity initialVelocity;
+    int initialVelocity;
     int numberOfParticles;
     double inertiaWeight;
     double cognitiveWeight;
@@ -37,14 +37,14 @@ public:
     int min;
     int numberOfIterations;
     
-    Position bestGlobalPosition;
+    std::vector<bool> bestGlobalPosition;
     double bestGlobalFitness;
     
     std::vector<Particle *> swarm;
     
     Graph *data;
     
-    PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType);
+    PSO(int initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType);
     
     virtual SearchResult findSolution(Graph *graph);
 };

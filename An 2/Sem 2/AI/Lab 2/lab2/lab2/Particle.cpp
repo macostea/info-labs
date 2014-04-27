@@ -8,7 +8,7 @@
 
 #include "Particle.h"
 
-Particle::Particle(Velocity velocity, Position position, double fitness) {
+Particle::Particle(int velocity, std::vector<bool> position, double fitness) {
     this->velocity = velocity;
     this->position = position;
     this->fitness = fitness;

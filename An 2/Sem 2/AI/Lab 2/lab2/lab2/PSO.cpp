@@ -11,7 +11,33 @@
 
 #define ARC4RANDOM_MAX      0x100000000
 
-PSO::PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType) {
+int valueFromVector(std::vector<bool> &vec) {
+    int retval = 0;
+    int i = 0;
+    
+    for (std::vector<bool>::iterator it = vec.end(); it!=vec.begin(); --it, i++) {
+        if (*it) {
+            retval |= 1<<i;
+        }
+    }
+    
+    return retval;
+}
+
+std::vector<bool> vectorFromValue(int value) {
+    std::vector<bool> retVector;
+    
+    while (value != 0) {
+        retVector.push_back(value % 2);
+        value = value / 2;
+    }
+    
+    std::reverse(retVector.begin(), retVector.end());
+    
+    return retVector;
+}
+
+PSO::PSO(int initialVelocity, int numberOfParticles, double inertiaWeight, double cognitiveWeight, VicinityType vicinityType) {
     this->initialVelocity = initialVelocity;
     this->numberOfParticles = numberOfParticles;
     this->inertiaWeight = inertiaWeight;
@@ -26,34 +52,20 @@ PSO::PSO(Velocity initialVelocity, int numberOfParticles, double inertiaWeight, 
 
 void PSO::initializeSwarm() {
     this->min = 0;
-    this->max = (int)this->data->edges.size() - 1;
-    
-    std::vector<bool> visited;
+    std::vector<bool> maxVector;
     for (int it=0; it<this->data->edges.size(); it++) {
-        visited.push_back(false);
+        maxVector.push_back(true);
     }
     
+    this->max = valueFromVector(maxVector);
+    
     for (int it=0; it<this->numberOfParticles; it++) {
-        Position position;
+        std::vector<bool> position;
         
-        for (int i=0; i<this->data->edges.size() / 2; i++) {
-            uint32_t it = arc4random_uniform((uint32_t)this->data->edges.size());
-            while (visited[it]) {
-                it = arc4random_uniform((uint32_t)this->data->edges.size());
-            }
+        for (int i=0; i<this->data->edges.size(); i++) {
+            bool it = arc4random_uniform(2);
             
-            position.e1.push_back(this->data->edges[it]);
-            visited[it] = true;
-        }
-        
-        for (int i=0; i<this->data->edges.size() / 2; i++) {
-            uint32_t it = arc4random_uniform((uint32_t)this->data->edges.size());
-            while (visited[it]) {
-                it = arc4random_uniform((uint32_t)this->data->edges.size());
-            }
-            
-            position.e2.push_back(this->data->edges[it]);
-            visited[it] = true;
+            position.push_back(it);
         }
         
         Particle *particle = new Particle(this->initialVelocity, position, this->calculateFitness(position));
@@ -66,97 +78,44 @@ void PSO::initializeSwarm() {
     }
 }
 
-uint32_t PSO::calculateFitness(Position &position) {
-    size_t e1_fitness = numberOfEdgesOutsideTriangle(position.e1);
-    size_t e2_fitness = numberOfEdgesOutsideTriangle(position.e2);
-    
-    return (uint32_t)e1_fitness + (uint32_t)e2_fitness;
+uint32_t PSO::calculateFitness(std::vector<bool> &position) {
+    return (uint32_t)numberOfEdgesOutsideTriangle(position, this->data);
 }
 
 void PSO::updateParticles() {
     for (int it=0; it<this->swarm.size(); it++) {
         Particle *particle = this->swarm[it];
+        double r1 = (double)arc4random() / ARC4RANDOM_MAX;
+        double r2 = (double)arc4random() / ARC4RANDOM_MAX;
         
-        for (int j=0; j < particle->velocity.e1_velocity.size(); j++) {
-            double r1 = (double)arc4random() / ARC4RANDOM_MAX;
-            double r2 = (double)arc4random() / ARC4RANDOM_MAX;
-            
-            int e1_bestIndex = 0, e2_bestIndex = 0;
-            int e1_globalBestIndex = 0, e2_globalBestIndex = 0;
-            int e1_currentIndex = 0, e2_currentIndex = 0;
-            for (int k=0; k<this->data->edges.size(); k++) {
-                if (this->data->edges[k] == particle->bestPosition.e1[j]) {
-                    e1_bestIndex = k;
-                }
-                
-                if (this->data->edges[k] == particle->bestPosition.e2[j]) {
-                    e2_bestIndex = k;
-                }
-                
-                if (this->data->edges[k] == this->bestGlobalPosition.e1[j]) {
-                    e1_globalBestIndex = k;
-                }
-                
-                if (this->data->edges[k] == this->bestGlobalPosition.e2[j]) {
-                    e2_globalBestIndex = k;
-                }
-                
-                if (this->data->edges[k] == particle->position.e1[j]) {
-                    e1_currentIndex = k;
-                }
-                
-                if (this->data->edges[k] == particle->position.e2[j]) {
-                    e2_currentIndex = k;
-                }
-            }
-            
-            particle->velocity.e1_velocity[j] = (this->inertiaWeight * particle->velocity.e1_velocity[j]) + (this->cognitiveWeight * r1 * (e1_bestIndex - e1_currentIndex)) + (this->socialWeight * r2 * (e1_globalBestIndex - e1_currentIndex));
-            particle->velocity.e2_velocity[j] = (this->inertiaWeight * particle->velocity.e2_velocity[j]) + (this->cognitiveWeight * r1 * (e2_bestIndex - e2_currentIndex)) + (this->socialWeight * r2 * (e2_globalBestIndex - e2_currentIndex));
-            
-            if (particle->velocity.e1_velocity[j] < 1 - this->max) {
-                particle->velocity.e1_velocity[j] = 1 - this->max;
-            } else if (particle->velocity.e1_velocity[j] > this->max) {
-                particle->velocity.e1_velocity[j] = this->max;
-            }
-            
-            if (particle->velocity.e2_velocity[j] < 1 - this->max) {
-                particle->velocity.e2_velocity[j] = 1 - this->max;
-            } else if (particle->velocity.e2_velocity[j] > this->max) {
-                particle->velocity.e2_velocity[j] = this->max;
-            }
+        std::vector<bool> best_curr;
+        for (int it=0; it<particle->bestPosition.size(); it++) {
+            best_curr.push_back(particle->bestPosition[it] xor particle->position[it]);
         }
         
-        for (int j=0; j < particle->position.e1.size(); j++) {
-            int e1_index = 0, e2_index;
-            for (int k=0; k<this->data->edges.size(); k++) {
-                if (particle->position.e1[j] == this->data->edges[k]) {
-                    e1_index = k;
-                    break;
-                }
-            }
-            
-            for (int k=0; k<this->data->edges.size(); k++) {
-                if (particle->position.e2[j] == this->data->edges[k]) {
-                    e2_index = k;
-                    break;
-                }
-            }
-            
-            int newIndex = e1_index + particle->velocity.e1_velocity[j];
-            if (newIndex > this->max) {
-                newIndex = this->max;
-            } else if (newIndex < this->min) {
-                newIndex = this->min;
-            }
-            particle->position.e1[j] = this->data->edges[newIndex];
-            newIndex = e2_index + particle->velocity.e2_velocity[j];
-            if (newIndex > this->max) {
-                newIndex = this->max;
-            } else if (newIndex < this->min) {
-                newIndex = this->min;
-            }
-            particle->position.e2[j] = this->data->edges[newIndex];
+        std::vector<bool> globalBest_curr;
+        for (int it=0; it<this->bestGlobalPosition.size(); it++) {
+            globalBest_curr.push_back(this->bestGlobalPosition[it] xor particle->position[it]);
         }
+        
+        particle->velocity = this->inertiaWeight * particle->velocity + this->cognitiveWeight * r1 * valueFromVector(best_curr) + this->socialWeight * r2 * valueFromVector(globalBest_curr);
+            
+        if (particle->velocity < 1 - this->max) {
+            particle->velocity = 1 - this->max;
+        } else if (particle->velocity > this->max) {
+            particle->velocity = this->max;
+        }
+        
+        particle->position = vectorFromValue(valueFromVector(particle->position) + particle->velocity);
+        
+        int newPositionValue = valueFromVector(particle->position);
+        if (newPositionValue > this->max) {
+            newPositionValue = this->max;
+        } else if (newPositionValue < this->min) {
+            newPositionValue = this->min;
+        }
+        
+        particle->position = vectorFromValue(newPositionValue);
         
         particle->fitness = this->calculateFitness(particle->position);
         if (particle->fitness > particle->bestFitness) {
@@ -169,7 +128,6 @@ void PSO::updateParticles() {
             this->bestGlobalPosition = particle->position;
         }
     }
-
 }
 
 SearchResult PSO::findSolution(Graph *graph) {
@@ -177,14 +135,18 @@ SearchResult PSO::findSolution(Graph *graph) {
     this->initializeSwarm();
     
     std::cout << "Best position: " << std::endl;
-    for (int it=0; it<this->bestGlobalPosition.e1.size(); it++) {
-        std::cout << this->bestGlobalPosition.e1[it]->source << "," << this->bestGlobalPosition.e1[it]->destination << " ; ";
+    for (int it=0; it<this->bestGlobalPosition.size(); it++) {
+        if (!this->bestGlobalPosition[it]) {
+            std::cout << this->data->edges[it]->source << "," << this->data->edges[it]->destination << " ; ";
+        }
     }
     
     std::cout << std::endl;
     
-    for (int it=0; it<this->bestGlobalPosition.e2.size(); it++) {
-        std::cout << this->bestGlobalPosition.e2[it]->source << "," << this->bestGlobalPosition.e2[it]->destination << " ; ";
+    for (int it=0; it<this->bestGlobalPosition.size(); it++) {
+        if (this->bestGlobalPosition[it]) {
+            std::cout << this->data->edges[it]->source << "," << this->data->edges[it]->destination << " ; ";
+        }
     }
     
     std::cout << "Fitness = " << this->bestGlobalFitness << std::endl;
@@ -192,14 +154,18 @@ SearchResult PSO::findSolution(Graph *graph) {
     for (int it=0; it<this->numberOfIterations; it++) {
         this->updateParticles();
         std::cout << "Best position: " << std::endl;
-        for (int it=0; it<this->bestGlobalPosition.e1.size(); it++) {
-            std::cout << this->bestGlobalPosition.e1[it]->source << "," << this->bestGlobalPosition.e1[it]->destination << " ; ";
+        for (int it=0; it<this->bestGlobalPosition.size(); it++) {
+            if (!this->bestGlobalPosition[it]) {
+                std::cout << this->data->edges[it]->source << "," << this->data->edges[it]->destination << " ; ";
+            }
         }
         
         std::cout << std::endl;
         
-        for (int it=0; it<this->bestGlobalPosition.e2.size(); it++) {
-            std::cout << this->bestGlobalPosition.e2[it]->source << "," << this->bestGlobalPosition.e2[it]->destination << " ; ";
+        for (int it=0; it<this->bestGlobalPosition.size(); it++) {
+            if (this->bestGlobalPosition[it]) {
+                std::cout << this->data->edges[it]->source << "," << this->data->edges[it]->destination << " ; ";
+            }
         }
         
         std::cout << std::endl;
@@ -214,10 +180,16 @@ SearchResult PSO::findSolution(Graph *graph) {
     SearchResult result;
     std::set<Edge *> e1, e2;
     
-    for (int i=0; i<this->bestGlobalPosition.e1.size(); i++) {
-        e1.insert(this->bestGlobalPosition.e1[i]);
-        e2.insert(this->bestGlobalPosition.e2[i]);
+    for (int i=0; i<this->bestGlobalPosition.size(); i++) {
+        if (!this->bestGlobalPosition[i]) {
+            e1.insert(this->data->edges[i]);
+        } else {
+            e2.insert(this->data->edges[i]);
+        }
     }
+    
+    result.e1 = e1;
+    result.e2 = e2;
     
     return result;
 }

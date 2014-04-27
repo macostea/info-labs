@@ -14,9 +14,10 @@
 #include <vector>
 
 #include "Edge.h"
+#include "Graph.h"
 
 size_t numberOfEdgesOutsideTriangle(std::set<Edge *> &edges);
-size_t numberOfEdgesOutsideTriangle(std::vector<Edge *> &edges);
+size_t numberOfEdgesOutsideTriangle(std::vector<bool> &edges, Graph *data);
 
 typedef struct{
     std::set<Edge *> e1; // First partition
