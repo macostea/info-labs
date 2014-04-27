@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CSEmployee : NSObject
+@interface CSEmployee : NSObject <NSCopying>
 
-@property (strong) NSNumber  *employeeId;
 @property (strong) NSString  *name;
 @property (strong) NSNumber  *age;
 @property (strong) NSString  *degree;
 @property (strong) NSNumber  *salary;
 
 + (CSEmployee *)employee;
+
++ (CSEmployee *)employeeFromDictionary:(NSDictionary *)dictionary;
+- (NSDictionary *)dictionaryFromEmployee;
 
 @end

@@ -10,7 +10,7 @@
 
 #import "CSEmployee.h"
 
-@interface CSAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate>
+@interface CSAppDelegate : NSObject <NSApplicationDelegate, NSTableViewDataSource, NSTableViewDelegate, NSComboBoxDataSource, NSComboBoxDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

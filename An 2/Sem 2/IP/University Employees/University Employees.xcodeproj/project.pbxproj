@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7220959190D508D00145FCA /* CSIntegerOnlyValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = A7220958190D508D00145FCA /* CSIntegerOnlyValueFormatter.m */; };
+		A722095C190D5A0E00145FCA /* CSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = A722095B190D5A0E00145FCA /* CSValidator.m */; };
+		A722095E190D5A7300145FCA /* Employees.plist in Resources */ = {isa = PBXBuildFile; fileRef = A722095D190D5A7300145FCA /* Employees.plist */; };
 		A76C430518FE48670082AA1F /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76C430418FE48670082AA1F /* Cocoa.framework */; };
 		A76C430F18FE48670082AA1F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A76C430D18FE48670082AA1F /* InfoPlist.strings */; };
 		A76C431118FE48670082AA1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A76C431018FE48670082AA1F /* main.m */; };
@@ -33,6 +36,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7220957190D508D00145FCA /* CSIntegerOnlyValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSIntegerOnlyValueFormatter.h; sourceTree = "<group>"; };
+		A7220958190D508D00145FCA /* CSIntegerOnlyValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSIntegerOnlyValueFormatter.m; sourceTree = "<group>"; };
+		A722095A190D5A0E00145FCA /* CSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSValidator.h; sourceTree = "<group>"; };
+		A722095B190D5A0E00145FCA /* CSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSValidator.m; sourceTree = "<group>"; };
+		A722095D190D5A7300145FCA /* Employees.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Employees.plist; sourceTree = "<group>"; };
 		A76C430118FE48670082AA1F /* University Employees.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "University Employees.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76C430418FE48670082AA1F /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A76C430718FE48670082AA1F /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -139,6 +147,7 @@
 				A76C431018FE48670082AA1F /* main.m */,
 				A76C431218FE48670082AA1F /* University Employees-Prefix.pch */,
 				A76C431318FE48670082AA1F /* Credits.rtf */,
+				A722095D190D5A7300145FCA /* Employees.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -175,6 +184,10 @@
 			children = (
 				A76C431618FE48670082AA1F /* CSAppDelegate.h */,
 				A76C431718FE48670082AA1F /* CSAppDelegate.m */,
+				A7220957190D508D00145FCA /* CSIntegerOnlyValueFormatter.h */,
+				A7220958190D508D00145FCA /* CSIntegerOnlyValueFormatter.m */,
+				A722095A190D5A0E00145FCA /* CSValidator.h */,
+				A722095B190D5A0E00145FCA /* CSValidator.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -267,6 +280,7 @@
 			files = (
 				A76C430F18FE48670082AA1F /* InfoPlist.strings in Resources */,
 				A76C431D18FE48670082AA1F /* Images.xcassets in Resources */,
+				A722095E190D5A7300145FCA /* Employees.plist in Resources */,
 				A76C431518FE48670082AA1F /* Credits.rtf in Resources */,
 				A76C431B18FE48670082AA1F /* MainMenu.xib in Resources */,
 			);
@@ -287,7 +301,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7220959190D508D00145FCA /* CSIntegerOnlyValueFormatter.m in Sources */,
 				A76C433B18FE4A5A0082AA1F /* CSEmployee.m in Sources */,
+				A722095C190D5A0E00145FCA /* CSValidator.m in Sources */,
 				A76C431818FE48670082AA1F /* CSAppDelegate.m in Sources */,
 				A76C431118FE48670082AA1F /* main.m in Sources */,
 				A76C434118FE4B060082AA1F /* CSRepository.m in Sources */,
@@ -503,6 +519,7 @@
 				A76C433418FE48670082AA1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A76C433518FE48670082AA1F /* Build configuration list for PBXNativeTarget "University EmployeesTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +528,7 @@
 				A76C433718FE48670082AA1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
