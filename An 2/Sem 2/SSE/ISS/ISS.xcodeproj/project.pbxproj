@@ -18,6 +18,19 @@
 		A710C41B18FF9D7B00A2FF8B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A710C3FA18FF9D7B00A2FF8B /* Cocoa.framework */; };
 		A710C42318FF9D7B00A2FF8B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A710C42118FF9D7B00A2FF8B /* InfoPlist.strings */; };
 		A710C42518FF9D7B00A2FF8B /* ISSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A710C42418FF9D7B00A2FF8B /* ISSTests.m */; };
+		A7202D7D19176CCC004B82B7 /* CSProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D7C19176CCC004B82B7 /* CSProduct.m */; };
+		A7202D8019176D10004B82B7 /* CSOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D7F19176D10004B82B7 /* CSOrder.m */; };
+		A7202D8319176D6B004B82B7 /* CSAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8219176D6B004B82B7 /* CSAgent.m */; };
+		A7202D861917758C004B82B7 /* CSDBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D851917758C004B82B7 /* CSDBConnection.m */; };
+		A7202D8A19177D4A004B82B7 /* CSRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8919177D4A004B82B7 /* CSRepository.m */; };
+		A7202D8D19177E0D004B82B7 /* CSProductRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8C19177E0D004B82B7 /* CSProductRepository.m */; };
+		A7202D9019178677004B82B7 /* CSAgentRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8F19178677004B82B7 /* CSAgentRepository.m */; };
+		A782CCAA1916C7BD009FF9A1 /* CSAgentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */; };
+		A782CCAC1916C7DD009FF9A1 /* CSAdministratorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */; };
+		A782CCAF1916C820009FF9A1 /* CSAgentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A782CCAE1916C820009FF9A1 /* CSAgentWindowController.m */; };
+		A782CCB41916C83C009FF9A1 /* CSAdministratorWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A782CCB21916C83C009FF9A1 /* CSAdministratorWindowController.m */; };
+		A782CCDC1916DDC0009FF9A1 /* SPMySQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A782CCD91916DD76009FF9A1 /* SPMySQL.framework */; };
+		A782CCDD1916DDC5009FF9A1 /* SPMySQL.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A782CCD91916DD76009FF9A1 /* SPMySQL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +41,34 @@
 			remoteGlobalIDString = A710C3F618FF9D7B00A2FF8B;
 			remoteInfo = ISS;
 		};
+		A782CCD81916DD76009FF9A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A782CCD41916DD76009FF9A1 /* SPMySQLFramework.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = SPMySQL.framework;
+		};
+		A782CCDA1916DDB5009FF9A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A782CCD41916DD76009FF9A1 /* SPMySQLFramework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = SPMySQL.framework;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A782CCBF1916CCCF009FF9A1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A782CCDD1916DDC5009FF9A1 /* SPMySQL.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A710C3F718FF9D7B00A2FF8B /* ISS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ISS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +90,27 @@
 		A710C42018FF9D7B00A2FF8B /* ISSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ISSTests-Info.plist"; sourceTree = "<group>"; };
 		A710C42218FF9D7B00A2FF8B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A710C42418FF9D7B00A2FF8B /* ISSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ISSTests.m; sourceTree = "<group>"; };
+		A7202D7B19176CCC004B82B7 /* CSProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProduct.h; sourceTree = "<group>"; };
+		A7202D7C19176CCC004B82B7 /* CSProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProduct.m; sourceTree = "<group>"; };
+		A7202D7E19176D10004B82B7 /* CSOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSOrder.h; sourceTree = "<group>"; };
+		A7202D7F19176D10004B82B7 /* CSOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSOrder.m; sourceTree = "<group>"; };
+		A7202D8119176D6B004B82B7 /* CSAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgent.h; sourceTree = "<group>"; };
+		A7202D8219176D6B004B82B7 /* CSAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgent.m; sourceTree = "<group>"; };
+		A7202D841917758C004B82B7 /* CSDBConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDBConnection.h; sourceTree = "<group>"; };
+		A7202D851917758C004B82B7 /* CSDBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDBConnection.m; sourceTree = "<group>"; };
+		A7202D8819177D4A004B82B7 /* CSRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRepository.h; sourceTree = "<group>"; };
+		A7202D8919177D4A004B82B7 /* CSRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRepository.m; sourceTree = "<group>"; };
+		A7202D8B19177E0D004B82B7 /* CSProductRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductRepository.h; sourceTree = "<group>"; };
+		A7202D8C19177E0D004B82B7 /* CSProductRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductRepository.m; sourceTree = "<group>"; };
+		A7202D8E19178677004B82B7 /* CSAgentRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgentRepository.h; sourceTree = "<group>"; };
+		A7202D8F19178677004B82B7 /* CSAgentRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgentRepository.m; sourceTree = "<group>"; };
+		A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAgentWindow.xib; sourceTree = "<group>"; };
+		A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAdministratorWindow.xib; sourceTree = "<group>"; };
+		A782CCAD1916C820009FF9A1 /* CSAgentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgentWindowController.h; sourceTree = "<group>"; };
+		A782CCAE1916C820009FF9A1 /* CSAgentWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgentWindowController.m; sourceTree = "<group>"; };
+		A782CCB11916C83C009FF9A1 /* CSAdministratorWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAdministratorWindowController.h; sourceTree = "<group>"; };
+		A782CCB21916C83C009FF9A1 /* CSAdministratorWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAdministratorWindowController.m; sourceTree = "<group>"; };
+		A782CCD41916DD76009FF9A1 /* SPMySQLFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SPMySQLFramework.xcodeproj; path = SPMySQLFramework/SPMySQLFramework.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A710C3FB18FF9D7B00A2FF8B /* Cocoa.framework in Frameworks */,
+				A782CCDC1916DDC0009FF9A1 /* SPMySQL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +157,7 @@
 		A710C3F918FF9D7B00A2FF8B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A782CCD41916DD76009FF9A1 /* SPMySQLFramework.xcodeproj */,
 				A710C3FA18FF9D7B00A2FF8B /* Cocoa.framework */,
 				A710C41918FF9D7B00A2FF8B /* XCTest.framework */,
 				A710C3FC18FF9D7B00A2FF8B /* Other Frameworks */,
@@ -115,9 +178,12 @@
 		A710C40018FF9D7B00A2FF8B /* ISS */ = {
 			isa = PBXGroup;
 			children = (
+				A7202D8719177590004B82B7 /* Repository */,
+				A782CCCF1916D568009FF9A1 /* Model */,
 				A710C40C18FF9D7B00A2FF8B /* CSAppDelegate.h */,
 				A710C40D18FF9D7B00A2FF8B /* CSAppDelegate.m */,
-				A710C40F18FF9D7B00A2FF8B /* MainMenu.xib */,
+				A782CCB01916C827009FF9A1 /* Window Controllers */,
+				A782CCA61916C768009FF9A1 /* Windows */,
 				A710C41218FF9D7B00A2FF8B /* Images.xcassets */,
 				A710C40118FF9D7B00A2FF8B /* Supporting Files */,
 			);
@@ -154,6 +220,63 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A7202D8719177590004B82B7 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				A7202D841917758C004B82B7 /* CSDBConnection.h */,
+				A7202D851917758C004B82B7 /* CSDBConnection.m */,
+				A7202D8819177D4A004B82B7 /* CSRepository.h */,
+				A7202D8919177D4A004B82B7 /* CSRepository.m */,
+				A7202D8B19177E0D004B82B7 /* CSProductRepository.h */,
+				A7202D8C19177E0D004B82B7 /* CSProductRepository.m */,
+				A7202D8E19178677004B82B7 /* CSAgentRepository.h */,
+				A7202D8F19178677004B82B7 /* CSAgentRepository.m */,
+			);
+			name = Repository;
+			sourceTree = "<group>";
+		};
+		A782CCA61916C768009FF9A1 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				A710C40F18FF9D7B00A2FF8B /* MainMenu.xib */,
+				A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */,
+				A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */,
+			);
+			name = Windows;
+			sourceTree = "<group>";
+		};
+		A782CCB01916C827009FF9A1 /* Window Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A782CCAD1916C820009FF9A1 /* CSAgentWindowController.h */,
+				A782CCAE1916C820009FF9A1 /* CSAgentWindowController.m */,
+				A782CCB11916C83C009FF9A1 /* CSAdministratorWindowController.h */,
+				A782CCB21916C83C009FF9A1 /* CSAdministratorWindowController.m */,
+			);
+			name = "Window Controllers";
+			sourceTree = "<group>";
+		};
+		A782CCCF1916D568009FF9A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A7202D7B19176CCC004B82B7 /* CSProduct.h */,
+				A7202D7C19176CCC004B82B7 /* CSProduct.m */,
+				A7202D7E19176D10004B82B7 /* CSOrder.h */,
+				A7202D7F19176D10004B82B7 /* CSOrder.m */,
+				A7202D8119176D6B004B82B7 /* CSAgent.h */,
+				A7202D8219176D6B004B82B7 /* CSAgent.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A782CCD51916DD76009FF9A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A782CCD91916DD76009FF9A1 /* SPMySQL.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,10 +287,12 @@
 				A710C3F318FF9D7B00A2FF8B /* Sources */,
 				A710C3F418FF9D7B00A2FF8B /* Frameworks */,
 				A710C3F518FF9D7B00A2FF8B /* Resources */,
+				A782CCBF1916CCCF009FF9A1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A782CCDB1916DDB5009FF9A1 /* PBXTargetDependency */,
 			);
 			name = ISS;
 			productName = ISS;
@@ -218,6 +343,12 @@
 			mainGroup = A710C3EE18FF9D7B00A2FF8B;
 			productRefGroup = A710C3F818FF9D7B00A2FF8B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A782CCD51916DD76009FF9A1 /* Products */;
+					ProjectRef = A782CCD41916DD76009FF9A1 /* SPMySQLFramework.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A710C3F618FF9D7B00A2FF8B /* ISS */,
@@ -226,14 +357,26 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		A782CCD91916DD76009FF9A1 /* SPMySQL.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SPMySQL.framework;
+			remoteRef = A782CCD81916DD76009FF9A1 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		A710C3F518FF9D7B00A2FF8B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A710C40518FF9D7B00A2FF8B /* InfoPlist.strings in Resources */,
+				A782CCAA1916C7BD009FF9A1 /* CSAgentWindow.xib in Resources */,
 				A710C41318FF9D7B00A2FF8B /* Images.xcassets in Resources */,
 				A710C40B18FF9D7B00A2FF8B /* Credits.rtf in Resources */,
+				A782CCAC1916C7DD009FF9A1 /* CSAdministratorWindow.xib in Resources */,
 				A710C41118FF9D7B00A2FF8B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,8 +396,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7202D8A19177D4A004B82B7 /* CSRepository.m in Sources */,
+				A7202D8319176D6B004B82B7 /* CSAgent.m in Sources */,
+				A782CCAF1916C820009FF9A1 /* CSAgentWindowController.m in Sources */,
+				A7202D9019178677004B82B7 /* CSAgentRepository.m in Sources */,
+				A7202D7D19176CCC004B82B7 /* CSProduct.m in Sources */,
+				A7202D8019176D10004B82B7 /* CSOrder.m in Sources */,
+				A782CCB41916C83C009FF9A1 /* CSAdministratorWindowController.m in Sources */,
 				A710C40E18FF9D7B00A2FF8B /* CSAppDelegate.m in Sources */,
 				A710C40718FF9D7B00A2FF8B /* main.m in Sources */,
+				A7202D861917758C004B82B7 /* CSDBConnection.m in Sources */,
+				A7202D8D19177E0D004B82B7 /* CSProductRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +425,11 @@
 			isa = PBXTargetDependency;
 			target = A710C3F618FF9D7B00A2FF8B /* ISS */;
 			targetProxy = A710C41C18FF9D7B00A2FF8B /* PBXContainerItemProxy */;
+		};
+		A782CCDB1916DDB5009FF9A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SPMySQL.framework;
+			targetProxy = A782CCDA1916DDB5009FF9A1 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -387,10 +544,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ISS/ISS-Prefix.pch";
 				INFOPLIST_FILE = "ISS/ISS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/SPMySQLFramework/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -400,10 +562,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ISS/ISS-Prefix.pch";
 				INFOPLIST_FILE = "ISS/ISS-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/SPMySQLFramework/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -467,6 +634,7 @@
 				A710C42A18FF9D7B00A2FF8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A710C42B18FF9D7B00A2FF8B /* Build configuration list for PBXNativeTarget "ISSTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +643,7 @@
 				A710C42D18FF9D7B00A2FF8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
