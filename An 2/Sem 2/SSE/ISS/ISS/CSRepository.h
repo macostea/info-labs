@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CSDBConnection.h"
+#import "CSDatabaseManager.h"
 
 @interface CSRepository : NSObject
 

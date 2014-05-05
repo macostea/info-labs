@@ -10,8 +10,8 @@
 
 #import "CSAgent.h"
 
-@interface CSAgentWindowController : NSWindowController
+@interface CSAgentWindowController : NSWindowController <NSTableViewDelegate>
 
-@property (strong) CSAgent *agent;
+@property (strong) CSAgent *currentAgent;
 
 @end

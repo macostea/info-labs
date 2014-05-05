@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <SPMySQL/SPMySQL.h>
 
-@interface CSDBConnection : NSObject
+@interface CSDatabaseManager : NSObject
 
-+ (CSDBConnection *)connection;
++ (CSDatabaseManager *)manager;
 
 - (void)connectWithCompletionBlock:(void (^)(BOOL success))completionBlock;
 - (NSArray *)rowsForTable:(NSString *)table;
+- (void)addRow:(NSString *)row table:(NSString *)table;
+- (void)updateRow:(NSNumber *)rowId value:(NSString *)value table:(NSString *)table;
 
 @end

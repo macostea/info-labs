@@ -12,7 +12,7 @@
 
 @interface CSProductRepository ()
 
-@property (strong) NSMutableArray *products;
+@property (strong) NSMutableDictionary *products;
 
 @end
 
@@ -22,41 +22,50 @@
 {
     self = [super init];
     if (self) {
-        self.products = [NSMutableArray array];
-        
-        [self getProductsFromDB];
+        self.products = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)addElement:(id)element {
-    [self.products addObject:element];
+- (void)addElement:(CSProduct *)element {
+    [self.products setObject:element forKey:element.productId];
 }
 
-- (void)updateElement:(id)oldElement newElement:(id)newElement {
-    [self.products replaceObjectAtIndex:[self.products indexOfObject:oldElement] withObject:newElement];
+- (void)updateElement:(CSProduct *)oldElement newElement:(CSProduct *)newElement {
+    [self.products setObject:newElement forKey:oldElement.productId];
+    
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    
+    NSString *value = [NSString stringWithFormat:@"name='%@', price=%@, quantity=%@", newElement.name, newElement.price, newElement.quantity];
+    [connection updateRow:oldElement.productId value:value table:@"Products"];
 }
 
-- (void)removeElement:(id)element {
-    [self.products removeObject:element];
+- (void)removeElement:(CSProduct *)element {
+    [self.products removeObjectForKey:element.productId];
 }
 
 - (void)getAllElementsWithCompletionBlock:(void (^)(BOOL, NSArray *))completionBlock {
-    CSDBConnection *connection = [CSDBConnection connection];
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
     [connection connectWithCompletionBlock:^(BOOL success) {
         [self getProductsFromDB];
-        completionBlock(YES, [self.products copy]);
+        NSMutableArray *array = [NSMutableArray array];
+        
+        [self.products enumerateKeysAndObjectsUsingBlock:^(id key, CSProduct *obj, BOOL *stop) {
+            [array addObject:[obj copy]];
+            completionBlock(YES, array);
+        }];
     }];
 }
 
 #pragma mark - Private methods
 
 - (void)getProductsFromDB {
-    CSDBConnection *connection = [CSDBConnection connection];
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
     NSArray *result = [connection rowsForTable:@"Products"];
     
     for (NSDictionary *productDict in result) {
-        [self.products addObject:[CSProduct objectFromDictionary:productDict]];
+        CSProduct *product = [CSProduct objectFromDictionary:productDict];
+        [self.products setObject:product forKey:product.productId];
     }
 }
 

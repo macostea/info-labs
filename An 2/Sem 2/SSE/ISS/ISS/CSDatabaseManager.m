@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 info. All rights reserved.
 //
 
-#import "CSDBConnection.h"
+#import "CSDatabaseManager.h"
 
 static SPMySQLConnection *connection = nil;
 
-@interface CSDBConnection ()
+@interface CSDatabaseManager ()
 
 @end
 
-@implementation CSDBConnection
+@implementation CSDatabaseManager
 
-+ (CSDBConnection *)connection {
++ (CSDatabaseManager *)manager {
     return [[self alloc] init];
 }
 
@@ -40,6 +40,8 @@ static SPMySQLConnection *connection = nil;
                 }
             });
         });
+    } else {
+        completionBlock(YES);
     }
 }
 
@@ -54,6 +56,18 @@ static SPMySQLConnection *connection = nil;
     }
     
     return array;
+}
+
+- (void)addRow:(NSString *)row table:(NSString *)table {
+    NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ VALUES(%@)", table, row];
+    
+    [connection queryString:query];
+}
+
+- (void)updateRow:(NSNumber *)rowId value:(NSString *)value table:(NSString *)table {
+    NSString *query = [NSString stringWithFormat:@"UPDATE %@ SET %@ WHERE id=%@", table, value, rowId];
+    
+    [connection queryString:query];
 }
 
 @end

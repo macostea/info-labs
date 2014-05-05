@@ -11,7 +11,7 @@
 
 @interface CSAgentRepository ()
 
-@property (strong) NSMutableArray *agents;
+@property (strong) NSMutableDictionary *agents;
 
 @end
 
@@ -21,39 +21,46 @@
 {
     self = [super init];
     if (self) {
-        self.agents = [NSMutableArray array];
+        self.agents = [NSMutableDictionary dictionary];
     }
     return self;
 }
 
-- (void)addElement:(id)element {
-    [self.agents addObject:element];
+- (void)addElement:(CSAgent *)element {
+    [self.agents setObject:element forKey:element.agentId];
 }
 
-- (void)updateElement:(id)oldElement newElement:(id)newElement {
-    [self.agents replaceObjectAtIndex:[self.agents indexOfObject:oldElement] withObject:newElement];
+- (void)updateElement:(CSAgent *)oldElement newElement:(CSAgent *)newElement {
+    [self.agents setObject:newElement forKey:oldElement.agentId];
 }
 
-- (void)removeElement:(id)element {
-    [self.agents removeObject:element];
+- (void)removeElement:(CSAgent *)element {
+    [self.agents removeObjectForKey:element.agentId];
 }
 
 - (void)getAllElementsWithCompletionBlock:(void (^)(BOOL, NSArray *))completionBlock {
-    CSDBConnection *connection = [CSDBConnection connection];
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
     [connection connectWithCompletionBlock:^(BOOL success) {
         [self getAgentsFromDB];
-        completionBlock(YES, [self.agents copy]);
+        
+        NSMutableArray *array = [NSMutableArray array];
+        
+        [self.agents enumerateKeysAndObjectsUsingBlock:^(id key, CSAgent *obj, BOOL *stop) {
+            [array addObject:[obj copy]];
+            completionBlock(YES, array);
+        }];
     }];
 }
 
 #pragma mark - Private methods
 
 - (void)getAgentsFromDB {
-    CSDBConnection *connection = [CSDBConnection connection];
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
     NSArray *result = [connection rowsForTable:@"Agents"];
     
     for (NSDictionary *agentDict in result) {
-        [self.agents addObject:[CSAgent objectFromDictionary:agentDict]];
+        CSAgent *agent = [CSAgent objectFromDictionary:agentDict];
+        [self.agents setObject:agent forKey:agent.agentId];
     }
 }
 

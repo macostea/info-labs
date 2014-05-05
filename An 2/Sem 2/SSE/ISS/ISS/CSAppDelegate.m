@@ -17,7 +17,6 @@
 
 @interface CSAppDelegate ()
 
-@property (strong) CSProductRepository *productRepo;
 @property (strong) CSAgentRepository *agentRepo;
 
 @property (weak) IBOutlet NSPopUpButton *agentPicker;
@@ -47,9 +46,6 @@
     [self.administratorWindowController showWindow:self];
 }
 
-- (IBAction)loginAsAgentPicked:(NSPopUpButton *)sender {
-}
-
 #pragma mark - Private methods
 
 - (void)populateAgentsButton {
@@ -65,11 +61,10 @@
     NSInteger index = [sender indexOfSelectedItem];
     CSAgent *selectedAgent = self.agents[index];
     
-    NSLog(@"Selected agent: %@", selectedAgent.name);
-    
-    [self.window orderOut:self];
     self.agentWindowController = [[CSAgentWindowController alloc] initWithWindowNibName:@"CSAgentWindow"];
-    [self.agentWindowController showWindow:self];
+    self.agentWindowController.currentAgent = selectedAgent;
+    [self.agentWindowController showWindow:nil];
+    [self.window orderOut:self];
 }
 
 @end

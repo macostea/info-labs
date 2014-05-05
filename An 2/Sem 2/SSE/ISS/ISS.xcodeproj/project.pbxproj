@@ -21,10 +21,11 @@
 		A7202D7D19176CCC004B82B7 /* CSProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D7C19176CCC004B82B7 /* CSProduct.m */; };
 		A7202D8019176D10004B82B7 /* CSOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D7F19176D10004B82B7 /* CSOrder.m */; };
 		A7202D8319176D6B004B82B7 /* CSAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8219176D6B004B82B7 /* CSAgent.m */; };
-		A7202D861917758C004B82B7 /* CSDBConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D851917758C004B82B7 /* CSDBConnection.m */; };
+		A7202D861917758C004B82B7 /* CSDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D851917758C004B82B7 /* CSDatabaseManager.m */; };
 		A7202D8A19177D4A004B82B7 /* CSRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8919177D4A004B82B7 /* CSRepository.m */; };
 		A7202D8D19177E0D004B82B7 /* CSProductRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8C19177E0D004B82B7 /* CSProductRepository.m */; };
 		A7202D9019178677004B82B7 /* CSAgentRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8F19178677004B82B7 /* CSAgentRepository.m */; };
+		A7202D9319179810004B82B7 /* CSOrderRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D9219179810004B82B7 /* CSOrderRepository.m */; };
 		A782CCAA1916C7BD009FF9A1 /* CSAgentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */; };
 		A782CCAC1916C7DD009FF9A1 /* CSAdministratorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */; };
 		A782CCAF1916C820009FF9A1 /* CSAgentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A782CCAE1916C820009FF9A1 /* CSAgentWindowController.m */; };
@@ -96,14 +97,16 @@
 		A7202D7F19176D10004B82B7 /* CSOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSOrder.m; sourceTree = "<group>"; };
 		A7202D8119176D6B004B82B7 /* CSAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgent.h; sourceTree = "<group>"; };
 		A7202D8219176D6B004B82B7 /* CSAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgent.m; sourceTree = "<group>"; };
-		A7202D841917758C004B82B7 /* CSDBConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDBConnection.h; sourceTree = "<group>"; };
-		A7202D851917758C004B82B7 /* CSDBConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDBConnection.m; sourceTree = "<group>"; };
+		A7202D841917758C004B82B7 /* CSDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSDatabaseManager.h; sourceTree = "<group>"; };
+		A7202D851917758C004B82B7 /* CSDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSDatabaseManager.m; sourceTree = "<group>"; };
 		A7202D8819177D4A004B82B7 /* CSRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRepository.h; sourceTree = "<group>"; };
 		A7202D8919177D4A004B82B7 /* CSRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRepository.m; sourceTree = "<group>"; };
 		A7202D8B19177E0D004B82B7 /* CSProductRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductRepository.h; sourceTree = "<group>"; };
 		A7202D8C19177E0D004B82B7 /* CSProductRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductRepository.m; sourceTree = "<group>"; };
 		A7202D8E19178677004B82B7 /* CSAgentRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgentRepository.h; sourceTree = "<group>"; };
 		A7202D8F19178677004B82B7 /* CSAgentRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgentRepository.m; sourceTree = "<group>"; };
+		A7202D9119179810004B82B7 /* CSOrderRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSOrderRepository.h; sourceTree = "<group>"; };
+		A7202D9219179810004B82B7 /* CSOrderRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSOrderRepository.m; sourceTree = "<group>"; };
 		A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAgentWindow.xib; sourceTree = "<group>"; };
 		A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAdministratorWindow.xib; sourceTree = "<group>"; };
 		A782CCAD1916C820009FF9A1 /* CSAgentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgentWindowController.h; sourceTree = "<group>"; };
@@ -223,14 +226,16 @@
 		A7202D8719177590004B82B7 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				A7202D841917758C004B82B7 /* CSDBConnection.h */,
-				A7202D851917758C004B82B7 /* CSDBConnection.m */,
+				A7202D841917758C004B82B7 /* CSDatabaseManager.h */,
+				A7202D851917758C004B82B7 /* CSDatabaseManager.m */,
 				A7202D8819177D4A004B82B7 /* CSRepository.h */,
 				A7202D8919177D4A004B82B7 /* CSRepository.m */,
 				A7202D8B19177E0D004B82B7 /* CSProductRepository.h */,
 				A7202D8C19177E0D004B82B7 /* CSProductRepository.m */,
 				A7202D8E19178677004B82B7 /* CSAgentRepository.h */,
 				A7202D8F19178677004B82B7 /* CSAgentRepository.m */,
+				A7202D9119179810004B82B7 /* CSOrderRepository.h */,
+				A7202D9219179810004B82B7 /* CSOrderRepository.m */,
 			);
 			name = Repository;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7202D9319179810004B82B7 /* CSOrderRepository.m in Sources */,
 				A7202D8A19177D4A004B82B7 /* CSRepository.m in Sources */,
 				A7202D8319176D6B004B82B7 /* CSAgent.m in Sources */,
 				A782CCAF1916C820009FF9A1 /* CSAgentWindowController.m in Sources */,
@@ -405,7 +411,7 @@
 				A782CCB41916C83C009FF9A1 /* CSAdministratorWindowController.m in Sources */,
 				A710C40E18FF9D7B00A2FF8B /* CSAppDelegate.m in Sources */,
 				A710C40718FF9D7B00A2FF8B /* main.m in Sources */,
-				A7202D861917758C004B82B7 /* CSDBConnection.m in Sources */,
+				A7202D861917758C004B82B7 /* CSDatabaseManager.m in Sources */,
 				A7202D8D19177E0D004B82B7 /* CSProductRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
