@@ -2,6 +2,7 @@ package com.company.Aspects;
 
 import com.company.Controller.Controller;
 import com.company.Service.StoreService;
+import com.company.Service.ChangesSubject;
 import com.company.UI.GUI;
 
 import java.util.ArrayList;
@@ -23,13 +24,14 @@ public aspect StudentObserverPattern {
 		observers.remove(obs);
 	}
 	
-	public void Subject.notifyObservers(Object o) {
+	public void Subject.notifyObservers(Object o, Object o2) {
 		for (Observer ob : observers) {
 			ob.update(o, null);
 		}
 	}
 
-    pointcut observed(StoreService storeService):execution(* com.company.Service.StoreService.add*(..)) && this(storeService);
+//    pointcut observed(StoreService storeService):execution(* com.company.Service.StoreService.add*(..)) && this(storeService);
+	pointcut observed(StoreService storeService): execution(@ChangesSubject * * (..)) && this(storeService);
 
     StoreService storeService;
 
@@ -48,7 +50,7 @@ public aspect StudentObserverPattern {
         fillTable(null);
     }
 
-    after(GUI gui): execution(* GUI.close()) && this(gui) {
+    after(GUI gui): execution(* com.company.UI.GUI.dispose()) && this(gui) {
         this.storeService.removeObserver(gui);
     }
 }

@@ -1,9 +1,6 @@
 package com.company.Service;
 
-import java.util.ArrayList;
 import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.logging.Logger;
 
 import com.company.Model.Student;
@@ -17,6 +14,7 @@ public class StoreService {
 		this.repo = repo;
 	}
 	
+	@ChangesSubject
 	public void addElement(Student element) {
 		this.repo.addElement(element);
 	}

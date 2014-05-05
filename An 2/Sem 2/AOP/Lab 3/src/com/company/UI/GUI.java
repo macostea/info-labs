@@ -255,7 +255,7 @@ public class GUI extends JFrame {
         this.rightPanel.add(reloadBtn);
     }
 
-    protected void fillTable(List<Student> list) {
+    public void fillTable(List<Student> list) {
         this.table.clearSelection();
         if (list == null) {
             list = this.controller.allStudentObjects();
