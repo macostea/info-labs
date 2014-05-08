@@ -74,15 +74,14 @@ void *listenThreadFunction(void *args) {
     int *argPtr = (int *)args;
     int listenSock = *argPtr;
     
+    char *buffer = (char *)malloc(20 * sizeof(char));
+    
     while (1) {
         struct sockaddr_in clientAddr;
         memset(&clientAddr, 0, sizeof(struct sockaddr_in));
         socklen_t len = (socklen_t)sizeof(struct sockaddr_in);
         
-        char *buffer = (char *)malloc(20 * sizeof(char));
-        
         if (recvfrom(listenSock, buffer, 20 * sizeof(char), 0, (struct sockaddr *)&clientAddr, &len) > 0) {
-            std::cout << "Received data from: " << inet_ntoa(clientAddr.sin_addr) << ":" << clientAddr.sin_port << std::endl;
             if (!strcmp(buffer, "TIMEQUERY")) {
                 // TIMEQUERY response
                 
@@ -106,7 +105,7 @@ void *listenThreadFunction(void *args) {
                 char *currentTime = (char *)malloc(20 * sizeof(char));
                 time_t t = time(0);
                 struct tm *now = localtime(&t);
-                sprintf(currentTime, "DATE %d:%d:%d", now->tm_mday, now->tm_mon, now->tm_year);
+                sprintf(currentTime, "DATE %d:%d:%d", now->tm_mday, now->tm_mon, 1900 + now->tm_year);
                 
                 memset(buffer, 0, 20 * sizeof(char));
                 if (sendto(listenSock, currentTime, 20 * sizeof(char), 0, (struct sockaddr *)&clientAddr, len) < 0) {
@@ -116,6 +115,8 @@ void *listenThreadFunction(void *args) {
                 for (int it=0; it<_peers.size(); it++) {
                     _peers[it]->numberOfFailedTries++;
                 }
+                
+                
             
             } else {
                 // Query responses
@@ -142,6 +143,7 @@ void *listenThreadFunction(void *args) {
                 if (newPeer) {
                     peer = (Peer *)malloc(sizeof(Peer));
                     peer->numberOfFailedTries = 0;
+                    peer->addr = clientAddr;
                 }
                 
                 if (!strcmp(type, "TIME")) {
@@ -225,7 +227,6 @@ int main(int argc, const char * argv[])
         return -1;
     }
     
-    int listenSock;
     int broadcastSock;
     
     NBCAST = (char *)malloc(strlen(argv[1]));
@@ -238,41 +239,25 @@ int main(int argc, const char * argv[])
     listenAddr.sin_addr.s_addr = INADDR_ANY;
     listenAddr.sin_port = htons(7777);
     
-    if ((listenSock = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
-        perror("Failed to create socket!");
-        return errno;
-    }
-    
     if ((broadcastSock = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
         perror("Failed to create socket!");
         return errno;
     }
     
     int broadcast = true;
-    int reuse = true;
     
     if (setsockopt(broadcastSock, SOL_SOCKET, SO_BROADCAST, &broadcast, sizeof(broadcast)) < 0) {
         perror("Failed to set broadcast option!");
         return errno;
     }
     
-    if (setsockopt(listenSock, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse)) < 0) {
-        perror("Failed to set reuseaddr option!");
-        return errno;
-    }
-    
-    if (setsockopt(listenSock, SOL_SOCKET, SO_REUSEPORT, &reuse, sizeof(reuse)) < 0) {
-        perror("Failed to set reuseport option!");
-        return errno;
-    }
-    
-    if (bind(listenSock, (struct sockaddr *)&listenAddr, (socklen_t)sizeof(struct sockaddr_in)) < 0) {
+    if (bind(broadcastSock, (struct sockaddr *)&listenAddr, (socklen_t)sizeof(struct sockaddr_in)) < 0) {
         perror("Failed to bind!");
         return errno;
     }
     
     // Listen for connections on a different thread
-    pthread_create(&_listenThread, nullptr, listenThreadFunction, (void *)&listenSock);
+    pthread_create(&_listenThread, nullptr, listenThreadFunction, (void *)&broadcastSock);
     
     // 3 second timequery message loop
     pthread_create(&_timequeryThread, nullptr, timequeryThreadFunction, (void *)&broadcastSock);
