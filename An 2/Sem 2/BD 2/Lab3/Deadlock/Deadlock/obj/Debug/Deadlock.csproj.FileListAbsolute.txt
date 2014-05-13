@@ -1,0 +1,6 @@
+C:\Users\Mihai Costea\Documents\Visual Studio 2013\Projects\Deadlock\Deadlock\bin\Debug\Deadlock.exe.config
+C:\Users\Mihai Costea\Documents\Visual Studio 2013\Projects\Deadlock\Deadlock\obj\Debug\Deadlock.csprojResolveAssemblyReference.cache
+C:\Users\Mihai Costea\Documents\Visual Studio 2013\Projects\Deadlock\Deadlock\bin\Debug\Deadlock.exe
+C:\Users\Mihai Costea\Documents\Visual Studio 2013\Projects\Deadlock\Deadlock\bin\Debug\Deadlock.pdb
+C:\Users\Mihai Costea\Documents\Visual Studio 2013\Projects\Deadlock\Deadlock\obj\Debug\Deadlock.exe
+C:\Users\Mihai Costea\Documents\Visual Studio 2013\Projects\Deadlock\Deadlock\obj\Debug\Deadlock.pdb
