@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+
+
+
+	<bean id="studentRepo"
+		class="com.company.Repository.RepositoryDAO">
+	<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	<bean id="service" class="com.company.Service.StoreService">
+		<constructor-arg ref="studentRepo"></constructor-arg>
+	</bean>
+	<bean id="controller" class="com.company.Controller.Controller">
+		<constructor-arg ref="service"></constructor-arg>
+	</bean>
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${db.driver}"></property>
+		<property name="url" value="${db.url}"></property>
+		<property name="username" value="${db.user}"></property>
+		<property name="password" value="${db.pass}"></property>
+	</bean>
+
+	<context:property-placeholder location="studentsjdbc.properties" />
+</beans>
