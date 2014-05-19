@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CSEmployee.h"
+
 @interface CSValidator : NSObject
+
++ (NSArray *)validateEmployee:(CSEmployee *)employee;
 
 @end

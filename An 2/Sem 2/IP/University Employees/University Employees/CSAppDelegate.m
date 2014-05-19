@@ -10,6 +10,7 @@
 #import "CSRepository.h"
 #import "CSEmployee.h"
 
+#import "CSValidator.h"
 #import "CSIntegerOnlyValueFormatter.h"
 
 @interface CSAppDelegate ()
@@ -140,17 +141,23 @@
         newEmployee.name = object;
     }
     if ([header.title isEqualToString:@"Age"]) {
-        newEmployee.age = object;
+        newEmployee.age = @([object integerValue]);
     }
     if ([header.title isEqualToString:@"Degree"]) {
         newEmployee.degree = object;
     }
     if ([header.title isEqualToString:@"Salary"]) {
-        newEmployee.salary = object;
+        newEmployee.salary = @([object floatValue]);
     }
     
-    [self.repository updateElement:oldEmployee withDetailsFromElement:newEmployee];
-    [self reloadDatasource];
+    NSArray *errors = [CSValidator validateEmployee:newEmployee];
+    
+    if ([errors count] > 0) {
+        NSLog(@"Errors: %@", errors);
+    } else {
+        [self.repository updateElement:oldEmployee withDetailsFromElement:newEmployee];
+        [self reloadDatasource];
+    }
 }
 
 #pragma mark - NSComboBox Datasource
