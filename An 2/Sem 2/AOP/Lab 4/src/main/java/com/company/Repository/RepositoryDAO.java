@@ -26,19 +26,22 @@ public class RepositoryDAO extends JdbcDaoSupport implements Repository {
      * @param element The element to be added.
      */
     public void addElement(Student element){
-    	String query = "INSERT INTO Students VALUES(" + element.id + ", '" + element.name + "', " + element.grade + ")";
-    	getJdbcTemplate().update(query);
-    	
+    	String type = "";
     	if (element instanceof GraduateStudent) {
+    		type = "grad";
             String queryString = "INSERT INTO GraduateStudents VALUES(" + element.id + ", '" + ((GraduateStudent) element).supervisor + "', " + ((GraduateStudent) element).grade2 + ", " + ((GraduateStudent) element).grade3 + ")";
             getJdbcTemplate().update(queryString);
         } else if (element instanceof UndergraduateStudent) {
+        	type = "undergrad";
             String queryString = "INSERT INTO UndergraduateStudents VALUES(" + element.id + ", " + ((UndergraduateStudent) element).grade2 + ")";
             getJdbcTemplate().update(queryString);
         } else if (element instanceof PhDStudent) {
+        	type = "phd";
             String queryString = "INSERT INTO PhDStudents VALUES(" + element.id + ", '" + ((PhDStudent) element).supervisor + "', '" + ((PhDStudent) element).thesis + "', " + ((PhDStudent) element).grade2 + ")";
             getJdbcTemplate().update(queryString);
         }
+    	String query = "INSERT INTO Students VALUES(" + element.id + ", '" + element.name + "', " + element.grade + ", '" + type + "')";
+    	getJdbcTemplate().update(query);
     }
     
     /**

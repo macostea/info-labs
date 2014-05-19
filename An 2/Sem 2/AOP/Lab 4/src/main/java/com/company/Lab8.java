@@ -9,9 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.company.Controller.Controller;
-import com.company.Model.Student;
-import com.company.Repository.Repository;
-import com.company.Service.StoreService;
 import com.company.UI.GUI;
 
 /**
