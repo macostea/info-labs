@@ -8,6 +8,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface CSAdministratorWindowController : NSWindowController
+@interface CSAdministratorWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate>
 
 @end

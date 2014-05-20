@@ -70,4 +70,10 @@ static SPMySQLConnection *connection = nil;
     [connection queryString:query];
 }
 
+- (void)removeRow:(NSNumber *)rowId table:(NSString *)table {
+    NSString *query = [NSString stringWithFormat:@"DELETE FROM %@ WHERE id=%@", table, rowId];
+    
+    [connection queryString:query];
+}
+
 @end

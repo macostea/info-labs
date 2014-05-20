@@ -12,7 +12,7 @@
 
 @interface CSProductRepository ()
 
-@property (strong) NSMutableDictionary *products;
+@property (strong) NSMutableDictionary  *products;
 
 @end
 
@@ -28,11 +28,18 @@
 }
 
 - (void)addElement:(CSProduct *)element {
-    [self.products setObject:element forKey:element.productId];
+    NSArray *keys = [[self.products allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    NSNumber *lastId = [keys lastObject];
+    element.productId = @([lastId intValue] + 1);
+    [self.products setObject:element forKey:[NSString stringWithFormat:@"%@", element.productId]];
+    
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    NSString *values = [NSString stringWithFormat:@"%@, '%@', %@, %@", element.productId, element.name, element.price, element.quantity];
+    [connection addRow:values table:@"Products"];
 }
 
 - (void)updateElement:(CSProduct *)oldElement newElement:(CSProduct *)newElement {
-    [self.products setObject:newElement forKey:oldElement.productId];
+    [self.products setObject:newElement forKey:[NSString stringWithFormat:@"%@", oldElement.productId]];
     
     CSDatabaseManager *connection = [CSDatabaseManager manager];
     
@@ -42,6 +49,9 @@
 
 - (void)removeElement:(CSProduct *)element {
     [self.products removeObjectForKey:element.productId];
+    
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    [connection removeRow:element.productId table:@"Products"];
 }
 
 - (void)getAllElementsWithCompletionBlock:(void (^)(BOOL, NSArray *))completionBlock {

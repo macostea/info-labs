@@ -17,5 +17,6 @@
 - (NSArray *)rowsForTable:(NSString *)table;
 - (void)addRow:(NSString *)row table:(NSString *)table;
 - (void)updateRow:(NSNumber *)rowId value:(NSString *)value table:(NSString *)table;
+- (void)removeRow:(NSNumber *)rowId table:(NSString *)table;
 
 @end

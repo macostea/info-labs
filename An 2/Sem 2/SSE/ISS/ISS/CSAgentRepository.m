@@ -27,15 +27,30 @@
 }
 
 - (void)addElement:(CSAgent *)element {
-    [self.agents setObject:element forKey:element.agentId];
+    NSArray *keys = [[self.agents allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    NSNumber *lastId = [keys lastObject];
+    element.agentId = @([lastId intValue] + 1);
+    [self.agents setObject:element forKey:[NSString stringWithFormat:@"%@", element.agentId]];
+    
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    NSString *values = [NSString stringWithFormat:@"%@, '%@'", element.agentId, element.name];
+    [connection addRow:values table:@"Agents"];
 }
 
 - (void)updateElement:(CSAgent *)oldElement newElement:(CSAgent *)newElement {
-    [self.agents setObject:newElement forKey:oldElement.agentId];
+    [self.agents setObject:newElement forKey:[NSString stringWithFormat:@"%@", oldElement.agentId]];
+    
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    
+    NSString *value = [NSString stringWithFormat:@"name='%@'", newElement.name];
+    [connection updateRow:oldElement.agentId value:value table:@"Agents"];
 }
 
 - (void)removeElement:(CSAgent *)element {
     [self.agents removeObjectForKey:element.agentId];
+    
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    [connection removeRow:element.agentId table:@"Agents"];
 }
 
 - (void)getAllElementsWithCompletionBlock:(void (^)(BOOL, NSArray *))completionBlock {
