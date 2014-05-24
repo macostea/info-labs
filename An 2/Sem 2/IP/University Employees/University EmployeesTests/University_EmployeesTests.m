@@ -8,7 +8,12 @@
 
 #import <XCTest/XCTest.h>
 
+#import "CSRepository.h"
+#import "CSEmployee.h"
+
 @interface University_EmployeesTests : XCTestCase
+
+@property (nonatomic, strong) CSRepository *repo;
 
 @end
 
@@ -17,7 +22,6 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
@@ -26,9 +30,49 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+- (void)testCreateRepository {
+    self.repo = [[CSRepository alloc] init];
+    XCTAssertNotNil(self.repo, @"");
+}
+
+- (void)testAddEmployee {
+    self.repo = [[CSRepository alloc] init];
+    CSEmployee *employee = [CSEmployee employee];
+    employee.name = @"newName";
+    employee.age = @(10);
+    employee.salary = @(11.10);
+    [self.repo addElement:employee];
+    XCTAssertTrue([[self.repo getAllElements] count] == 1, @"");
+}
+
+- (void)testGetAllEmployees {
+    self.repo = [[CSRepository alloc] init];
+    CSEmployee *employee = [CSEmployee employee];
+    employee.name = @"newName";
+    employee.age = @(10);
+    employee.salary = @(11.10);
+    [self.repo addElement:employee];
+    NSArray *employees = [self.repo getAllElements];
+    CSEmployee *employee1 = employees[0];
+    
+    XCTAssertEqual(employee1.name, @"newName", @"");
+    XCTAssertEqual([employee1.age integerValue], 10, @"");
+    XCTAssertEqual([employee1.salary doubleValue], 11.10, @"");
+}
+
+- (void)testRemoveEmployee {
+    self.repo = [[CSRepository alloc] init];
+    CSEmployee *employee = [CSEmployee employee];
+    employee.name = @"newName";
+    employee.age = @(10);
+    employee.salary = @(11.10);
+    [self.repo addElement:employee];
+    NSArray *employees = [self.repo getAllElements];
+    CSEmployee *employee1 = employees[0];
+    
+    [self.repo removeElement:employee1];
+    
+    XCTAssertEqual([[self.repo getAllElements] count], 0, @"");
 }
 
 @end
