@@ -26,6 +26,12 @@
 		A7202D8D19177E0D004B82B7 /* CSProductRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8C19177E0D004B82B7 /* CSProductRepository.m */; };
 		A7202D9019178677004B82B7 /* CSAgentRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D8F19178677004B82B7 /* CSAgentRepository.m */; };
 		A7202D9319179810004B82B7 /* CSOrderRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A7202D9219179810004B82B7 /* CSOrderRepository.m */; };
+		A76A7DE3192DC29C00896A2B /* CSAgentValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7DE2192DC29C00896A2B /* CSAgentValidator.m */; };
+		A76A7DE6192DC31800896A2B /* CSProductValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7DE5192DC31800896A2B /* CSProductValidator.m */; };
+		A76A7DE9192DC74E00896A2B /* CSClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7DE8192DC74E00896A2B /* CSClient.m */; };
+		A76A7DEC192DC9CB00896A2B /* CSClientRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7DEB192DC9CB00896A2B /* CSClientRepository.m */; };
+		A76A7DEE192DD7AA00896A2B /* CSAddClientWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A76A7DED192DD7AA00896A2B /* CSAddClientWindow.xib */; };
+		A76A7DF1192DD8E400896A2B /* CSAddClientWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A76A7DF0192DD8E400896A2B /* CSAddClientWindowController.m */; };
 		A782CCAA1916C7BD009FF9A1 /* CSAgentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */; };
 		A782CCAC1916C7DD009FF9A1 /* CSAdministratorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */; };
 		A782CCAF1916C820009FF9A1 /* CSAgentWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = A782CCAE1916C820009FF9A1 /* CSAgentWindowController.m */; };
@@ -107,6 +113,17 @@
 		A7202D8F19178677004B82B7 /* CSAgentRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgentRepository.m; sourceTree = "<group>"; };
 		A7202D9119179810004B82B7 /* CSOrderRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSOrderRepository.h; sourceTree = "<group>"; };
 		A7202D9219179810004B82B7 /* CSOrderRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSOrderRepository.m; sourceTree = "<group>"; };
+		A76A7DE1192DC29C00896A2B /* CSAgentValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgentValidator.h; sourceTree = "<group>"; };
+		A76A7DE2192DC29C00896A2B /* CSAgentValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAgentValidator.m; sourceTree = "<group>"; };
+		A76A7DE4192DC31800896A2B /* CSProductValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSProductValidator.h; sourceTree = "<group>"; };
+		A76A7DE5192DC31800896A2B /* CSProductValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSProductValidator.m; sourceTree = "<group>"; };
+		A76A7DE7192DC74E00896A2B /* CSClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSClient.h; sourceTree = "<group>"; };
+		A76A7DE8192DC74E00896A2B /* CSClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSClient.m; sourceTree = "<group>"; };
+		A76A7DEA192DC9CB00896A2B /* CSClientRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSClientRepository.h; sourceTree = "<group>"; };
+		A76A7DEB192DC9CB00896A2B /* CSClientRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSClientRepository.m; sourceTree = "<group>"; };
+		A76A7DED192DD7AA00896A2B /* CSAddClientWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAddClientWindow.xib; sourceTree = "<group>"; };
+		A76A7DEF192DD8E400896A2B /* CSAddClientWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAddClientWindowController.h; sourceTree = "<group>"; };
+		A76A7DF0192DD8E400896A2B /* CSAddClientWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAddClientWindowController.m; sourceTree = "<group>"; };
 		A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAgentWindow.xib; sourceTree = "<group>"; };
 		A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAdministratorWindow.xib; sourceTree = "<group>"; };
 		A782CCAD1916C820009FF9A1 /* CSAgentWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAgentWindowController.h; sourceTree = "<group>"; };
@@ -185,7 +202,7 @@
 				A782CCCF1916D568009FF9A1 /* Model */,
 				A710C40C18FF9D7B00A2FF8B /* CSAppDelegate.h */,
 				A710C40D18FF9D7B00A2FF8B /* CSAppDelegate.m */,
-				A782CCB01916C827009FF9A1 /* Window Controllers */,
+				A76A7DE0192DC28600896A2B /* Controller */,
 				A782CCA61916C768009FF9A1 /* Windows */,
 				A710C41218FF9D7B00A2FF8B /* Images.xcassets */,
 				A710C40118FF9D7B00A2FF8B /* Supporting Files */,
@@ -236,8 +253,22 @@
 				A7202D8F19178677004B82B7 /* CSAgentRepository.m */,
 				A7202D9119179810004B82B7 /* CSOrderRepository.h */,
 				A7202D9219179810004B82B7 /* CSOrderRepository.m */,
+				A76A7DEA192DC9CB00896A2B /* CSClientRepository.h */,
+				A76A7DEB192DC9CB00896A2B /* CSClientRepository.m */,
 			);
 			name = Repository;
+			sourceTree = "<group>";
+		};
+		A76A7DE0192DC28600896A2B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A782CCB01916C827009FF9A1 /* Window Controllers */,
+				A76A7DE1192DC29C00896A2B /* CSAgentValidator.h */,
+				A76A7DE2192DC29C00896A2B /* CSAgentValidator.m */,
+				A76A7DE4192DC31800896A2B /* CSProductValidator.h */,
+				A76A7DE5192DC31800896A2B /* CSProductValidator.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		A782CCA61916C768009FF9A1 /* Windows */ = {
@@ -246,6 +277,7 @@
 				A710C40F18FF9D7B00A2FF8B /* MainMenu.xib */,
 				A782CCA91916C7BD009FF9A1 /* CSAgentWindow.xib */,
 				A782CCAB1916C7DD009FF9A1 /* CSAdministratorWindow.xib */,
+				A76A7DED192DD7AA00896A2B /* CSAddClientWindow.xib */,
 			);
 			name = Windows;
 			sourceTree = "<group>";
@@ -257,6 +289,8 @@
 				A782CCAE1916C820009FF9A1 /* CSAgentWindowController.m */,
 				A782CCB11916C83C009FF9A1 /* CSAdministratorWindowController.h */,
 				A782CCB21916C83C009FF9A1 /* CSAdministratorWindowController.m */,
+				A76A7DEF192DD8E400896A2B /* CSAddClientWindowController.h */,
+				A76A7DF0192DD8E400896A2B /* CSAddClientWindowController.m */,
 			);
 			name = "Window Controllers";
 			sourceTree = "<group>";
@@ -270,6 +304,8 @@
 				A7202D7F19176D10004B82B7 /* CSOrder.m */,
 				A7202D8119176D6B004B82B7 /* CSAgent.h */,
 				A7202D8219176D6B004B82B7 /* CSAgent.m */,
+				A76A7DE7192DC74E00896A2B /* CSClient.h */,
+				A76A7DE8192DC74E00896A2B /* CSClient.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -382,6 +418,7 @@
 				A710C41318FF9D7B00A2FF8B /* Images.xcassets in Resources */,
 				A710C40B18FF9D7B00A2FF8B /* Credits.rtf in Resources */,
 				A782CCAC1916C7DD009FF9A1 /* CSAdministratorWindow.xib in Resources */,
+				A76A7DEE192DD7AA00896A2B /* CSAddClientWindow.xib in Resources */,
 				A710C41118FF9D7B00A2FF8B /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,13 +442,18 @@
 				A7202D8A19177D4A004B82B7 /* CSRepository.m in Sources */,
 				A7202D8319176D6B004B82B7 /* CSAgent.m in Sources */,
 				A782CCAF1916C820009FF9A1 /* CSAgentWindowController.m in Sources */,
+				A76A7DEC192DC9CB00896A2B /* CSClientRepository.m in Sources */,
+				A76A7DE6192DC31800896A2B /* CSProductValidator.m in Sources */,
 				A7202D9019178677004B82B7 /* CSAgentRepository.m in Sources */,
 				A7202D7D19176CCC004B82B7 /* CSProduct.m in Sources */,
+				A76A7DE3192DC29C00896A2B /* CSAgentValidator.m in Sources */,
 				A7202D8019176D10004B82B7 /* CSOrder.m in Sources */,
+				A76A7DE9192DC74E00896A2B /* CSClient.m in Sources */,
 				A782CCB41916C83C009FF9A1 /* CSAdministratorWindowController.m in Sources */,
 				A710C40E18FF9D7B00A2FF8B /* CSAppDelegate.m in Sources */,
 				A710C40718FF9D7B00A2FF8B /* main.m in Sources */,
 				A7202D861917758C004B82B7 /* CSDatabaseManager.m in Sources */,
+				A76A7DF1192DD8E400896A2B /* CSAddClientWindowController.m in Sources */,
 				A7202D8D19177E0D004B82B7 /* CSProductRepository.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

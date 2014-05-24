@@ -7,9 +7,11 @@
 //
 
 #import "CSAgentWindowController.h"
+#import "CSAddClientWindowController.h"
 
 #import "CSProductRepository.h"
 #import "CSOrderRepository.h"
+#import "CSClientRepository.h"
 
 #import "CSProduct.h"
 #import "CSOrder.h"
@@ -18,10 +20,16 @@
 
 @property (strong) CSProductRepository *productRepo;
 @property (strong) CSOrderRepository *orderRepo;
+@property (strong) CSClientRepository *clientRepo;
 @property (strong) NSArray *products;
+@property (strong) NSArray *orders;
+@property (strong) NSArray *clients;
+@property (weak) IBOutlet NSArrayController *orderArrayController;
+@property (weak) IBOutlet NSArrayController *clientArrayController;
 @property (weak) IBOutlet NSArrayController *productArrayController;
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSTextField *quantityTextField;
+@property (strong) CSAddClientWindowController *addClientWindowController;
 
 @end
 
@@ -33,6 +41,7 @@
     if (self) {
         self.productRepo = [[CSProductRepository alloc] init];
         self.orderRepo = [[CSOrderRepository alloc] init];
+        self.clientRepo = [[CSClientRepository alloc] init];
     }
     return self;
 }
@@ -41,6 +50,8 @@
     [super windowDidLoad];
     
     [self refreshProducts];
+    [self refreshOrders];
+    [self refreshClients];
 }
 
 #pragma mark - NSTableView Delegate
@@ -48,8 +59,6 @@
 - (BOOL)tableView:(NSTableView *)tableView shouldEditTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
     return NO;
 }
-
-#pragma mark - NSAlert Delegate
 
 #pragma mark - Private methods
 
@@ -62,11 +71,33 @@
     }];
 }
 
+- (void)refreshOrders {
+    [self.orderRepo getAllElementsWithCompletionBlock:^(BOOL success, NSArray *results) {
+        if (success) {
+            self.orders = results;
+            [self.orderArrayController setContent:self.orders];
+        }
+    }];
+}
+
+- (void)refreshClients {
+    [self.clientRepo getAllElementsWithCompletionBlock:^(BOOL success, NSArray *results) {
+        if (success) {
+            NSMutableArray *mutableResults = [results mutableCopy];
+            CSClient *client = [[CSClient alloc] init];
+            client.name = @"Add new client";
+            [mutableResults addObject:client];
+            self.clients = mutableResults;
+            [self.clientArrayController setContent:self.clients];
+        }
+    }];
+}
+
 #pragma mark - Actions
 
 - (IBAction)orderButtonPressed:(NSButton *)sender {
     NSInteger quantity = [self.quantityTextField intValue];
-    if (quantity == 0) {
+    if (quantity <= 0) {
         NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Quantity field must be a valid integer number > 0"];
         [alert runModal];
     } else {
@@ -100,6 +131,24 @@
             }];
         }
     }
+}
+
+- (IBAction)selectedClient:(NSPopUpButton *)sender {
+    NSInteger index = [sender indexOfSelectedItem];
+    if (index == [self.clients count] - 1) {
+        self.addClientWindowController = [[CSAddClientWindowController alloc] initWithWindowNibName:@"CSAddClientWindow"];
+        self.addClientWindowController.agentWindowController = self;
+        NSWindow *modalWindow = [self.addClientWindowController window];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        
+        [NSApp beginSheet:modalWindow modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(addClient:returnCode:contextInfo:) contextInfo:(__bridge void *)(params)];
+    }
+}
+
+- (void)addClient:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    NSMutableDictionary *params = (__bridge NSMutableDictionary *)(contextInfo);
+    
+    
 }
 
 @end

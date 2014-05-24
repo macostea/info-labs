@@ -66,7 +66,11 @@
     NSArray *result = [connection rowsForTable:@"Orders"];
     
     for (NSDictionary *orderDict in result) {
-        CSOrder *order = [CSOrder objectFromDictionary:orderDict];
+        NSMutableDictionary *preparedOrder = [orderDict mutableCopy];
+        [preparedOrder setObject:[connection rowForId:[orderDict objectForKey:@"clientId"] table:@"Clients"] forKey:@"client"];
+        [preparedOrder setObject:[connection rowForId:[orderDict objectForKey:@"productId"] table:@"Products"] forKey:@"product"];
+        [preparedOrder setObject:[connection rowForId:[orderDict objectForKey:@"agentId"] table:@"Agents"] forKey:@"agent"];
+        CSOrder *order = [CSOrder objectFromDictionary:preparedOrder];
         
         if ([order.orderId integerValue] > [self.lastId integerValue]) {
             self.lastId = order.orderId;

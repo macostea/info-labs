@@ -15,6 +15,7 @@
 
 - (void)connectWithCompletionBlock:(void (^)(BOOL success))completionBlock;
 - (NSArray *)rowsForTable:(NSString *)table;
+- (NSDictionary *)rowForId:(NSNumber *)rowId table:(NSString *)table;
 - (void)addRow:(NSString *)row table:(NSString *)table;
 - (void)updateRow:(NSNumber *)rowId value:(NSString *)value table:(NSString *)table;
 - (void)removeRow:(NSNumber *)rowId table:(NSString *)table;

@@ -58,6 +58,18 @@ static SPMySQLConnection *connection = nil;
     return array;
 }
 
+- (NSDictionary *)rowForId:(NSNumber *)rowId table:(NSString *)table{
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE id=%@", table, rowId];
+    
+    SPMySQLResult *result = [connection queryString:query];
+    
+    for (NSDictionary *dictionary in result) {
+        return dictionary;
+    }
+    
+    return nil;
+}
+
 - (void)addRow:(NSString *)row table:(NSString *)table {
     NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ VALUES(%@)", table, row];
     
