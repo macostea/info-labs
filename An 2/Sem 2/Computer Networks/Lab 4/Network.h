@@ -17,7 +17,7 @@
 #include <netinet/in.h>
 
 static int const MAXPKTSIZE = 512;
-static int const MAXRETRY   = 3;
+static int const MAXRETRY   = 5;
 static int const TIMEOUT    = 5;
 
 typedef struct {
@@ -30,6 +30,7 @@ typedef struct {
 
 class Network {
     int sequenceNo;
+    int dropPacket;
     int retrySend;
     size_t packetSend(int sockfd, Packet *packet, size_t bufflen, const struct sockaddr *dest_addr, socklen_t destlen);
     size_t packetRecv(int sockfd, void *buffer, size_t bufflen, struct sockaddr *src_addr, socklen_t *srclen);

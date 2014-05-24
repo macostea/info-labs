@@ -13,6 +13,7 @@
 Network::Network() {
     sequenceNo = 0;
     retrySend = 0;
+    dropPacket = 0;
 }
 
 size_t Network::reliableSend(int sockfd, void *buffer, size_t bufflen, const struct sockaddr *dest_addr, socklen_t destlen) {
@@ -40,8 +41,8 @@ size_t Network::packetSend(int sockfd, Packet *packet, size_t bufflen, const str
     if (packet->payloadLen > 0) {
         fd_set fdSet;
         struct timeval timeout;
-        timeout.tv_sec = 5;
-        timeout.tv_usec = 0;
+        timeout.tv_sec = 0;
+        timeout.tv_usec = 50000;
         FD_ZERO(&fdSet);
         FD_SET(sockfd, &fdSet);
         
@@ -71,11 +72,11 @@ size_t Network::packetSend(int sockfd, Packet *packet, size_t bufflen, const str
             this->sequenceNo++;
             retrySend = 0;
             return sendSize;
-        } else {
-            sleep(TIMEOUT);
-            retrySend++;
-            return this->packetSend(sockfd, packet, bufflen, dest_addr, destlen);
-        }
+        } //else {
+//            sleep(TIMEOUT);
+//            retrySend++;
+//            return this->packetSend(sockfd, packet, bufflen, dest_addr, destlen);
+//        }
         
         return sendSize;
     } else {
@@ -90,19 +91,26 @@ size_t Network::packetRecv(int sockfd, void *buffer, size_t bufflen, struct sock
     this->retrySend = 0;
     Packet packet;
     
+    dropPacket++;
     if (select(sockfd + 1, &fdSet, nullptr, nullptr, nullptr) > 0) {
         recvfrom(sockfd, &packet, sizeof(packet), 0, src_addr, srclen);
         printf("Got packet with seq no: %d\n", packet.sequenceNo);
         printf("Payload length: %d\n", packet.payloadLen);
         if (packet.sequenceNo == sequenceNo) {
-            memcpy(buffer, packet.payload, packet.payloadLen);
-            sequenceNo++;
-            Packet ackPacket;
-            ackPacket.sequenceNo = sequenceNo;
-            ackPacket.ackFlag = 1;
-            ackPacket.ackValue = sequenceNo;
-            ackPacket.payloadLen = 0;
-            this->packetSend(sockfd, &ackPacket, sizeof(ackPacket), src_addr, *srclen);
+            if (dropPacket % 4 != 0) {
+                memcpy(buffer, packet.payload, packet.payloadLen);
+                sequenceNo++;
+                Packet ackPacket;
+                ackPacket.sequenceNo = sequenceNo;
+                ackPacket.ackFlag = 1;
+                ackPacket.ackValue = sequenceNo;
+                ackPacket.payloadLen = 0;
+                printf("Drop packet: %d\n", dropPacket);
+                printf("Sending acknowledgment\n");
+                this->packetSend(sockfd, &ackPacket, sizeof(ackPacket), src_addr, *srclen);
+            } else {
+            printf("NOT SENDING ACKNOWLEDGEMENT for packet: %d\n", packet.sequenceNo);
+            }
         } else {
             Packet ackPacket;
             ackPacket.ackFlag = 1;

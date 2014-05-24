@@ -52,7 +52,7 @@ int main(int argc, const char * argv[])
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(5555);
     
-    char message[256] = "cat.jpg";
+    char message[256] = "1.txt";
     
     Network network;
     network.reliableSend(_clientSock, &message, 256, (struct sockaddr *)&serverAddr, (socklen_t)sizeof(struct sockaddr_in));
@@ -62,10 +62,10 @@ int main(int argc, const char * argv[])
     memset(&serverAddr, 0, sizeof(struct sockaddr_in));
     socklen_t sockLen = sizeof(struct sockaddr_in);
     
-    char filename[256] = "recv_cat.jpg";
+    char filename[256] = "recv_2.jpg";
     _fd = open(filename, O_CREAT|O_APPEND|O_WRONLY);
     
-    signal(SIGALRM, timeout);
+//    signal(SIGALRM, timeout);
     
 //    alarm(5); // reasonable amount of time i say
     Network network1;
