@@ -62,7 +62,7 @@ int main(int argc, const char * argv[])
     memset(&serverAddr, 0, sizeof(struct sockaddr_in));
     socklen_t sockLen = sizeof(struct sockaddr_in);
     
-    char filename[256] = "recv_2.jpg";
+    char filename[256] = "recv_2.txt";
     _fd = open(filename, O_CREAT|O_APPEND|O_WRONLY);
     
 //    signal(SIGALRM, timeout);

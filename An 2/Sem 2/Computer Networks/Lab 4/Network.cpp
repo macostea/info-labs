@@ -39,17 +39,17 @@ size_t Network::packetSend(int sockfd, Packet *packet, size_t bufflen, const str
     printf("Payload length: %d\n", packet->payloadLen);
     
     if (packet->payloadLen > 0) {
-        fd_set fdSet;
-        struct timeval timeout;
-        timeout.tv_sec = 0;
-        timeout.tv_usec = 50000;
-        FD_ZERO(&fdSet);
-        FD_SET(sockfd, &fdSet);
-        
         bool gotResponse = false;
         int numberOfTries = 0;
         size_t sendSize = 0;
         while (numberOfTries < MAXRETRY && !gotResponse) {
+            fd_set fdSet;
+            struct timeval timeout;
+            timeout.tv_sec = 0;
+            timeout.tv_usec = 50000;
+            FD_ZERO(&fdSet);
+            FD_SET(sockfd, &fdSet);
+            
             sendSize = sendto(sockfd, packet, bufflen, 0, dest_addr, destlen);
             if (select(sockfd + 1, &fdSet, nullptr, nullptr, &timeout) > 0) {
                 gotResponse = true;
@@ -72,12 +72,12 @@ size_t Network::packetSend(int sockfd, Packet *packet, size_t bufflen, const str
             this->sequenceNo++;
             retrySend = 0;
             return sendSize;
-        } //else {
-//            sleep(TIMEOUT);
-//            retrySend++;
-//            return this->packetSend(sockfd, packet, bufflen, dest_addr, destlen);
-//        }
-        
+        } else {
+            sleep(TIMEOUT);
+            retrySend++;
+            return this->packetSend(sockfd, packet, bufflen, dest_addr, destlen);
+        }
+    
         return sendSize;
     } else {
         return sendto(sockfd, packet, bufflen, 0, dest_addr, destlen);
