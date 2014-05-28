@@ -27,11 +27,20 @@ void readTrainData(int noExamples, int noFeatures, int noOutputs, std::vector<st
             input->push_back(features);
             int outputData;
             file >> outputData;
-            std::bitset<3> set(outputData);
             std::vector<double> *outputVector = new std::vector<double>();
-            outputVector->push_back(set[0]);
-            outputVector->push_back(set[1]);
-            outputVector->push_back(set[2]);
+            if (outputData == 1) {
+                outputVector->push_back(1);
+                outputVector->push_back(0);
+                outputVector->push_back(0);
+            } else if (outputData == 2) {
+                outputVector->push_back(0);
+                outputVector->push_back(1);
+                outputVector->push_back(0);
+            } else {
+                outputVector->push_back(0);
+                outputVector->push_back(0);
+                outputVector->push_back(1);
+            }
             output->push_back(outputVector);
         }
     }
@@ -64,7 +73,7 @@ int main(int argc, const char * argv[])
     std::vector<std::vector<double> *> *testData = new std::vector<std::vector<double> *>();
     std::vector<std::vector<double> *> *testOutput = new std::vector<std::vector<double> *>();
     readTrainData(3, 21, 3, testData, testOutput, "data.test");
-    Network net = Network(21, 3, 1, 6);
+    Network net = Network(21, 3, 15, 3);
     net.learn(input, output);
     net.test(testData, testOutput);
     

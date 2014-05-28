@@ -10,8 +10,8 @@
 
 #include <cmath>
 
-#define LEARN_RATE 0.5
-#define ERR 0.1
+#define LEARN_RATE 0.01
+#define ERR 213.6
 
 Network::Network(int noInputs, int noOutputs, int noHiddenLayers, int noNeuronsPerHiddenLayer) {
     this->noInputs = noInputs;
@@ -82,6 +82,7 @@ bool Network::checkGlobalError(std::vector<double> errors) {
     for (int it=0; it<errors.size(); it++) {
         error+= errors[it];
     }
+    printf("%f\n", error);
     if (fabs(error - ERR) < 1.0E-8) {
         return true;
     }

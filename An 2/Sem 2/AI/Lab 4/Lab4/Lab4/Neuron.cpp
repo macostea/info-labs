@@ -8,8 +8,8 @@
 
 #include "Neuron.h"
 
-#define MAX_W 0.01
-#define MIN_W -0.01
+#define MAX_W 0.1
+#define MIN_W -0.1
 
 Neuron::Neuron(int noInputs) {
     this->noInputs = noInputs;
