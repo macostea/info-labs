@@ -34,7 +34,7 @@
     
     CSDatabaseManager *connection = [CSDatabaseManager manager];
     
-    NSString *row = [NSString stringWithFormat:@"%@,%@,%@,%@", element.orderId, element.quantity, element.product.productId, element.agent.agentId];
+    NSString *row = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,'%@'", element.orderId, element.quantity, element.product.productId, element.agent.agentId, element.client.clientId, element.status];
     [connection addRow:row table:@"Orders"];
 }
 

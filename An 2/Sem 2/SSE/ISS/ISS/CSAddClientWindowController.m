@@ -7,8 +7,14 @@
 //
 
 #import "CSAddClientWindowController.h"
+#import "CSClientRepository.h"
+#import "CSClient.h"
 
 @interface CSAddClientWindowController ()
+
+@property (strong) CSClientRepository *clientRepo;
+@property (weak) IBOutlet NSTextField *name;
+@property (weak) IBOutlet NSTextField *address;
 
 @end
 
@@ -18,7 +24,7 @@
 {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
+        self.clientRepo = [[CSClientRepository alloc] init];
     }
     return self;
 }
@@ -27,11 +33,17 @@
 {
     [super windowDidLoad];
     
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 
 - (IBAction)addClient:(NSButton *)sender {
-    [NSApp stopModal];
+    CSClient *client = [[CSClient alloc] init];
+    client.name = [self.name stringValue];
+    client.address = [self.name stringValue];
+    [self.clientRepo addElement:client];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clientAdded" object:nil];
+    
+    [NSApp endSheet:[self window]];
 }
 
 @end

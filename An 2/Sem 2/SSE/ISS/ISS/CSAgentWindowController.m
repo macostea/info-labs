@@ -30,6 +30,7 @@
 @property (weak) IBOutlet NSTableView *tableView;
 @property (weak) IBOutlet NSTextField *quantityTextField;
 @property (strong) CSAddClientWindowController *addClientWindowController;
+@property (weak) IBOutlet NSPopUpButton *clientSelector;
 
 @end
 
@@ -42,6 +43,8 @@
         self.productRepo = [[CSProductRepository alloc] init];
         self.orderRepo = [[CSOrderRepository alloc] init];
         self.clientRepo = [[CSClientRepository alloc] init];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAddClient:) name:@"clientAdded" object:nil];
     }
     return self;
 }
@@ -51,6 +54,12 @@
     
     [self refreshProducts];
     [self refreshOrders];
+    [self refreshClients];
+}
+
+#pragma mark - Notifications
+
+- (void)didAddClient:(NSNotification *)notif {
     [self refreshClients];
 }
 
@@ -119,6 +128,9 @@
                     order.product = selectedProduct;
                     order.agent = self.currentAgent;
                     order.quantity = @(quantity);
+                    CSClient *client = self.clients[[self.clientSelector indexOfSelectedItem]];
+                    order.client = client;
+                    order.status = @"Registered";
                     
                     [self.orderRepo addElement:order];
                     
@@ -127,6 +139,7 @@
                     [self.productRepo updateElement:selectedProduct newElement:newProduct];
                     
                     [self refreshProducts];
+                    [self refreshOrders];
                 }
             }];
         }
@@ -139,16 +152,9 @@
         self.addClientWindowController = [[CSAddClientWindowController alloc] initWithWindowNibName:@"CSAddClientWindow"];
         self.addClientWindowController.agentWindowController = self;
         NSWindow *modalWindow = [self.addClientWindowController window];
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
         
-        [NSApp beginSheet:modalWindow modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(addClient:returnCode:contextInfo:) contextInfo:(__bridge void *)(params)];
+        [NSApp beginSheet:modalWindow modalForWindow:[self window] modalDelegate:nil didEndSelector:nil contextInfo:nil];
     }
-}
-
-- (void)addClient:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
-    NSMutableDictionary *params = (__bridge NSMutableDictionary *)(contextInfo);
-    
-    
 }
 
 @end

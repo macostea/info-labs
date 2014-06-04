@@ -212,7 +212,7 @@
 - (IBAction)saveToFilePressed:(NSButton *)sender {
     NSMutableArray *array = [NSMutableArray array];
     
-    for (CSEmployee *employee in self.datasource) {
+    for (CSEmployee *employee in ([self isFiltered] ? self.filteredDatasource : self.datasource)) {
         [array addObject:[employee dictionaryFromEmployee]];
     }
     

@@ -73,7 +73,7 @@ static SPMySQLConnection *connection = nil;
 - (void)addRow:(NSString *)row table:(NSString *)table {
     NSString *query = [NSString stringWithFormat:@"INSERT INTO %@ VALUES(%@)", table, row];
     
-    [connection queryString:query];
+    SPMySQLResult *res = [connection queryString:query];
 }
 
 - (void)updateRow:(NSNumber *)rowId value:(NSString *)value table:(NSString *)table {

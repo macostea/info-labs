@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="CSAgentWindowController">
             <connections>
                 <outlet property="clientArrayController" destination="Ygn-9o-Faz" id="HTr-R4-IyJ"/>
+                <outlet property="clientSelector" destination="h0j-kW-ZqE" id="0Ad-CH-kYe"/>
                 <outlet property="orderArrayController" destination="GH0-CH-cqm" id="jO6-eS-Wxa"/>
                 <outlet property="productArrayController" destination="LcF-yX-lwd" id="0IC-g4-OMv"/>
                 <outlet property="quantityTextField" destination="6tx-51-Lk9" id="B4R-Xc-I4W"/>
@@ -20,7 +21,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="1147" height="463"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="CC1-jq-JEv">
                 <rect key="frame" x="0.0" y="0.0" width="1147" height="463"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -230,7 +231,7 @@
                             <rect key="frame" x="1" y="1" width="0.0" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="oee-U1-KWv">
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="oee-U1-KWv">
                             <rect key="frame" x="-15" y="17" width="16" height="0.0"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -262,7 +263,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="u8K-0N-k8F" id="RST-Sh-q0o">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="xp1-aY-DWM">
                                 <items>
                                     <menuItem title="Item 1" state="on" id="u8K-0N-k8F"/>
