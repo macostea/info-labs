@@ -54,8 +54,25 @@
         
         [self.orders enumerateKeysAndObjectsUsingBlock:^(id key, CSOrder *obj, BOOL *stop) {
             [array addObject:[obj copy]];
-            completionBlock(YES, array);
         }];
+        
+        completionBlock(YES, array);
+    }];
+}
+
+- (void)getAllElementsForAgent:(CSAgent *)agent completionBlock:(void (^)(BOOL, NSArray *))completionBlock {
+    CSDatabaseManager *connection = [CSDatabaseManager manager];
+    [connection connectWithCompletionBlock:^(BOOL success) {
+        [self getOrdersFromDB];
+        NSMutableArray *array = [NSMutableArray array];
+        
+        [self.orders enumerateKeysAndObjectsUsingBlock:^(id key, CSOrder *obj, BOOL *stop) {
+            if ([obj.agent.agentId isEqual:agent.agentId]) {
+                [array addObject:[obj copy]];
+            }
+        }];
+        
+        completionBlock(YES, array);
     }];
 }
 

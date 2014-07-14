@@ -62,8 +62,10 @@
         
         [self.clients enumerateKeysAndObjectsUsingBlock:^(id key, CSClient *obj, BOOL *stop) {
             [array addObject:[obj copy]];
-            completionBlock(YES, array);
         }];
+        
+        completionBlock(YES, array);
+
     }];
 }
 

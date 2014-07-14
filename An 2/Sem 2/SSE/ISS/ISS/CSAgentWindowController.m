@@ -43,6 +43,7 @@
         self.productRepo = [[CSProductRepository alloc] init];
         self.orderRepo = [[CSOrderRepository alloc] init];
         self.clientRepo = [[CSClientRepository alloc] init];
+
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didAddClient:) name:@"clientAdded" object:nil];
     }
@@ -81,7 +82,7 @@
 }
 
 - (void)refreshOrders {
-    [self.orderRepo getAllElementsWithCompletionBlock:^(BOOL success, NSArray *results) {
+    [self.orderRepo getAllElementsForAgent:self.currentAgent completionBlock:^(BOOL success, NSArray *results) {
         if (success) {
             self.orders = results;
             [self.orderArrayController setContent:self.orders];
@@ -113,7 +114,7 @@
         CSProduct *selectedProduct = self.products[[self.tableView selectedRow]];
         if (quantity > [selectedProduct.quantity integerValue]) {
             NSAlert *alert = [NSAlert alertWithMessageText:@"Error" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Requested quantity is not available. Please input a smaller quantity."];
-            [alert beginSheetModalForWindow:self.window completionHandler:^(NSModalResponse returnCode) {
+            [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
                 
             }];
         } else {

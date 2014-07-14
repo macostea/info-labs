@@ -12,6 +12,8 @@
 #import "CSAgentRepository.h"
 #import "CSProduct.h"
 #import "CSAgent.h"
+#import "CSProductValidator.h"
+#import "CSAgentValidator.h"
 
 @interface CSAdministratorWindowController ()
 @property (weak) IBOutlet NSArrayController                 *productsArrayController;
@@ -66,8 +68,15 @@
             newProduct.price = @([object floatValue]);
         }
         
-        [self.productRepo updateElement:oldProduct newElement:newProduct];
-        [self refreshProducts];
+        CSProductValidator *validator = [[CSProductValidator alloc] init];
+        if ([validator validateProduct:newProduct]) {
+            [self.productRepo updateElement:oldProduct newElement:newProduct];
+            [self refreshProducts];
+        } else {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Product is not valid" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The details you entered are not valid"];
+            [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
+            }];
+        }
         
     } else if (tableView == self.salespeopleTableView) {
         CSAgent *oldAgent = self.agents[row];
@@ -79,8 +88,16 @@
             newAgent.name = object;
         }
         
-        [self.agentRepo updateElement:oldAgent newElement:newAgent];
-        [self refreshAgents];
+        CSAgentValidator *validator = [[CSAgentValidator alloc] init];
+        
+        if ([validator validateAgent:newAgent]) {
+            [self.agentRepo updateElement:oldAgent newElement:newAgent];
+            [self refreshAgents];
+        } else {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Agent is not valid" defaultButton:@"Ok" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The details you entered are not valid"];
+            [alert beginSheetModalForWindow:[self window] completionHandler:^(NSModalResponse returnCode) {
+            }];
+        }
     }
 }
 

@@ -62,8 +62,9 @@
         
         [self.agents enumerateKeysAndObjectsUsingBlock:^(id key, CSAgent *obj, BOOL *stop) {
             [array addObject:[obj copy]];
-            completionBlock(YES, array);
         }];
+        
+        completionBlock(YES, array);
     }];
 }
 

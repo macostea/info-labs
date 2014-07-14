@@ -8,6 +8,10 @@
 
 #import "CSRepository.h"
 
+@class CSAgent;
+
 @interface CSOrderRepository : CSRepository
+
+- (void)getAllElementsForAgent:(CSAgent *)agent completionBlock:(void (^)(BOOL success, NSArray *results))completionBlock;
 
 @end

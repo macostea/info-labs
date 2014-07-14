@@ -10,7 +10,6 @@
 
 #import "CSAgent.h"
 
-
 @interface CSAgentValidator : NSObject
 
 - (BOOL)validateAgent:(CSAgent *)agent;
