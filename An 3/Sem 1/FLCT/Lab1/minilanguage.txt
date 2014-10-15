@@ -1,0 +1,54 @@
+Minilanguage specification:
+
+Alphabet:
+a. Upper (A-Z) and lower case letters (a-z) of the English alphabet
+b. Underline character '_'
+c. Decimal digits (0-9)
+
+Lexic:
+a.Special symbols, representing:
+- operators + - * / = < <= == >= !=
+- separators ( ) { } : ; space
+- reserved words: int, string, struct, if, then, else, while, read, write, let, var
+
+b. Identifiers
+A sequence of letters and digits, such that the first charater is a letter; the rule is:
+- identifier: letter | letter{letter}{digit}
+- letter: "a" | "b"| ... | "z"
+- digit: "0" | "1" | ... | "9"
+
+c. Constants
+1. integer - rule:
+let constint:=+no|-no|no
+
+2. string
+let conststring:="string"
+
+Syntax:
+The words - predefined tokens are specified between " and ":	
+
+a. Syntactical rules:
+variable_declaration: "var" IDENTIFIER":" type
+declaration_list: variable_declaration | constant_declaration ";" declaration_list
+primitive_type: "int" | "string"
+user_type: "struct" "{" declaration_list "}"
+type: primitive_type | user_type
+compound_statement: "{" statement_list "}"
+statement_list: statement | statment ";" statement_list
+statement: simple_statment | block_statement
+simple_statement: assignment | io_statement
+assignment: IDENTIFIER "=" expression
+expression: expression"+"term|term
+term: term"*"factor|factor
+factor: "("expression")"|IDENTIFIER|constant
+io_statement: "read"|"write" "("IDENTIFIER")"
+block_statement: compound_statement|if_statement|while_statement
+if_statement: "if" condition statement_list ["else" statement_list]
+while_statement: "while" condition statement_list
+condition: expression RELATION expression
+
+b. Lexical rules:
+IDENTIFIER: letter|letter{letter}{digit}
+letter: "a"|"b"|...|"z"
+digit: "0"|"1"|...|"9"
+RELATION: "<"|"<="|"=="|"!="|">="|">"
