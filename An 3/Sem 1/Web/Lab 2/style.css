@@ -16,14 +16,11 @@ a{text-decoration:none;color:#0071c5;outline:0}
 .wrapper{height:auto!important;margin:0 auto;min-width:917px;position:relative}
 
 .page * {
-	box-sizing: border-box;
 	color: rgb(85, 85, 85);
 	font-family: tahoma, helvetica, sans-serif;
 }
 
 .page .navbar {
-	clear:both;
-	content: " ";
 	font-size: 14px;
 	border-radius:0;
 	border-width: 0 0 1px;
@@ -38,8 +35,6 @@ a{text-decoration:none;color:#0071c5;outline:0}
 }
 
 .container {
-	clear: both;
-	content: " ";
 	padding: 0;
 	width: 1170px;
 	max-width: none !important;
@@ -51,8 +46,6 @@ a{text-decoration:none;color:#0071c5;outline:0}
 }
 
 .navbar-header {
-	content: " ";
-	clear: both;
 	margin-right: 0;
 	margin-left: 0;
 	float: left;
@@ -117,6 +110,26 @@ a{text-decoration:none;color:#0071c5;outline:0}
 	border-bottom: 0;
 	font-family: "tahoma",Helvetica,"helvetica",Arial,sans-serif;
 	text-decoration: none;
+}
+
+.dropdown-toggle:hover .dropdown-menu{
+	display: block;
+	position: absolute;
+	top: 63px;
+}
+
+.dropdown-menu {
+	display:none;
+	color:#fff;
+	background-color: #0081d6 !important;
+	font-family: "tahoma",Helvetica,"helvetica",Arial,sans-serif;
+	width: 160px;
+	z-index: 0;
+}
+
+.dropdown-menu p {
+	color: #fff;
+	font-size: 20px;
 }
 
 .menu-arrow {
@@ -221,7 +234,7 @@ a{text-decoration:none;color:#0071c5;outline:0}
 	float: right;
 	font-family: tahoma, helvetica, sans-serif;
 	font-size: 14px;
-	height: 60px;
+	height: 30px;
 	padding-bottom: 6px;
 	padding-left: 15px;
 	padding-right: 15px;
