@@ -1,0 +1,8 @@
+var v1 int;
+var v2 int;
+if (v1 < 2) {
+v1 = -4;
+}
+
+var v3 string;
+v3 = "helloWorld";

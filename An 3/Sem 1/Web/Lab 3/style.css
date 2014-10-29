@@ -1,0 +1,23 @@
+li {
+	display: inline;
+}
+
+.section1 {
+	display: none;
+}
+
+.section2 {
+	display: none;
+}
+
+.dropdown:hover .section1 {
+	display: block;
+	position: absolute;
+}
+
+.dropdown:hover .section2 {
+	display: block;
+	position: absolute;
+	background-color: #000;
+	color: #fff;
+}
