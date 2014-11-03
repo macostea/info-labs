@@ -1,0 +1,31 @@
+entry {
+	display: block;
+	color:#fff;
+	background-color: #FF5E3A;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+title {
+	display: inline-block;
+	width: 30%;
+	padding-right: 5px;
+}
+
+author {
+	display: inline-block;
+	width: 15%;
+	padding-left: 5px;
+}
+
+year {
+	display: inline-block;
+	width: 15%;
+	padding-left: 5px;	
+}
+
+editor {
+	display: inline-block;
+	width: 20%;
+	padding-left: 5px;
+}
