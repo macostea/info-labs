@@ -1,0 +1,11 @@
+Lab1 Documentation
+
+The user can select the encryption key in a special text field.
+
+After writing the Plain text message in the text field, the user can press the encrypt button and the cipher text is shown in the textfield.
+After writing the cipher text in the text field, the user can press the decrypt button and the plain text is shown in the textfield.
+
+When pressing either Decrypt or Encrypt the application initialises 2 arrays: 1 with the initial alphabet character by character and one with the encryption key.
+
+When encrypting, the application finds each character in the text field in the initial array and outputs the character at the same index from the encryption key.
+When decrypting the same operation is done in reverse using each character from the cipher text.

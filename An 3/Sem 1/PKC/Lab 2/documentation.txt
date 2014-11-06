@@ -1,0 +1,65 @@
+GCD Algorithms:
+
+1. Euclid:
+void Euclid::gcd(mpz_t a, mpz_t b, mpz_t result) {
+    mpz_t zero;
+    mpz_init_set_str(zero, "0", 10);
+    
+    
+    while (mpz_cmp(b, zero) > 0) {
+        mpz_mod(result, a, b);
+        mpz_set(a, b);
+        mpz_set(b, result);
+    }
+
+    mpz_set(result, a);
+}
+
+This algorithm uses repeated divisions to find the greatest common divisor.
+It is also designed to work with arbitrarily large numbers by using the gmp library.
+
+2. Stein
+unsigned long Stein::gcd(unsigned long a, unsigned long b) {
+    int shift;
+    
+    if (a == 0) return b;
+    if (b == 0) return b;
+    
+    for (shift = 0; ((a | b) & 1) == 0; ++shift) {
+        a >>= 1;
+        b >>= 1;
+    }
+    
+    while ((a & 1) == 0)
+        a >>= 1;
+    
+    do {
+        while ((b & 1) == 0)
+            b >>= 1;
+        if (a > b) {
+            unsigned long t = b; b = a; a = t;
+        }
+        b = b - a;
+    } while (b != 0);
+    
+    return a << shift;
+}
+
+This algorithm is a specialised version of the Euclid algorithm which works by shifting the bits of the numbers and checking if the numbers are odd and subtracting one from the other until both numbers are equal or the first one is 0
+
+3. Iterative
+
+unsigned long Iterative::gcd(unsigned long a, unsigned long b) {
+    unsigned long result = 1;
+    
+    for (unsigned long i=2; i <= a && i <= b; i++) {
+        if (a % i == 0 && b % i == 0) {
+            result = i;
+            break;
+        }
+    }
+    
+    return result;
+}
+
+This is naive algorithm for finding the greatest common divisor. The main principle of the algorithm is to search each number starting from 2 to the smallest of the 2 numbers and test if it divides both of them.
