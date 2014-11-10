@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <style>
+        .container {
+            margin-left: auto;
+            margin-right: auto;
+            width:80%;
+        }
+
+        #large_img {
+            display:none;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function loadImg(name) {
+            document.getElementById('large_img').src=name;
+            document.getElementById('large_img').style.display="block";
+        }
+
+        function hideImg() {
+            document.getElementById('large_img').style.display="none";
+        }
+    </script>
+
+</head>
+<body>
+
+<div class="container">
+    <img src="puppy_1_tn.jpg" onmouseover="loadImg('puppy_1.jpg')" onmouseout="hideImg()" />
+    <img src="puppy_2_tn.jpg" onmouseover="loadImg('puppy_2.jpg')" onmouseout="hideImg()" />
+	<img src="quokka_tn.jpg" onmouseover="loadImg('quokka.jpg')" onmouseout="hideImg()" />
+</div>
+
+<div class="container">
+    <img id="large_img" src="#" />
+</div>
+
+</body>
+</html>
