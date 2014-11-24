@@ -1,0 +1,33 @@
+.stack {
+    float: left;
+    margin-left: 20px;
+    width: 200px;
+    color: #fff;
+    text-align: center;
+    font-family: "HelveticaNeue-Thin", "Lucida Grande", "Calibri", "Arial", sans-serif;
+}
+
+.item {
+    height: 80px;
+    width: 200px;
+}
+
+#div1 {
+    background-color: #FF5E3A;
+}
+
+#div2 {
+    background-color: #0BD318;
+}
+
+#div3 {
+    background-color: #1D62F0;
+}
+
+#div4 {
+    background-color: #C643FC;
+}
+
+#div5 {
+    background-color: #FF3B30;
+}

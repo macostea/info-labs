@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="style/jquery-ui.css">
+    <link rel="stylesheet" href="style/jquery-ui.structure.min.css">
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+
+    <link rel="stylesheet" href="style/style.css">
+
+    <script language="javascript">
+        $(function() {
+            $(".stack").sortable({
+                start: function(event, ui){
+                    $(ui.placeholder).animate({
+                        height: "0px"
+                    });
+                },
+                change: function(event,ui){
+                    $(ui.placeholder).animate({
+                        height: "80px"
+                    });
+                }
+            });
+
+            $(".stack").disableSelection();
+        });
+    </script>
+</head>
+<body>
+<div class="stack">
+    <div id="div1" class="item">1</div>
+    <div id="div2" class="item">2</div>
+    <div id="div3" class="item">3</div>
+    <div id="div4" class="item">4</div>
+    <div id="div5" class="item">5</div>
+</div>
+
+<div class="stack">
+
+</div>
+
+</body>
+</html>
