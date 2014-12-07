@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>All Cars</title>
+
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script language="javascript">
+        function show(json) {
+            var table = "<table border='1'>" +
+            "<tr>" +
+            "<th>ID</th><th>Model</th><th>Power</th><th>Fuel</th><th>Price</th><th>Color</th><th>Year</th>" +
+            "</tr>";
+
+            $.each(json, function(i, item) {
+                table += "<tr><td>" + item.id + "</td><td>" + item.model + "</td><td>" +item.engine_power+ "</td><td>" +item.fuel+ "</td><td>" +item.price+ "</td><td>" +item.color+ "</td><td>" +item.year+ "</td><td><a href='php/update.php?id=" + item.id + "'>Edit</a></td><td><a href='php/deleteCar.php?id=" + item.id + "'>Delete</a></td></tr>"
+            });
+
+            table +="</table>";
+
+            $('#content').html(table);
+        }
+
+        function run() {
+            $.getJSON(
+                    "http://localhost:8888/cars/php/getCars.php",
+                    null,
+                    show
+            )
+        }
+
+        (function() {
+            run();
+        })();
+    </script>
+
+</head>
+<body>
+
+<span id="content">
+
+</span>
+<br>
+<form method="post" action="php/addCar.php">
+    Model: <input type="text" name="model" id="model" /><br>
+    Power: <input type="text" name="power" id="power" /><br>
+    Fuel: <input type="text" name="fuel" id="fuel" /><br>
+    Price: <input type="text" name="price" id="price" /><br>
+    Color: <input type="text" name="color" id="color" /><br>
+    Year: <input type="text" name="year" id="year" /><br>
+    <input type="submit" value="Add Car" />
+</form>
+
+</body>
+</html>
