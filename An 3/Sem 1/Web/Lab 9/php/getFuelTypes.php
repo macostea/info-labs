@@ -2,10 +2,9 @@
 /**
  * Created by PhpStorm.
  * User: mihaicostea
- * Date: 07/12/14
- * Time: 12:10
+ * Date: 08/12/14
+ * Time: 12:20
  */
-
 
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 01 Jan 1996, 00:00:00 GMT');
@@ -26,23 +25,13 @@ $link = mysqli_connect($host,
 
 $fuel_type = $_GET['fuelType'];
 
-$result = mysqli_query($link, "SELECT * FROM cars");
-
-if ($fuel_type != null && $fuel_type != "All") {
-    $result = mysqli_query($link, "SELECT * FROM cars WHERE fuel = '$fuel_type'");
-}
+$result = mysqli_query($link, "SELECT DISTINCT fuel FROM cars");
 
 $jsonData = array();
 
 while ($row = mysqli_fetch_array($result)) {
     $rowData = array();
-    $rowData['id'] = $row['id'];
-    $rowData['model'] = $row['model'];
-    $rowData['engine_power'] = $row['engine_power'];
     $rowData['fuel'] = $row['fuel'];
-    $rowData['price'] = $row['price'];
-    $rowData['color'] = $row['color'];
-    $rowData['year'] = $row['manufacturing_year'];
 
     $jsonData[] = $rowData;
 }

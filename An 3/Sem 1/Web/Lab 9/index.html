@@ -21,12 +21,36 @@
             $('#content').html(table);
         }
 
+        function showFilter(json) {
+            var dropdown = "Filter by fuel type: <select name='select' id='filterDropdown' onchange='updateTable()'>";
+            dropdown += "<option value='All'>All</option>";
+            $.each(json, function(i, item) {
+                dropdown += "<option value='" +item.fuel+ "'>" + item.fuel + " </option>";
+            });
+            dropdown += "</select>";
+
+            $('#filter').html(dropdown);
+        }
+
+        function updateTable() {
+            $.getJSON(
+                    "http://localhost:8888/cars/php/getCars.php?fuelType=" + $('#filterDropdown').val(),
+                    null,
+                    show
+            );
+        }
+
         function run() {
             $.getJSON(
                     "http://localhost:8888/cars/php/getCars.php",
                     null,
                     show
-            )
+            );
+            $.getJSON(
+                    "http://localhost:8888/cars/php/getFuelTypes.php",
+                    null,
+                    showFilter
+            );
         }
 
         (function() {
@@ -36,6 +60,10 @@
 
 </head>
 <body>
+
+<span id="filter">
+
+</span>
 
 <span id="content">
 
