@@ -18,5 +18,15 @@
     Name: <input type="text" name="name"/> <br/>
     <input type="Submit" value="Login">
   </form>
+
+  <h2>Register</h2>
+  <form method="POST" action="/Register.do" enctype="multipart/form-data">
+      Name: <input type="text" name="name" value=""> <br>
+      Email: <input type="text" name="email" value=""> <br>
+      PictureURL: <input type="file" name="picture" value=""> <br>
+      Age: <input type="text" name="age" value=""> <br>
+      Town: <input type="text" name="town" value=""> <br>
+      <input type="submit" value="Register">
+  </form>
   </body>
 </html>

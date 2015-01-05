@@ -23,7 +23,7 @@
         <tr>
             <th>Name</th>
             <th>Email</th>
-            <th>PictureURL</th>
+            <th>Picture</th>
             <th>Age</th>
             <th>Town</th>
         </tr>

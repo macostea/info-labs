@@ -15,12 +15,12 @@
 <%
     User user = (User) request.getAttribute("user");
 %>
-    <form action="/EditProfile.do" method="POST">
+    <form action="/EditProfile.do" method="POST" enctype="multipart/form-data">
         Id: <input type="text" value="<%out.print(user.getId());%>" disabled> <br>
         <input type="hidden" name="id" value="<%out.print(user.getId());%>">
         Name: <input type="text" name="name" value="<%out.print(user.getName());%>"> <br>
         Email: <input type="text" name="email" value="<%out.print(user.getEmail());%>"> <br>
-        PictureURL: <input type="text" name="pictureURL" value="<%out.print(user.getPictureURL());%>"> <br>
+        Picture: <input type="file" name="picture" value=""> <br>
         Age: <input type="text" name="age" value="<%out.print(user.getAge());%>"> <br>
         Town: <input type="text" name="town" value="<%out.print(user.getTown());%>"> <br>
         <input type="submit" value="Update">

@@ -36,4 +36,8 @@ public class Controller {
     public User updateUser(User user) {
         return this.repo.updateUser(user);
     }
+
+    public User addUser(User user) {
+        return this.repo.addUser(user);
+    }
 }

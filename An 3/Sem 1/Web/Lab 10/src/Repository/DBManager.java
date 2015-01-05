@@ -57,4 +57,14 @@ public class DBManager {
         statement.setInt(7, id);
         return statement.executeUpdate();
     }
+
+    public int addUser(String name, String email, int age, String pictureURL, String town) throws SQLException {
+        PreparedStatement statement = this.connection.prepareStatement("INSERT INTO users.users VALUES (null, ?, ?, ?, ?, ?)");
+        statement.setString(1, name);
+        statement.setString(2, pictureURL);
+        statement.setString(3, email);
+        statement.setInt(4, age);
+        statement.setString(5, town);
+        return statement.executeUpdate();
+    }
 }

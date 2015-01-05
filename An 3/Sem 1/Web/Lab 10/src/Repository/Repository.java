@@ -129,4 +129,20 @@ public class Repository {
             return newUser;
         }
     }
+
+    public User addUser(User user) {
+        User newUser = null;
+        try {
+            int result = this.dbManager.addUser(user.getName(), user.getEmail(), user.getAge(), user.getPictureURL(), user.getTown());
+            if (result != 0) {
+                newUser = user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        finally {
+            return newUser;
+        }
+    }
 }

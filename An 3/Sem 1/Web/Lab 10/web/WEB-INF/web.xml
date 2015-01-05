@@ -15,6 +15,10 @@
         <servlet-name>EditProfileServlet</servlet-name>
         <servlet-class>Controller.EditProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterServler</servlet-name>
+        <servlet-class>Controller.RegisterServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
@@ -30,4 +34,14 @@
         <servlet-name>EditProfileServlet</servlet-name>
         <url-pattern>/EditProfile.do</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>RegisterServler</servlet-name>
+        <url-pattern>/Register.do</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <param-name>file-upload</param-name>
+        <param-value>/Users/mihaicostea/Developer/info-labs/An 3/Sem 1/Web/Lab 10/web/pics/</param-value>
+    </context-param>
 </web-app>
