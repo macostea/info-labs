@@ -1,9 +1,15 @@
-package com.cs.model;
+package Model;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -18,40 +24,6 @@ public class Grammar {
     public Grammar() {
 
     }
-
-//    public Grammar(Automaton automaton) {
-//        for (String state : automaton.getStates()) {
-//            this.nonterminals.add(state);
-//        }
-//        for (String symbol: automaton.getAlphabet()) {
-//            this.terminals.add(symbol);
-//        }
-//        this.startingSymbol = automaton.getStartingState();
-//
-//        for (Transition transition : automaton.getTransitions()) {
-//            Production production = new Production();
-//            production.setStartingSymbol(transition.getStartState());
-//            production.setDestinationSymbol(transition.getEndState());
-//            production.setTerminalSymbol(transition.getSymbol());
-//
-//            this.productions.add(production);
-//            if (automaton.getFinalStates().contains(transition.getEndState())) {
-//                Production newProduction = new Production();
-//                newProduction.setStartingSymbol(transition.getStartState());
-//                newProduction.setTerminalSymbol(transition.getSymbol());
-//
-//                this.productions.add(newProduction);
-//            }
-//        }
-//
-//        if (automaton.getFinalStates().contains(automaton.getStartingState())) {
-//            Production production = new Production();
-//            production.setStartingSymbol(automaton.getStartingState());
-//            production.setTerminalSymbol("empty");
-//
-//            this.productions.add(production);
-//        }
-//    }
 
     public HashSet<String> getNonterminals() {
         return nonterminals;
@@ -86,25 +58,57 @@ public class Grammar {
     }
 
     public void readFromFile(String filename) throws IOException {
-        Stream<String> lines = Files.lines(Paths.get(filename));
+        String text;
+        String tokens[];
+        BufferedReader cReader;
 
-        String linesArray[] = (String[])lines.toArray();
-        String nonterminalsFromString[] = linesArray[0].split(" ");
-        for (String nonterminal : nonterminalsFromString) {
-            this.nonterminals.add(nonterminal);
-        }
-        String terminalsFromString[] = linesArray[1].split(" ");
-        for (String terminal: terminalsFromString) {
-            this.terminals.add(terminal);
-        }
-        this.startingSymbol = linesArray[2];
-        for (int i=3; i<linesArray.length; i++) {
-            this.productions.add(new Production(linesArray[i]));
-        }
+             cReader = new BufferedReader(new FileReader(filename));
+             text = cReader.readLine();    //nonterminals
+             tokens = text.split(" ");
+             for (String token : tokens) {
+                 this.nonterminals.add(token);
+             }
+
+             text = cReader.readLine();    //terminals
+             tokens = text.split(" ");
+             for (String token : tokens) {
+                 this.terminals.add(token);
+             }
+
+             text = cReader.readLine();    //starting symbol
+             this.setStartingSymbol(text);
+
+
+             while (cReader.ready()) {
+                 text = cReader.readLine();
+                 this.productions.add(new Production(text));
+             }
+
+
+
     }
 
-    public boolean isRegular() {
+    public boolean symbolIsTerminal(String symbol) {
+        return this.terminals.contains(symbol);
+    }
+
+    public boolean symbolIsNonterminal(String symbol) {
+        return this.nonterminals.contains(symbol);
+    }
+
+    public List<Production> productionsForSymbol(String symbol) {
+        List<Production> productions = new ArrayList<Production>();
         for (Production production : this.productions) {
+            if (production.getStartingSymbol().equals(symbol)) {
+                productions.add(production);
+            }
+        }
+
+        return productions;
+    }
+
+  /*  public boolean isRegular() {
+        for (Model.Production production : this.productions) {
             if (!this.nonterminals.contains(production.getStartingSymbol())) {
                 return false;
             }
@@ -122,6 +126,7 @@ public class Grammar {
 
         return true;
     }
+    */
 
     public String toString() {
         String output = new String();
@@ -145,8 +150,6 @@ public class Grammar {
         output += "}" + "\n";
 
         output += "S=" + this.getStartingSymbol() + "\n";
-
-        output += "Regular? " + this.isRegular();
 
         return output;
     }

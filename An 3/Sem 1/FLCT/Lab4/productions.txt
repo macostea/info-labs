@@ -1,0 +1,39 @@
+program­> begin declist cmpdstatement end
+type ­> int | string
+assignment ­> IDENTIFIER = idtypes
+idtypes­> IDENTIFIER | integerconstant | charconstant | stringconstant
+declist­> declaration | arraydeclaration
+arraydeclaration­> type IDENTIFIER [ integerconstant ]
+declaration ­> type IDENTIFIER ;
+declaration ­> type IDENTIFIER, decalt
+decalt­> IDENTIFIER, | IDENTIFIER;
+
+whilestatement­> while ( condition ) { statement }
+
+ifstatement­> "if" ( condition ) { statement } | "if" (condition) {statement} "else " {statement}
+
+iostatement­> readst | writest
+
+readst­>read ( IDENTIFIER);
+
+writest­>write (IDENTIFIER);
+
+statement­> simple_statement | block_statement
+
+simple_statement­> assignment | io_statement
+
+block_statement­> cmpdstatement | ifstatement | whilestatement
+
+cmpdstatement ­> { statement_list }
+
+statement_list ­> statement; | statement ; statement_list
+
+condition­> expression RELATION expression
+
+expression­> expression + term | term
+
+term ­> term * factor
+term -> factor
+
+factor ­> ( expression )
+factor -> IDENTIFIER
