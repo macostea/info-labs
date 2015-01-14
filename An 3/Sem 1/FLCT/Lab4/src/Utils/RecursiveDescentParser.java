@@ -3,7 +3,9 @@ package Utils;
 import Model.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Stack;
 
 /**
@@ -19,7 +21,7 @@ public class RecursiveDescentParser {
         this.pif = pif;
     }
     public String parse() {
-        String message = "muiecacap";
+        String message = "something went wrong";
 
         ParserState parserState = ParserState.NORMAL;
         int i = 0;
@@ -61,7 +63,9 @@ public class RecursiveDescentParser {
                 if (alpha.peek().equals(this.pif.get(i).value())) {
                     alpha.pop();
                     beta.push(this.pif.get(i).value());
-                    i--;
+                    if (i != this.pif.size() - 1) {
+                        i--;
+                    }
                 } else {
                     if (currentProductionIndex + 1 < currentProductionList.size()) {
                         currentProductionIndex++;
@@ -104,9 +108,30 @@ public class RecursiveDescentParser {
         if (parserState == ParserState.ERROR) {
             message = "error";
         } else if (parserState == ParserState.FINISH) {
-            // do amazing things
+            message = this.buildProductionString(alpha);
         }
         return message;
+    }
+
+    private String buildProductionString(Stack<Object> alpha) {
+        List<Production> productions = new ArrayList<Production>();
+        while (!alpha.isEmpty()) {
+            if (alpha.peek().getClass().equals(Production.class)) {
+                productions.add((Production)alpha.peek());
+            }
+            alpha.pop();
+        }
+
+        String productionString = new String();
+        ListIterator<Production> listIterator = productions.listIterator(productions.size());
+        while (listIterator.hasPrevious()) {
+            productionString += listIterator.previous();
+            if (listIterator.hasPrevious()) {
+                productionString += "-----> ";
+            }
+        }
+
+        return productionString;
     }
 }
 

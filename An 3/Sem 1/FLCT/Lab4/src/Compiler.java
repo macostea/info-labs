@@ -19,8 +19,6 @@ public class Compiler {
 //        System.out.println("\n\nModel.Symbol table:\n________________");
 //        tScan.printSymbolTable();
 
-        tScan.printPIF();
-
         RecursiveDescentParser parser = new RecursiveDescentParser(testGrammar, tScan.getPIF());
         System.out.println(parser.parse());
 	}
