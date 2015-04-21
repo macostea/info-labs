@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title></title>
+
+    <style>
+        * {
+            font-size: 12px;
+        }
+        .yellow_bck {
+            background-color: yellow;
+        }
+        .gray_bck {
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+<div class="yellow_bck">
+    <p> URL </p>
+        <p> Abbreviation of Uniform Resource Locator (URL) it is the global address of documents and other resources on the World Wide Web.</p>
+        <p>The first part of the URL is called a protocol identifier and it indicates what protocol to use, and the second part is called a resource name and it specifies the IP address or the domain name where the resource is located. The protocol identifier and the resource name are separated by a colon and two forward slashes.</p>
+        <p>For example, the two URLs below point to two different files at the domain pcwebopedia.com. The first specifies an executable file that should be fetched using the FTP protocol; the second specifies a Web page that should be fetched using the HTTP protocol:</p>
+        <ul>
+            <li>
+                ftp://www.pcwebopedia.com/stuff.exe
+            </li>
+            <li>
+                http://www.pcwebopedia.com/index.html
+            </li>
+        </ul>
+
+        <p>A URL is one type of Uniform Resource Identifier (URI); the generic term for all types of names and addresses that refer to objects on the World Wide Web.</p>
+        <p>The term "Web address" is a synonym for a URL that uses the HTTP / HTTPS protocol.</p>
+        <p>The Uniform Resource Locator (URL) was developed by Tim Berners-Lee in 1994 and the Internet Engineering Task Force (IETF) URI working group. The URL format is specified in RFC 1738 Uniform Resource Locators (URL).</p>
+    </p>
+</div>
+
+<div class="gray_bck">
+    <p> Structure of the HTTP request </p>
+    <ul>
+        <li>
+            request-line
+        </li>
+        <li>
+            general-headers
+        </li>
+        <li>
+            request-headers
+        </li>
+        <li>
+            entity-headers
+        </li>
+        <li>
+            empty-line
+        </li>
+        <li>
+            message-body
+        </li>
+        <li>
+            message-trailers
+        </li>
+    </ul>
+
+    <p> Main differences between HTTP GET and HTTP POST </p>
+    GET:
+    <ul>
+        <li>
+            Requests data from a specified resource
+        </li>
+        <li>
+            Query strings (name/value pairs) are sent in the URL of a GET request:
+        </li>
+        <li>
+            GET requests can be cached
+        </li>
+        <li>
+            GET requests remain in the browser history
+        </li>
+        <li>
+            GET requests can be bookmarked
+        </li>
+        <li>
+            GET requests should never be used when dealing with sensitive data
+        </li>
+        <li>
+            GET requests have length restrictions
+        </li>
+        <li>
+            GET requests should be used only to retrieve data
+        </li>
+    </ul>
+
+    POST:
+    <ul>
+        <li>
+            Submits data to be processed to a specified resource
+        </li>
+        <li>
+            Query strings (name/value pairs) are sent in the HTTP message body of a POST request:
+        </li>
+        <li>
+            POST requests are never cached
+        </li>
+        <li>
+            POST requests do not remain in the browser history
+        </li>
+        <li>
+            POST requests cannot be bookmarked
+        </li>
+        <li>
+            POST requests have no restrictions on data length
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

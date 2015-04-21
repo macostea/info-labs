@@ -1,0 +1,9 @@
+expression term factor
+( ) + * IDENTIFIER
+expression
+expression>expression + term
+expression>term
+term>term * factor
+term>factor
+factor>( expression )
+factor>IDENTIFIER

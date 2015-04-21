@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="jquery-1.11.1.min.js"></script>
+    <script language="javascript">
+        var items = {};
+        var ip;
+
+        function show(json) {
+            ip = json.ip;
+            var table = "<table border='1'>" +
+                    "<tr>" +
+                    "<th>ID</th><th>Name</th><th>Type</th><th>Price</th><th>Description</th>" +
+                    "</tr>";
+
+            $.each(json.results, function(i, item) {
+                var currentItemId = items[item.id];
+                if (currentItemId == null || typeof currentItemId == NaN) {
+                    items[item.id] = 0;
+                }
+                items[item.id]++;
+                table += "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" +item.type+ "</td><td>" +item.price+ "</td><td>" +item.description+ "</td></tr>"
+            });
+
+            table +="</table>";
+
+            $('#results').html(table);
+        }
+
+        function requestData() {
+            var term = $('#search_field').val();
+            var search_fields = $('#search_fields').val();
+
+            var data = {'fields' : JSON.stringify(search_fields),
+                'term' : term
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: 'search.php',
+                data: JSON.stringify(data),
+                success: show,
+                contentType: "application/json",
+                dataType: 'json'
+            });
+        }
+
+        function getPopular() {
+            var max = -1;
+            var id = -1;
+
+            for (var productId in items) {
+                if (items[productId] > max) {
+                    max = items[productId];
+                    id = productId;
+                }
+            }
+
+            if (id != -1) {
+                var fields = ['ID'];
+                var data = {'fields' : JSON.stringify(fields),
+                        'term' : id};
+                $.ajax({
+                    type: 'POST',
+                    url: 'search.php',
+                    data: JSON.stringify(data),
+                    success: showPopular,
+                    contentType: "application/json",
+                    dataType: 'json'
+                });
+            }
+        }
+
+        function showPopular(json) {
+            show(json);
+            var logData = {
+                'event_type' : 'Search',
+                'event' : json.results[0].name,
+                'id_product' : json.results[0].id
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: 'addLog.php',
+                data: JSON.stringify(logData),
+                contentType: "application/json",
+                dataType: 'json'
+            });
+        }
+
+        function run() {
+            $.ajax({
+                type: 'POST',
+                url: 'search.php',
+                data: '{}',
+                success: show,
+                contentType: "application/json",
+                dataType: 'json'
+            });
+        }
+
+        $(document).ready(function () {
+            run();
+            $('#search_field').keyup(function () {
+                if ($('#search_fields').val().length != 0) {
+                    requestData();
+                }
+            });
+            $('#popular').click(function () {
+                getPopular();
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+<span id="results">
+
+</span>
+
+<span>
+    <select multiple id="search_fields">
+        <option value="NAME">Name</option>
+        <option value="TYPE">Type</option>
+        <option value="PRICE">Price</option>
+        <option value="DESCRIPTION">Description</option>
+    </select>
+
+    <input type="text" id="search_field">
+</span>
+
+<div>
+    <input type="button" value="Popular" id="popular" />
+    <span id="popular_result">
+
+    </span>
+</div>
+
+<form method="post" action="addProduct.php">
+    <fieldset>
+    Name: <input type="text" name="name" id="name" /><br>
+    Type: <input type="text" name="type" id="type" /><br>
+    Price: <input type="text" name="price" id="price" /><br>
+    Description: <input type="text" name="description" id="description" /><br>
+    <input type="submit" value="Add Car" />
+    </fieldset>
+</form>
+
+</body>
+</html>

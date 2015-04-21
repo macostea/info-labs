@@ -1,0 +1,29 @@
+begin type declaration condition expression term factor statement ifstatement whilestatement statementlist blockstatement
+int string ; ( ) + * IDENTIFIER write read = ; { }
+begin
+begin>declist
+type>int
+type>string
+declist> declaration
+declist > declist declaration
+declaration>type IDENTIFIER ;
+condition> expression == expression
+condition> expression > expression
+condition> expression < expression
+assignment> IDENTIFIER = IDENTIFIER ;
+expression> expression + term
+expression> term
+term> term * factor
+term> factor
+factor> ( expression ) IDENTIFIER
+ifstatement> if ( condition ) { statement }
+ifstatement> if ( condition ) { statement } else { statement }
+iostatement> read ( IDENTIFIER ) ;
+iostatement> write ( IDENTIFIER ) ;
+statement> assignment
+statement> iostatement
+statement> ifstatement
+statement> whilestatement
+statementlist> statement statementlist
+statementlist> statement
+whilestatement> while ( condition ) { statement }

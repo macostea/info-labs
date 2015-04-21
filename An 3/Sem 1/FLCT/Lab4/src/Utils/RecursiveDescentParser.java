@@ -44,8 +44,8 @@ public class RecursiveDescentParser {
                         Production firstProduction = currentProductionList.get(currentProductionIndex);
                         alpha.push(firstProduction);
                         beta.pop();
-                        for (String symbol : firstProduction.getTerminalSymbols()) {
-                            beta.push(symbol);
+                        for (int it=firstProduction.getTerminalSymbols().length - 1; it>=0; it--) {
+                            beta.push(firstProduction.getTerminalSymbols()[it]);
                         }
                     } else if (i < this.pif.size() && this.grammar.symbolIsTerminal(betaTop) && betaTop.equals(this.pif.get(i).value())) {
                         alpha.push(this.pif.get(i).value());
@@ -72,13 +72,13 @@ public class RecursiveDescentParser {
                         parserState = ParserState.NORMAL;
                         alpha.pop();
                         alpha.push(currentProductionList.get(currentProductionIndex));
-                        for (int it = currentProductionList.get(currentProductionIndex - 1).getTerminalSymbols().length - 1; it >= 0; it--) {
+                        for (int it = 0; it<currentProductionList.get(currentProductionIndex - 1).getTerminalSymbols().length; it++) {
                             if (beta.peek().equals(currentProductionList.get(currentProductionIndex - 1).getTerminalSymbols()[it])) {
                                 beta.pop();
                             }
                         }
-                        for (String symbol : currentProductionList.get(currentProductionIndex).getTerminalSymbols()) {
-                            beta.push(symbol);
+                        for (int it=currentProductionList.get(currentProductionIndex).getTerminalSymbols().length-1; it>=0; it--) {
+                            beta.push(currentProductionList.get(currentProductionIndex).getTerminalSymbols()[it]);
                         }
                     } else {
                         String currentStartingSymbol = currentProductionList.get(currentProductionIndex).getStartingSymbol();

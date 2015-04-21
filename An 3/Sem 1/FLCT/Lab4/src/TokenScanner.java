@@ -67,7 +67,7 @@ public class TokenScanner {
 		String type=null;
 		
 		if(tokenCodes.containsKey(s)){
-		
+		    type="token";
 		if(getTokenCode(s)>=2 && getTokenCode(s)<=11){
 			type="keyword";
 		}

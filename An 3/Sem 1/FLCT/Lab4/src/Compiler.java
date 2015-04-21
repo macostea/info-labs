@@ -14,7 +14,7 @@ public class Compiler {
         }
        System.out.print(testGrammar);
         TokenScanner tScan=new TokenScanner();
-        tScan.readTokens("tokens.txt");
+        tScan.readTokens("tokens2.txt");
         tScan.detectTokens("input.txt");
 //        System.out.println("\n\nModel.Symbol table:\n________________");
 //        tScan.printSymbolTable();
