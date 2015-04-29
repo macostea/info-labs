@@ -19,163 +19,152 @@ import java.util.logging.Logger;
 
 public class OrdersDAO extends DAO {
 
-    private static int portNumber = 4322;
+    public ArrayList<Order> getOrders() {
+        synchronized (this) {
+            try {
+                this.connect();
+                String query = "SELECT orders.id, orders.quantity, orders.status, agents.id AS 'agentId', agents.name AS 'agentName', client.id AS 'clientId', client.name AS 'clientName', client.address AS 'clientAddress', products.id AS 'productId', products.name AS 'productName', products.price AS 'productPrice', products.quantity AS 'productQuantity'\n" +
+                        "FROM orders\n" +
+                        "JOIN agents ON agents.id=orders.agentId\n" +
+                        "JOIN client ON client.id=orders.clientId\n" +
+                        "JOIN products ON products.id=orders.productId";
 
+                Statement stmt = this.conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
 
-    public static ArrayList<Order> getOrders() {
-        try {
-            OrdersDAO.connect();
-            String query = "SELECT * FROM Orders";
+                ArrayList<Order> result = new ArrayList<Order>();
 
-            Statement stmt = OrdersDAO.conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    Order order = new Order();
+                    order.setOrderId(rs.getInt("id"));
+                    order.setQuantity(rs.getInt("quantity"));
+                    order.setStatus(rs.getString("status"));
 
-            ArrayList<Order> result = new ArrayList<Order>();
+                    Agent agent = new Agent();
+                    agent.setAgentID(rs.getInt("agentId"));
+                    agent.setName(rs.getString("agentName"));
 
-            while (rs.next()) {
-                Order order = new Order();
-                order.setOrderId(rs.getInt("id"));
-                order.setQuantity(rs.getInt("quantity"));
-                order.setStatus(rs.getString("status"));
+                    Client client = new Client();
+                    client.setClientID(rs.getInt("clientId"));
+                    client.setName(rs.getString("clientName"));
+                    client.setAddress(rs.getString("clientAddress"));
 
-                Agent agent = new Agent();
-                agent.setAgentID(rs.getInt("agentId"));
+                    Product product = new Product();
+                    product.setProductId(rs.getInt("productId"));
+                    product.setName(rs.getString("productName"));
+                    product.setQuantity(rs.getInt("productQuantity"));
+                    product.setPrice(rs.getInt("productPrice"));
 
-                Client client = new Client();
-                client.setClientID(rs.getInt("clientId"));
+                    order.setAgent(agent);
+                    order.setClient(client);
+                    order.setProduct(product);
 
-                Product product = new Product();
-                product.setProductId(rs.getInt("productId"));
+                    result.add(order);
+                }
 
-                result.add(order);
-            }
-
-            rs.close();
-            OrdersDAO.disconnect();
-            return result;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
-    }
-
-    public static boolean updateOrder(Order o) {
-        try {
-            OrdersDAO.connect();
-            String query = "UPDATE agency.orders SET productId=" + o.getProduct().getProductId() +
-                    ", agentId=" + o.getAgent().getAgentID() + ", clientId=" + o.getClient().getClientID() +
-                    ", quantity=" + o.getQuantity() + ", status=" + o.getStatus() +
-                    "WHERE id=" + o.getOrderId();
-
-            Statement stmt = OrdersDAO.conn.createStatement();
-            int res = stmt.executeUpdate(query);
-
-            System.out.println("Update result = " + res);
-
-            OrdersDAO.disconnect();
-            return true;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public static boolean addOrder(Order o) {
-        try {
-            OrdersDAO.connect();
-            String query = "INSERT INTO agency.orders VALUES (NULL, " + o.getProduct().getProductId() + ", " + o.getAgent().getAgentID() +
-                    ", " + o.getClient().getClientID() + ", " + o.getQuantity() + ", " + o.getStatus() + ")";
-
-            Statement stmt = OrdersDAO.conn.createStatement();
-            int res = stmt.executeUpdate(query);
-
-            System.out.println("Insert result = " + res);
-
-            OrdersDAO.disconnect();
-            return true;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public static boolean removeOrder(Order o) {
-        try {
-            OrdersDAO.connect();
-            String query = "DELETE FROM agency.orders WHERE id=" + o.getOrderId();
-
-            Statement stmt = OrdersDAO.conn.createStatement();
-            int res = stmt.executeUpdate(query);
-
-            System.out.println("Delete result = " + res);
-
-            OrdersDAO.disconnect();
-            return true;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
-    }
-
-    public static boolean getLoginResponse(Integer userId) {
-        try {
-            OrdersDAO.connect();
-            String query = "Select * FROM Users WHERE ID ='" + userId + "'";
-
-            Statement stmt = OrdersDAO.conn.createStatement();
-            ResultSet rs = stmt.executeQuery(query);
-
-            if (rs.next()) {
                 rs.close();
-                OrdersDAO.disconnect();
-                return true;
+                this.disconnect();
+                return result;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
             }
-
-            rs.close();
-            OrdersDAO.disconnect();
-            return true;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
         }
     }
 
-    public static int getPortNumber() {
-        try {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            SAXParser saxParser = factory.newSAXParser();
+    public boolean updateOrder(Order o) {
+        synchronized (this) {
+            try {
+                this.connect();
+                String query = "UPDATE agency.orders SET productId=" + o.getProduct().getProductId() +
+                        ", agentId=" + o.getAgent().getAgentID() + ", clientId=" + o.getClient().getClientID() +
+                        ", quantity=" + o.getQuantity() + ", status=" + o.getStatus() +
+                        "WHERE id=" + o.getOrderId();
 
-            DefaultHandler handler = new DefaultHandler() {
-                boolean portNumberExists = false;
+                Statement stmt = this.conn.createStatement();
+                int res = stmt.executeUpdate(query);
 
-                public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-                    if (qName.equalsIgnoreCase("PortNumber")) {
-                        portNumberExists = true;
-                    }
-                }
+                System.out.println("Update result = " + res);
 
-                public void endElement(String uri, String localName, String qName) throws SAXException {
-                }
+                this.disconnect();
+                return true;
 
-                public void characters(char ch[], int start, int length) throws SAXException {
-                    if (portNumberExists) {
-                        String portNumberString = new String(ch, start, length);
-                        portNumber = Integer.parseInt(portNumberString);
-                    }
-                }
-            };
-
-            saxParser.parse("Config.xml", handler);
-
-        } catch (Exception e) {
-            System.out.println(e);
+            } catch (SQLException ex) {
+                Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
         }
+    }
 
-        return portNumber;
+    public boolean addOrder(Order o) {
+        synchronized (this) {
+            try {
+                this.connect();
+                String query = "INSERT INTO agency.orders VALUES (NULL, " + o.getProduct().getProductId() + ", " + o.getAgent().getAgentID() +
+                        ", " + o.getClient().getClientID() + ", " + o.getQuantity() + ", '" + o.getStatus() + "')";
+
+                Logger.getLogger(OrdersDAO.class.getName()).log(Level.INFO, query, (Object[]) null);
+
+                Statement stmt = this.conn.createStatement();
+                int res = stmt.executeUpdate(query);
+
+                System.out.println("Insert result = " + res);
+
+                this.disconnect();
+                return true;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+    }
+
+    public boolean removeOrder(Order o) {
+        synchronized (this) {
+            try {
+                this.connect();
+                String query = "DELETE FROM agency.orders WHERE id=" + o.getOrderId();
+
+                Statement stmt = this.conn.createStatement();
+                int res = stmt.executeUpdate(query);
+
+                System.out.println("Delete result = " + res);
+
+                this.disconnect();
+                return true;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
+    }
+
+    public boolean getLoginResponse(Integer userId) {
+        synchronized (this) {
+            try {
+                this.connect();
+                String query = "Select * FROM Users WHERE ID ='" + userId + "'";
+
+                Statement stmt = this.conn.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+
+                if (rs.next()) {
+                    rs.close();
+                    this.disconnect();
+                    return true;
+                }
+
+                rs.close();
+                this.disconnect();
+                return true;
+
+            } catch (SQLException ex) {
+                Logger.getLogger(OrdersDAO.class.getName()).log(Level.SEVERE, null, ex);
+                return false;
+            }
+        }
     }
 }

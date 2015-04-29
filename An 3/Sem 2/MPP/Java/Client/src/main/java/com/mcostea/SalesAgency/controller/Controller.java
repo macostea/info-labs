@@ -1,16 +1,20 @@
 package com.mcostea.SalesAgency.controller;
 
+import com.mcostea.SalesAgency.model.Order;
+import com.mcostea.SalesAgency.model.Product;
 import com.mcostea.SalesAgency.protocol.Packet;
+import com.mcostea.SalesAgency.protocol.RequestType;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  * Created by mihaicostea on 21/04/15.
  */
-public class Controller {
+public class Controller extends Observable {
     private Socket socket;
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
@@ -44,7 +48,11 @@ public class Controller {
                         case UPDATE_NOTIFICATION: //Update received
                         {
                             System.out.println("Update notification received");
-                            // TODO: Respond appropriately
+                            if (packet.getOrders() != null) {
+                                this.setChanged();
+                            }
+                            this.notifyObservers(packet.getOrders());
+                            this.clearChanged();
                             break;
                         }
 
@@ -56,13 +64,43 @@ public class Controller {
 
                         case SERVER_RESPONSE: {
                             System.out.println("Got a server response back");
-                            // TODO: Respond appropriately
+                            if (packet.getOrders() != null) {
+                                this.setChanged();
+                            }
+                            this.notifyObservers(packet.getOrders());
+                            this.clearChanged();
                             break;
                         }
                     }
                 }
             }).start();
 
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void getOrders() {
+        Packet packet = new Packet();
+        packet.setRequestType(RequestType.GET_ALL_ORDERS);
+
+        try {
+            this.outputStream.writeObject(packet);
+        } catch (IOException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void sendProduct(Product p) {
+        Packet packet = new Packet();
+    }
+
+    public void sendOrder(Order o) {
+        Packet packet = new Packet();
+        packet.setRequestType(RequestType.ADD_ORDER);
+        packet.setOrderToProcess(o);
+        try {
+            this.outputStream.writeObject(packet);
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }

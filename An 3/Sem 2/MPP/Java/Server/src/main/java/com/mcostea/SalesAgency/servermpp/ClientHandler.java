@@ -1,6 +1,7 @@
 package com.mcostea.SalesAgency.servermpp;
 
 import com.mcostea.SalesAgency.model.Order;
+import com.mcostea.SalesAgency.persistance.DAO;
 import com.mcostea.SalesAgency.persistance.OrdersDAO;
 import com.mcostea.SalesAgency.protocol.Packet;
 import com.mcostea.SalesAgency.protocol.RequestType;
@@ -45,7 +46,7 @@ public class ClientHandler extends Thread {
     }
 
     private void sendAllOrders() {
-        ArrayList<Order> orders = OrdersDAO.getOrders();
+        ArrayList<Order> orders = this.server.persistance.getOrders();
 
         Packet packet = new Packet();
         packet.setRequestType(RequestType.SERVER_RESPONSE);
@@ -61,8 +62,8 @@ public class ClientHandler extends Thread {
     }
 
     private void addOrder(Order o) {
-        if (OrdersDAO.addOrder(o)) {
-            this.server.sendUpdateNotification();
+        if (this.server.persistance.addOrder(o)) {
+            this.server.sendUpdateNotification(this.server.persistance.getOrders());
         } else {
             Packet packet = new Packet();
             packet.setRequestType(RequestType.ERROR);
@@ -75,8 +76,8 @@ public class ClientHandler extends Thread {
     }
 
     private void updateOrder(Order o) {
-        if (OrdersDAO.updateOrder(o)) {
-            this.server.sendUpdateNotification();
+        if (this.server.persistance.updateOrder(o)) {
+            this.server.sendUpdateNotification(this.server.persistance.getOrders());
         } else {
             Packet packet = new Packet();
             packet.setRequestType(RequestType.ERROR);
@@ -89,8 +90,8 @@ public class ClientHandler extends Thread {
     }
 
     private void removeOrder(Order o) {
-        if (OrdersDAO.removeOrder(o)) {
-            this.server.sendUpdateNotification();
+        if (this.server.persistance.removeOrder(o)) {
+            this.server.sendUpdateNotification(this.server.persistance.getOrders());
         } else {
             Packet packet = new Packet();
             packet.setRequestType(RequestType.ERROR);

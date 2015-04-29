@@ -1,27 +1,37 @@
-   try {
-       socket = new Socket("localhost", 4322);
-       OutputStream outputStream = socket.getOutputStream();
-       InputStream inputStream = socket.getInputStream();
+package com.mcostea.SalesAgency.protocol;
 
-       ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-       objectOutputStream.flush();
+import com.mcostea.SalesAgency.model.Order;
 
-       ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
+import java.io.Serializable;
+import java.util.ArrayList;
 
-       Packet packet = new Packet();
-       packet.setRequestType(RequestType.GET_ALL_ORDERS);
-       objectOutputStream.writeObject(packet);
+public class Packet implements Serializable {
 
-       Packet p = (Packet)objectInputStream.readObject();
+    RequestType requestType;
+    ArrayList<Order> orders;
+    Order orderToProcess;
 
-       ArrayList<Order> orders = p.getOrders();
-       for (Order o : orders) {
-           System.out.println(o.getStatus());
-       }
-       System.out.println(p.getOrders());
+    public RequestType getRequestType() {
+        return requestType;
+    }
 
-   } catch (IOException ex) {
-       Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-   } catch (ClassNotFoundException ex) {
-       Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-   }
+    public void setRequestType(RequestType requestType) {
+        this.requestType = requestType;
+    }
+
+    public ArrayList<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Order getOrderToProcess() {
+        return orderToProcess;
+    }
+
+    public void setOrderToProcess(Order orderToProcess) {
+        this.orderToProcess = orderToProcess;
+    }
+}
