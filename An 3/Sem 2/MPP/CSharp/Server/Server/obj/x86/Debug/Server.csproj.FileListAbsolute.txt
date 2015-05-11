@@ -1,0 +1,13 @@
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\obj\x86\Debug\Server.exe
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\Server.exe
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\Server.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\AgencyServices.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\Model.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\MySql.Data.Entity.EF5.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\MySql.Data.Entity.EF6.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\MySql.Fabric.Plugin.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\AgencyServices.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\Model.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\obj\x86\Debug\Server.csprojResolveAssemblyReference.cache
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\obj\x86\Debug\Server.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Server\bin\Debug\config.xml

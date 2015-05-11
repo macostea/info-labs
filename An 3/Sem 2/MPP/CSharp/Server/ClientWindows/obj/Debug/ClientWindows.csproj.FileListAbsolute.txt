@@ -1,0 +1,13 @@
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\ClientWindows.exe.config
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\ClientWindows.exe
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\ClientWindows.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\AgencyServices.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\Model.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\AgencyServices.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\bin\Debug\Model.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\obj\Debug\ClientWindows.csprojResolveAssemblyReference.cache
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\obj\Debug\ClientWindows.Form1.resources
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\obj\Debug\ClientWindows.Properties.Resources.resources
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\obj\Debug\ClientWindows.csproj.GenerateResource.Cache
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\obj\Debug\ClientWindows.exe
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\ClientWindows\obj\Debug\ClientWindows.pdb

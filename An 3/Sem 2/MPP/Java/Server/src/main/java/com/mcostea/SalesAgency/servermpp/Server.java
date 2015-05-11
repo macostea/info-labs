@@ -1,10 +1,8 @@
 package com.mcostea.SalesAgency.servermpp;
 
 import com.mcostea.SalesAgency.model.Order;
-import com.mcostea.SalesAgency.persistance.DAO;
 import com.mcostea.SalesAgency.persistance.OrdersDAO;
-import com.mcostea.SalesAgency.protocol.Packet;
-import com.mcostea.SalesAgency.protocol.RequestType;
+import com.mcostea.SalesAgency.protocol.OrdersUpdatedPacket;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
@@ -15,7 +13,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.jar.Attributes;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -53,8 +50,7 @@ public class Server {
     public void sendUpdateNotification(ArrayList<Order> orders) {
         synchronized (this) {
             for (ObjectOutputStream ou : this.connections) {
-                Packet packet = new Packet();
-                packet.setRequestType(RequestType.UPDATE_NOTIFICATION);
+                OrdersUpdatedPacket packet = new OrdersUpdatedPacket();
                 packet.setOrders(orders);
                 try {
                     ou.writeObject(packet);

@@ -2,8 +2,7 @@ package com.mcostea.SalesAgency.controller;
 
 import com.mcostea.SalesAgency.model.Order;
 import com.mcostea.SalesAgency.model.Product;
-import com.mcostea.SalesAgency.protocol.Packet;
-import com.mcostea.SalesAgency.protocol.RequestType;
+import com.mcostea.SalesAgency.protocol.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -44,33 +43,26 @@ public class Controller extends Observable {
                         continue;
                     }
 
-                    switch (packet.getRequestType()) {
-                        case UPDATE_NOTIFICATION: //Update received
-                        {
-                            System.out.println("Update notification received");
-                            if (packet.getOrders() != null) {
-                                this.setChanged();
-                            }
-                            this.notifyObservers(packet.getOrders());
-                            this.clearChanged();
-                            break;
+                    if (packet.getClass().equals(OrdersUpdatedPacket.class)) {
+                        System.out.println("Update notification received");
+                        if (((OrdersUpdatedPacket)packet).getOrders() != null) {
+                            this.setChanged();
                         }
+                        this.notifyObservers(((OrdersUpdatedPacket)packet).getOrders());
+                        this.clearChanged();
+                    }
 
-                        case ERROR: //Server error
-                        {
-                            System.out.println("Server returned an error");
-                            break;
-                        }
+                    if (packet.getClass().equals(ErrorPacket.class)) {
+                        System.out.println(((ErrorPacket) packet).getMessage());
+                    }
 
-                        case SERVER_RESPONSE: {
-                            System.out.println("Got a server response back");
-                            if (packet.getOrders() != null) {
-                                this.setChanged();
-                            }
-                            this.notifyObservers(packet.getOrders());
-                            this.clearChanged();
-                            break;
+                    if (packet.getClass().equals(GetAllOrdersPacket.class)) {
+                        System.out.println("Got a server response back");
+                        if (((GetAllOrdersPacket)packet).getOrders() != null) {
+                            this.setChanged();
                         }
+                        this.notifyObservers(((GetAllOrdersPacket)packet).getOrders());
+                        this.clearChanged();
                     }
                 }
             }).start();
@@ -81,8 +73,7 @@ public class Controller extends Observable {
     }
 
     public void getOrders() {
-        Packet packet = new Packet();
-        packet.setRequestType(RequestType.GET_ALL_ORDERS);
+        GetAllOrdersPacket packet = new GetAllOrdersPacket();
 
         try {
             this.outputStream.writeObject(packet);
@@ -96,9 +87,8 @@ public class Controller extends Observable {
     }
 
     public void sendOrder(Order o) {
-        Packet packet = new Packet();
-        packet.setRequestType(RequestType.ADD_ORDER);
-        packet.setOrderToProcess(o);
+        AddOrderPacket packet = new AddOrderPacket();
+        packet.setOrder(o);
         try {
             this.outputStream.writeObject(packet);
         } catch (IOException ex) {

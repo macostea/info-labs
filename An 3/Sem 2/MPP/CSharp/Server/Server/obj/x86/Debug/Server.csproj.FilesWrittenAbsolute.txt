@@ -1,0 +1,14 @@
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/Server.exe.mdb
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/Server.exe
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/obj/x86/Debug/Server.exe
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/obj/x86/Debug/Server.exe.mdb
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/MySql.Data.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/MySql.Data.Entity.EF5.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/MySql.Data.Entity.EF6.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/MySql.Fabric.Plugin.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/MySql.Web.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/AgencyServices.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/AgencyServices.dll.mdb
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/Model.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Server/Server/bin/Debug/Model.dll.mdb

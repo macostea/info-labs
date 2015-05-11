@@ -1,0 +1,4 @@
+<config>
+    <dbAddr>jdbc:mysql://localhost/agency?user=root</dbAddr>
+    <port>4322</port>
+</config>

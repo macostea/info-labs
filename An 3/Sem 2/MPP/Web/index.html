@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script language="JavaScript">
+        $('document').ready(function () {
+            var socket = new WebSocket('ws://localhost:4322/orders');
+
+            socket.onopen = function() {
+                var packet = {
+                    packetType: 'getAllOrders'
+                };
+                console.log('Sending request packet: ' + packet);
+                socket.send(JSON.stringify(packet));
+            };
+
+            socket.onmessage = function(event) {
+                var data = JSON.parse(event.data);
+
+                var innerHtml = "";
+
+                console.log(data.orders);
+                for (i in data.orders) {
+                    var order = data.orders[i];
+                    innerHtml += "<tr><td>" + order.orderId + "</td>" +
+                            "<td> " + order.client.name + "</td>" +
+                            "<td> " + order.agent.name + "</td>" +
+                            "<td> " + order.product.name + "</td>" +
+                            "<td> " + order.quantity + "</td>" +
+                            "<td> " + order.status + "</td></tr>"
+                }
+
+                $('#data-body').html(innerHtml);
+            }
+        });
+    </script>
+</head>
+<body>
+
+<table id="data">
+    <thead>
+        <tr>
+            <th>
+                Order Id
+            </th>
+            <th>
+                Client Name
+            </th>
+            <th>
+                Agent Name
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody id="data-body">
+
+    </tbody>
+</table>
+
+</body>
+</html>

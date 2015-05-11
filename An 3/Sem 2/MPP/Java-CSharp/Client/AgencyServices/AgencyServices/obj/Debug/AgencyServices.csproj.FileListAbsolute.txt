@@ -1,0 +1,7 @@
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\bin\Debug\AgencyServices.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\bin\Debug\AgencyServices.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\bin\Debug\Model.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\bin\Debug\Model.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\obj\Debug\AgencyServices.csprojResolveAssemblyReference.cache
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\obj\Debug\AgencyServices.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\AgencyServices\AgencyServices\obj\Debug\AgencyServices.pdb

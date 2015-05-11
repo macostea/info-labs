@@ -1,10 +1,7 @@
 package com.mcostea.SalesAgency.servermpp;
 
 import com.mcostea.SalesAgency.model.Order;
-import com.mcostea.SalesAgency.persistance.DAO;
-import com.mcostea.SalesAgency.persistance.OrdersDAO;
-import com.mcostea.SalesAgency.protocol.Packet;
-import com.mcostea.SalesAgency.protocol.RequestType;
+import com.mcostea.SalesAgency.protocol.*;
 
 import java.io.*;
 import java.net.Socket;
@@ -48,8 +45,7 @@ public class ClientHandler extends Thread {
     private void sendAllOrders() {
         ArrayList<Order> orders = this.server.persistance.getOrders();
 
-        Packet packet = new Packet();
-        packet.setRequestType(RequestType.SERVER_RESPONSE);
+        GetAllOrdersPacket packet = new GetAllOrdersPacket();
         packet.setOrders(orders);
 
         System.out.println(orders);
@@ -65,8 +61,8 @@ public class ClientHandler extends Thread {
         if (this.server.persistance.addOrder(o)) {
             this.server.sendUpdateNotification(this.server.persistance.getOrders());
         } else {
-            Packet packet = new Packet();
-            packet.setRequestType(RequestType.ERROR);
+            ErrorPacket packet = new ErrorPacket();
+            packet.setMessage("Error processing request");
             try {
                 objectOutput.writeObject(packet);
             } catch (IOException ex) {
@@ -79,8 +75,8 @@ public class ClientHandler extends Thread {
         if (this.server.persistance.updateOrder(o)) {
             this.server.sendUpdateNotification(this.server.persistance.getOrders());
         } else {
-            Packet packet = new Packet();
-            packet.setRequestType(RequestType.ERROR);
+            ErrorPacket packet = new ErrorPacket();
+            packet.setMessage("Error processing request");
             try {
                 objectOutput.writeObject(packet);
             } catch (IOException ex) {
@@ -93,8 +89,8 @@ public class ClientHandler extends Thread {
         if (this.server.persistance.removeOrder(o)) {
             this.server.sendUpdateNotification(this.server.persistance.getOrders());
         } else {
-            Packet packet = new Packet();
-            packet.setRequestType(RequestType.ERROR);
+            ErrorPacket packet = new ErrorPacket();
+            packet.setMessage("Error processing request");
             try {
                 objectOutput.writeObject(packet);
             } catch (IOException ex) {
@@ -125,33 +121,24 @@ public class ClientHandler extends Thread {
                 continue;
             }
 
-            switch (packet.getRequestType()) {
-                case GET_ALL_ORDERS: //SEND ORDERS
-                {
-                    System.out.println("Client requested all orders");
-                    this.sendAllOrders();
-                    break;
-                }
+            if (packet.getClass().equals(GetAllOrdersPacket.class)) {
+                System.out.println("Client requested all orders");
+                this.sendAllOrders();
+            }
 
-                case ADD_ORDER: //ADD NEW ORDER
-                {
-                    System.out.println("Client added a new order");
-                    this.addOrder(packet.getOrderToProcess());
-                    break;
-                }
+            if (packet.getClass().equals(AddOrderPacket.class)) {
+                System.out.println("Client added a new order");
+                this.addOrder(((AddOrderPacket) packet).getOrder());
+            }
 
-                case UPDATE_ORDER:
-                {
-                    System.out.println("Client updated an order");
-                    this.updateOrder(packet.getOrderToProcess());
-                    break;
-                }
+            if (packet.getClass().equals(UpdateOrderPacket.class)) {
+                System.out.println("Client updated an order");
+                this.updateOrder(((UpdateOrderPacket) packet).getOrder());
+            }
 
-                case REMOVE_ORDER:
-                {
-                    System.out.println("Client removed an order");
-                    this.removeOrder(packet.getOrderToProcess());
-                }
+            if (packet.getClass().equals(RemoveOrderPacket.class)) {
+                System.out.println("Client removed an order");
+                this.removeOrder(((RemoveOrderPacket)packet).getOrder());
             }
         }
     }

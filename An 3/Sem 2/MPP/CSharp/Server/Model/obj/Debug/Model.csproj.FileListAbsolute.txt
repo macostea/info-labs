@@ -1,0 +1,5 @@
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Model\bin\Debug\Model.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Model\bin\Debug\Model.pdb
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Model\obj\Debug\Model.dll
+Y:\Developer\info-labs\An 3\Sem 2\MPP\CSharp\Server\Model\obj\Debug\Model.pdb

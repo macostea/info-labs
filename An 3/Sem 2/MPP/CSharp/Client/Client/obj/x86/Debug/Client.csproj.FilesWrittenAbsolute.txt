@@ -1,0 +1,10 @@
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/obj/x86/Debug/Client.gtk-gui.gui.stetic
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/bin/Debug/Client.exe.mdb
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/bin/Debug/Client.exe
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/obj/x86/Debug/Client.exe
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/obj/x86/Debug/Client.exe.mdb
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/bin/Debug/AgencyServices.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/bin/Debug/AgencyServices.dll.mdb
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/bin/Debug/Model.dll
+/Users/mihaicostea/Developer/info-labs/An 3/Sem 2/MPP/CSharp/Client/Client/bin/Debug/Model.dll.mdb
