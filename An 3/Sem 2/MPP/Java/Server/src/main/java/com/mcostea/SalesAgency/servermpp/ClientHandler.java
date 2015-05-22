@@ -4,6 +4,8 @@ import com.mcostea.SalesAgency.model.Order;
 import com.mcostea.SalesAgency.protocol.*;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -43,17 +45,21 @@ public class ClientHandler extends Thread {
     }
 
     private void sendAllOrders() {
-        ArrayList<Order> orders = this.server.persistance.getOrders();
-
-        GetAllOrdersPacket packet = new GetAllOrdersPacket();
-        packet.setOrders(orders);
-
-        System.out.println(orders);
-
         try {
-            objectOutput.writeObject(packet);
-        } catch (IOException ex) {
-            Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Method method = this.server.persistance.getClass().getMethod("getOrders", null);
+            ArrayList<Order> orders = (ArrayList<Order>)method.invoke(this.server.persistance, null);
+            GetAllOrdersPacket packet = new GetAllOrdersPacket();
+            packet.setOrders(orders);
+
+            System.out.println(orders);
+
+            try {
+                objectOutput.writeObject(packet);
+            } catch (IOException ex) {
+                Logger.getLogger(ClientHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger((ClientHandler.class.getName())).log(Level.SEVERE, null, ex);
         }
     }
 

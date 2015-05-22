@@ -1,6 +1,7 @@
 package com.mcostea.SalesAgency.servermpp;
 
 import com.mcostea.SalesAgency.model.Order;
+import com.mcostea.SalesAgency.persistance.DAO;
 import com.mcostea.SalesAgency.persistance.OrdersDAO;
 import com.mcostea.SalesAgency.protocol.OrdersUpdatedPacket;
 import org.xml.sax.SAXException;

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Collections.Generic;
 using AgencyServices;
 using Model;
+using System.Reflection;
 
 namespace Server
 {
@@ -26,7 +27,14 @@ namespace Server
 		}
 
 		public List<Order> GetOrders() {
-			return this.server.persistance.GetOrders ();
+            MethodInfo method = this.server.persistance.GetType().GetMethod("GetOrders");
+            if (method != null)
+            {
+                List<Order> orders = (List<Order>)method.Invoke(this.server.persistance, null);
+                return orders;
+            }
+
+            return new List<Order>();
 		}
 
 		public Boolean AddOrder (Order o) {
