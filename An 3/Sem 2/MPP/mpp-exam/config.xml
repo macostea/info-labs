@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="configSchema.xsd">
+    <dbAddr>jdbc:mysql://localhost/mpp_exam?user=root</dbAddr>
+    <port>4322</port>
+</config>
